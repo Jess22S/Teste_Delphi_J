@@ -1,0 +1,174 @@
+object LookUp: TLookUp
+  Height = 303
+  Width = 494
+  object qryEstados: TFDQuery
+    Connection = DM.Conexao
+    Transaction = FDTransaction
+    SQL.Strings = (
+      'SELECT'
+      '   ID_ESTADO,'
+      '   ESTADO,'
+      '   SIGLA'
+      'FROM ESTADOS'
+      'ORDER BY ID_ESTADO;')
+    Left = 48
+    Top = 112
+  end
+  object dsEstados: TDataSource
+    DataSet = qryEstados
+    Left = 128
+    Top = 112
+  end
+  object FDTransaction: TFDTransaction
+    Connection = DM.Conexao
+    Left = 48
+    Top = 32
+  end
+  object qryCidades: TFDQuery
+    Connection = DM.Conexao
+    Transaction = FDTransaction
+    SQL.Strings = (
+      'SELECT'
+      '   ID_CIDADE,'
+      '   CIDADE,'
+      '   ID_ESTADO'
+      'FROM CIDADES'
+      'ORDER BY ID_CIDADE;')
+    Left = 48
+    Top = 176
+  end
+  object dsCidades: TDataSource
+    DataSet = qryCidades
+    Left = 128
+    Top = 176
+  end
+  object qryFornecedores: TFDQuery
+    Connection = DM.Conexao
+    UpdateTransaction = DM.Transacao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'FORNECEDORES_FORNECEDORESID_FORNECEDOR_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_FORNECEDOR'
+    SQL.Strings = (
+      'SELECT'
+      '   ID_FORNECEDOR,'
+      '   NOME,'
+      '   BAIRRO,'
+      '   ENDERECO,'
+      '   NUMERO,'
+      '   CEP,'
+      '   ID_CIDADE,'
+      '   ID_ESTADO,'
+      '   TELEFONE,'
+      '   CNPJ,'
+      '   EMAIL,'
+      '   CADASTRO'
+      'FROM FORNECEDORES'
+      'ORDER BY ID_FORNECEDOR;   ')
+    Left = 147
+    Top = 31
+    object qryFornecedoresid_fornecedor: TFDAutoIncField
+      FieldName = 'id_fornecedor'
+      Origin = 'id_fornecedor'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryFornecedoresnome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 100
+    end
+    object qryFornecedoresbairro: TWideStringField
+      FieldName = 'bairro'
+      Origin = 'bairro'
+      Size = 100
+    end
+    object qryFornecedoresendereco: TWideStringField
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 100
+    end
+    object qryFornecedoresnumero: TIntegerField
+      FieldName = 'numero'
+      Origin = 'numero'
+    end
+    object qryFornecedorescep: TWideStringField
+      FieldName = 'cep'
+      Origin = 'cep'
+      EditMask = '#####-###;1;_'
+      Size = 16
+    end
+    object qryFornecedoresid_cidade: TIntegerField
+      FieldName = 'id_cidade'
+      Origin = 'id_cidade'
+    end
+    object qryFornecedoresid_estado: TIntegerField
+      FieldName = 'id_estado'
+      Origin = 'id_estado'
+    end
+    object qryFornecedorestelefone: TWideStringField
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      EditMask = '(##) #####-####;1;_'
+      Size = 15
+    end
+    object qryFornecedorescnpj: TWideStringField
+      FieldName = 'cnpj'
+      Origin = 'cnpj'
+      EditMask = '##.###.###/###-##;1;_'
+    end
+    object qryFornecedoresemail: TWideStringField
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 100
+    end
+    object qryFornecedorescadastro: TDateField
+      FieldName = 'cadastro'
+      Origin = 'cadastro'
+      EditMask = '##/##/####;1;_'
+    end
+  end
+  object dsFornecedores: TDataSource
+    DataSet = qryFornecedores
+    Left = 248
+    Top = 31
+  end
+  object dsPadrao: TDataSource
+    DataSet = qryUnidades
+    Left = 300
+    Top = 112
+  end
+  object qryUnidades: TFDQuery
+    Connection = DM.Conexao
+    UpdateTransaction = DM.Transacao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'UNIDADES_UNIDADESID_UNIDADE_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_UNIDADE'
+    SQL.Strings = (
+      'SELECT'
+      '   ID_UNIDADE,'
+      '   SIGLA_UNIDADE,'
+      '   DESC_UNIDADE'
+      'FROM UNIDADES   '
+      'ORDER BY ID_UNIDADE')
+    Left = 213
+    Top = 112
+    object qryUnidadesid_unidade: TFDAutoIncField
+      FieldName = 'id_unidade'
+      Origin = 'id_unidade'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryUnidadessigla_unidade: TWideStringField
+      FieldName = 'sigla_unidade'
+      Origin = 'sigla_unidade'
+      Size = 5
+    end
+    object qryUnidadesdesc_unidade: TWideStringField
+      FieldName = 'desc_unidade'
+      Origin = 'desc_unidade'
+      Size = 30
+    end
+  end
+end

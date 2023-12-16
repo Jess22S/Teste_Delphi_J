@@ -1,0 +1,136 @@
+object DM: TDM
+  Height = 259
+  Width = 348
+  object Conexao: TFDConnection
+    Params.Strings = (
+      'Database=postgres'
+      'Password=123'
+      'User_Name=postgres'
+      'DriverID=PG')
+    Connected = True
+    LoginPrompt = False
+    Transaction = Transacao
+    UpdateTransaction = Transacao
+    Left = 48
+    Top = 48
+  end
+  object Transacao: TFDTransaction
+    Connection = Conexao
+    Left = 149
+    Top = 48
+  end
+  object FDPhysPgDriverLink1: TFDPhysPgDriverLink
+    Left = 256
+    Top = 48
+  end
+  object qryUsuario: TFDQuery
+    Connection = Conexao
+    Transaction = Transacao
+    UpdateTransaction = Transacao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'usuario_usuarioid_usuario_seq'
+    UpdateOptions.AutoIncFields = 'ID_USUARIO'
+    SQL.Strings = (
+      'SELECT '
+      '   ID_USUARIO,'
+      '   NOME,'
+      '   SENHA,'
+      '   TIPO,'
+      '   CADASTRO'
+      'FROM USUARIO'
+      'ORDER BY ID_USUARIO;')
+    Left = 48
+    Top = 112
+    object qryUsuarioid_usuario: TFDAutoIncField
+      FieldName = 'id_usuario'
+      Origin = 'id_usuario'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryUsuarionome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 100
+    end
+    object qryUsuariosenha: TWideStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 30
+    end
+    object qryUsuariotipo: TWideStringField
+      FieldName = 'tipo'
+      Origin = 'tipo'
+      Size = 30
+    end
+    object qryUsuariocadastro: TDateField
+      FieldName = 'cadastro'
+      Origin = 'cadastro'
+    end
+  end
+  object qryTipoPessoa: TFDQuery
+    Connection = Conexao
+    Transaction = Transacao
+    UpdateTransaction = Transacao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'tipo_pessoa_tipo_pessoaid_tipo_pessoa_seq'
+    UpdateOptions.AutoIncFields = 'ID_TIPO_PESSOA'
+    SQL.Strings = (
+      'SELECT'
+      '  ID_TIPO_PESSOA,'
+      '  TIPO_PESSOA,'
+      '  CADASTRO'
+      'FROM TIPO_PESSOA'
+      'ORDER BY ID_TIPO_PESSOA;')
+    Left = 48
+    Top = 176
+    object qryTipoPessoaid_tipo_pessoa: TFDAutoIncField
+      FieldName = 'id_tipo_pessoa'
+    end
+    object qryTipoPessoatipo_pessoa: TWideStringField
+      FieldName = 'tipo_pessoa'
+      Size = 100
+    end
+    object qryTipoPessoacadastro: TDateField
+      FieldName = 'cadastro'
+    end
+  end
+  object dspUsuario: TDataSetProvider
+    DataSet = qryUsuario
+    UpdateMode = upWhereKeyOnly
+    Left = 149
+    Top = 112
+  end
+  object cdsUsuario: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspUsuario'
+    Left = 257
+    Top = 112
+  end
+  object dspTipo_Pessoa: TDataSetProvider
+    DataSet = qryTipoPessoa
+    UpdateMode = upWhereKeyOnly
+    Left = 149
+    Top = 176
+  end
+  object cdsTipoPessoa: TClientDataSet
+    Aggregates = <>
+    Params = <>
+    ProviderName = 'dspTipo_Pessoa'
+    Left = 257
+    Top = 176
+    object cdsTipoPessoaid_tipo_pessoa: TAutoIncField
+      FieldName = 'id_tipo_pessoa'
+      ReadOnly = True
+    end
+    object cdsTipoPessoatipo_pessoa: TWideStringField
+      FieldName = 'tipo_pessoa'
+      Size = 100
+    end
+    object cdsTipoPessoacadastro: TDateField
+      FieldName = 'cadastro'
+    end
+  end
+end

@@ -1,0 +1,354 @@
+inherited Pesq_FornecedorF: TPesq_FornecedorF
+  Caption = 'PESQUISA DE FORNECEDORES'
+  ClientHeight = 549
+  ClientWidth = 1215
+  ExplicitWidth = 1231
+  ExplicitHeight = 588
+  TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 1215
+    ExplicitWidth = 1215
+    inherited btnPesquisar: TBitBtn
+      OnClick = btnPesquisarClick
+    end
+    inherited Panel3: TPanel
+      Left = 1076
+      ExplicitLeft = 1076
+    end
+  end
+  inherited grdPesq_Padrao: TDBGrid
+    Width = 1215
+    Height = 350
+    OnDblClick = grdPesq_PadraoDblClick
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'id_fornecedor'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 120
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'nome'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'endereco'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'numero'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'bairro'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'cep'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'cidade'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'estado'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'telefone'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'cnpj'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'email'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'cadastro'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end>
+  end
+  inherited Panel2: TPanel
+    Top = 455
+    Width = 1215
+    ExplicitTop = 455
+    ExplicitWidth = 1215
+  end
+  inherited qryPesq_Padrao: TFDQuery
+    UpdateOptions.FetchGeneratorsPoint = gpDeferred
+    UpdateOptions.GeneratorName = 'FORNECEDORES_FORNECEDORESID_FORNECEDOR_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_FORNECEDOR'
+    SQL.Strings = (
+      ' SELECT'
+      '   F.ID_FORNECEDOR,'
+      '   F.NOME,'
+      '   F.ENDERECO,'
+      '   F.NUMERO,'
+      '   F.BAIRRO,'
+      '   F.CEP,'
+      '   D.CIDADE,'
+      '   F.ID_CIDADE,'
+      '   E.ESTADO,'
+      '   F.ID_ESTADO,   '
+      '   F.TELEFONE,'
+      '   F.CNPJ,'
+      '   F.EMAIL,'
+      '   F.CADASTRO '
+      'FROM FORNECEDORES F'
+      'INNER JOIN CIDADES D'
+      'ON F.ID_CIDADE = D.ID_CIDADE'
+      'INNER JOIN ESTADOS E'
+      'ON F.ID_ESTADO = E.ID_ESTADO'
+      'ORDER BY ID_FORNECEDOR ')
+    object qryPesq_Padraoid_fornecedor: TIntegerField
+      AutoGenerateValue = arAutoInc
+      DisplayLabel = 'ID'
+      FieldName = 'id_fornecedor'
+      Origin = 'id_fornecedor'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qryPesq_Padraonome: TWideStringField
+      DisplayLabel = 'NOME'
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 100
+    end
+    object qryPesq_Padraoendereco: TWideStringField
+      DisplayLabel = 'ENDERECO'
+      FieldName = 'endereco'
+      Origin = 'endereco'
+      Size = 100
+    end
+    object qryPesq_Padraonumero: TIntegerField
+      DisplayLabel = 'N'#218'MERO'
+      FieldName = 'numero'
+      Origin = 'numero'
+    end
+    object qryPesq_Padraobairro: TWideStringField
+      DisplayLabel = 'BAIRRO'
+      FieldName = 'bairro'
+      Origin = 'bairro'
+      Size = 100
+    end
+    object qryPesq_Padraocep: TWideStringField
+      DisplayLabel = 'CEP'
+      FieldName = 'cep'
+      Origin = 'cep'
+      Size = 16
+    end
+    object qryPesq_Padraoid_cidade: TIntegerField
+      FieldName = 'id_cidade'
+      Origin = 'id_cidade'
+    end
+    object qryPesq_Padraocidade: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'CIDADE'
+      FieldName = 'cidade'
+      Origin = 'cidade'
+      Size = 100
+    end
+    object qryPesq_Padraoid_estado: TIntegerField
+      FieldName = 'id_estado'
+      Origin = 'id_estado'
+    end
+    object qryPesq_Padraoestado: TWideStringField
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'ESTADO'
+      FieldName = 'estado'
+      Origin = 'estado'
+      Size = 100
+    end
+    object qryPesq_Padraotelefone: TWideStringField
+      DisplayLabel = 'TELEFONE'
+      FieldName = 'telefone'
+      Origin = 'telefone'
+      Size = 15
+    end
+    object qryPesq_Padraocnpj: TWideStringField
+      DisplayLabel = 'CNPJ'
+      FieldName = 'cnpj'
+      Origin = 'cnpj'
+    end
+    object qryPesq_Padraoemail: TWideStringField
+      DisplayLabel = 'E-MAIL'
+      FieldName = 'email'
+      Origin = 'email'
+      Size = 100
+    end
+    object qryPesq_Padraocadastro: TDateField
+      DisplayLabel = 'CADASTRO'
+      FieldName = 'cadastro'
+      Origin = 'cadastro'
+    end
+  end
+end

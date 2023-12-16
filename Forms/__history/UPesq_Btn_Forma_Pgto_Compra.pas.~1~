@@ -1,0 +1,45 @@
+unit UPesq_Btn_Forma_Pgto_Compra;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UPesq_Forma_Pgto, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, ppParameter, ppDesignLayer, ppBands,
+  ppCtrls, ppVar, ppPrnabl, ppClass, ppCache, ppProd, ppReport, ppComm,
+  ppRelatv, ppDB, ppDBPipe, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TPesq_Forma_PgtoF1 = class(TPesq_Forma_PgtoF)
+    procedure btnTransferirClick(Sender: TObject);
+    procedure grdPesq_PadraoDblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pesq_Forma_PgtoF1: TPesq_Forma_PgtoF1;
+
+implementation
+
+{$R *.dfm}
+
+uses U_Compra;
+
+procedure TPesq_Forma_PgtoF1.btnTransferirClick(Sender: TObject);
+begin
+  CompraF.edtID_FormaPgto.Text := IntToStr(qryPesq_Padraoid_forma_pgto.Value);
+  CompraF.edtDesc_FormaPgto.Text    := qryPesq_Padraodescricao.Value;
+  Close;
+end;
+
+procedure TPesq_Forma_PgtoF1.grdPesq_PadraoDblClick(Sender: TObject);
+begin
+  btnTransferir.Click;
+end;
+end.

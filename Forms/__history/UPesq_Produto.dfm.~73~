@@ -1,0 +1,280 @@
+inherited Pesq_ProdutosF: TPesq_ProdutosF
+  Caption = 'PESQUISA DE PRODUTOS'
+  ClientHeight = 547
+  ClientWidth = 1207
+  TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 1207
+    inherited cmbChave_Pesquisa: TComboBox
+      Items.Strings = (
+        'C'#211'DIGO'
+        'DESCRI'#199#195'O'
+        'DATA DE CADASTRO'
+        'PER'#205'ODO'
+        'FORNECEDOR'
+        'TODOS')
+    end
+    inherited btnTransferir: TBitBtn
+      OnClick = btnTransferirClick
+    end
+    inherited btnPesquisar: TBitBtn
+      OnClick = btnPesquisarClick
+    end
+    inherited Panel3: TPanel
+      Left = 1068
+    end
+  end
+  inherited grdPesq_Padrao: TDBGrid
+    Width = 1207
+    Height = 348
+    OnDblClick = grdPesq_PadraoDblClick
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'id_produto'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'desc_produto'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'vl_custo'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'vl_venda'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'estoque'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'estoque_min'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'sigla_unidade'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'id_fornecedor'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 100
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'cadastro'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 100
+        Visible = True
+      end>
+  end
+  inherited Panel2: TPanel
+    Top = 453
+    Width = 1207
+  end
+  inherited qryPesq_Padrao: TFDQuery
+    UpdateOptions.GeneratorName = 'PRODUTOS_PRODUTOSID_PRODUTO_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_PRODUTO'
+    SQL.Strings = (
+      'SELECT'
+      '   P.ID_PRODUTO,'
+      '   P.DESC_PRODUTO,'
+      '   P.VL_CUSTO,'
+      '   P.VL_VENDA,'
+      '   P.ESTOQUE,'
+      '   P.ESTOQUE_MIN,'
+      '   U.SIGLA_UNIDADE,'
+      '   P.ID_FORNECEDOR,'
+      '   P.CADASTRO'
+      'FROM PRODUTOS P'
+      'INNER JOIN UNIDADES U'
+      'ON P.ID_UNIDADE = U.ID_UNIDADE'
+      'ORDER BY ID_PRODUTO    ')
+    object qryPesq_Padraoid_produto: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'ID'
+      FieldName = 'id_produto'
+      Origin = 'id_produto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qryPesq_Padraodesc_produto: TWideStringField
+      Alignment = taCenter
+      DisplayLabel = 'DESCRI'#199#195'O'
+      FieldName = 'desc_produto'
+      Origin = 'desc_produto'
+      Size = 100
+    end
+    object qryPesq_Padraovl_custo: TBCDField
+      Alignment = taCenter
+      DisplayLabel = 'VLR CUSTO'
+      FieldName = 'vl_custo'
+      Origin = 'vl_custo'
+      currency = True
+      Precision = 11
+      Size = 2
+    end
+    object qryPesq_Padraovl_venda: TBCDField
+      Alignment = taCenter
+      DisplayLabel = 'VLR VENDA'
+      FieldName = 'vl_venda'
+      Origin = 'vl_venda'
+      currency = True
+      Precision = 11
+      Size = 2
+    end
+    object qryPesq_Padraoestoque: TBCDField
+      Alignment = taCenter
+      DisplayLabel = 'ESTOQUE'
+      FieldName = 'estoque'
+      Origin = 'estoque'
+      Precision = 11
+      Size = 2
+    end
+    object qryPesq_Padraoestoque_min: TBCDField
+      Alignment = taCenter
+      DisplayLabel = 'ESTOQUE M'#205'NIMO'
+      FieldName = 'estoque_min'
+      Origin = 'estoque_min'
+      Precision = 11
+      Size = 2
+    end
+    object qryPesq_Padraosigla_unidade: TWideStringField
+      Alignment = taCenter
+      AutoGenerateValue = arDefault
+      DisplayLabel = 'UNIDADE'
+      FieldName = 'sigla_unidade'
+      Origin = 'sigla_unidade'
+      Size = 5
+    end
+    object qryPesq_Padraoid_fornecedor: TIntegerField
+      Alignment = taCenter
+      DisplayLabel = 'FORNECEDOR'
+      FieldName = 'id_fornecedor'
+      Origin = 'id_fornecedor'
+    end
+    object qryPesq_Padraocadastro: TDateField
+      Alignment = taCenter
+      DisplayLabel = 'CADASTRO'
+      FieldName = 'cadastro'
+      Origin = 'cadastro'
+    end
+  end
+  inherited REL_Pesq_Padrao: TppReport
+    DataPipelineName = 'frxDB_Pesq_Padrao'
+  end
+end

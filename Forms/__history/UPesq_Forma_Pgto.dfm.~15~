@@ -1,0 +1,120 @@
+inherited Pesquisa_Forma_PgtoF: TPesquisa_Forma_PgtoF
+  Caption = 'PESQUISA DE FORMA DE PGTO'
+  ExplicitWidth = 1211
+  ExplicitHeight = 583
+  TextHeight = 15
+  inherited Panel1: TPanel
+    ExplicitWidth = 1195
+    inherited cmbChave_Pesquisa: TComboBox
+      Items.Strings = (
+        'C'#211'DIGO'
+        'NOME'
+        'DATA'
+        'PER'#205'ODO'
+        'TODOS')
+    end
+    inherited btnTransferir: TBitBtn
+      OnClick = btnTransferirClick
+    end
+    inherited btnPesquisar: TBitBtn
+      OnClick = btnPesquisarClick
+    end
+    inherited Panel3: TPanel
+      ExplicitLeft = 1056
+    end
+  end
+  inherited grdPesq_Padrao: TDBGrid
+    OnDblClick = grdPesq_PadraoDblClick
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'id_forma_pgto'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 100
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'descricao'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'cadastro'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 200
+        Visible = True
+      end>
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 450
+    ExplicitWidth = 1195
+  end
+  inherited qryPesq_Padrao: TFDQuery
+    UpdateOptions.GeneratorName = 'FORMA_PGTOS_FORMA_PGTOSID_FORMA_PGTO_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_FORMA_PGTO'
+    SQL.Strings = (
+      'SELECT'
+      '   ID_FORMA_PGTO,'
+      '   DESCRICAO,'
+      '   CADASTRO'
+      'FROM FORMA_PGTOS'
+      'ORDER BY ID_FORMA_PGTO ')
+    object qryPesq_Padraoid_forma_pgto: TFDAutoIncField
+      DisplayLabel = 'ID'
+      FieldName = 'id_forma_pgto'
+      Origin = 'id_forma_pgto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryPesq_Padraodescricao: TWideStringField
+      DisplayLabel = 'DESCRI'#199#195'O'
+      FieldName = 'descricao'
+      Origin = 'descricao'
+      Size = 100
+    end
+    object qryPesq_Padraocadastro: TDateField
+      DisplayLabel = 'CADASTRO'
+      FieldName = 'cadastro'
+      Origin = 'cadastro'
+    end
+  end
+  inherited REL_Pesq_Padrao: TppReport
+    DataPipelineName = 'frxDB_Pesq_Padrao'
+  end
+end

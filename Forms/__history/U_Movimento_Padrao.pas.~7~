@@ -1,0 +1,36 @@
+unit U_Movimento_Padrao;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Padrao, Data.Bind.Controls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.Bind.Components, Data.Bind.DBScope,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons,
+  Vcl.Bind.Navigator, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids;
+
+type
+  TPadrao_MovimentoF = class(TPadraoF)
+    Panel4: TPanel;
+    Panel5: TPanel;
+    DBGrid1: TDBGrid;
+    btnItem: TBitBtn;
+    btnOk: TBitBtn;
+    BitBtn3: TBitBtn;
+    BitBtn4: TBitBtn;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Padrao_MovimentoF: TPadrao_MovimentoF;
+
+implementation
+
+{$R *.dfm}
+
+end.

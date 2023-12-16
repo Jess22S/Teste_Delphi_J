@@ -1,0 +1,40 @@
+unit UPesq_Btn_Fornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UPesq_Fornecedor, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, ppFormWrapper, ppRptExp, ppParameter,
+  ppDesignLayer, ppComm, ppRelatv, ppProd, ppClass, ppReport,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TPesq_Btn_FornecedorF = class(TPesq_FornecedorF)
+    procedure btnTransferirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pesq_Btn_FornecedorF: TPesq_Btn_FornecedorF;
+
+implementation
+
+{$R *.dfm}
+
+uses U_Produto;
+
+procedure TPesq_Btn_FornecedorF.btnTransferirClick(Sender: TObject);
+begin
+  ProdutoF.edtID_Fornecedor.Text   := IntToStr(qryPesq_Padraoid_fornecedor.Value);
+  ProdutoF.edtNome_Fornecedor.Text := qryPesq_Padraonome.Value;
+  Close;
+end;
+
+end.

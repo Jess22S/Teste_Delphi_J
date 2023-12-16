@@ -1,0 +1,157 @@
+unit UPesq_Fornecedor;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_PesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TPesq_FornecedorF = class(TPesquisa_PadraoF)
+    qryPesq_Padraoid_fornecedor: TIntegerField;
+    qryPesq_Padraonome: TWideStringField;
+    qryPesq_Padraoendereco: TWideStringField;
+    qryPesq_Padraonumero: TIntegerField;
+    qryPesq_Padraobairro: TWideStringField;
+    qryPesq_Padraocep: TWideStringField;
+    qryPesq_Padraoid_cidade: TIntegerField;
+    qryPesq_Padraoid_estado: TIntegerField;
+    qryPesq_Padraotelefone: TWideStringField;
+    qryPesq_Padraocnpj: TWideStringField;
+    qryPesq_Padraoemail: TWideStringField;
+    qryPesq_Padraocadastro: TDateField;
+    qryPesq_Padraocidade: TWideStringField;
+    qryPesq_Padraoestado: TWideStringField;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure grdPesq_PadraoDblClick(Sender: TObject);
+    procedure btnTransferirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pesq_FornecedorF: TPesq_FornecedorF;
+
+implementation
+
+{$R *.dfm}
+
+uses U_Produto;
+
+procedure TPesq_FornecedorF.btnPesquisarClick(Sender: TObject);
+begin
+  qryPesq_Padrao.Close; // FECHA A QUERY
+  qryPesq_Padrao.SQL.Add(''); // LIMPA A QUERY
+  qryPesq_Padrao.Params.Clear; // LIMPA OS PARÂMETROS
+  qryPesq_Padrao.SQL.Clear; // LIMPA O SQL
+  qryPesq_Padrao.SQL.Add(
+        'SELECT  ' +
+        ' F.ID_FORNECEDOR, ' +
+        ' F.NOME, ' +
+        ' F.ENDERECO, ' +
+        ' F.NUMERO, ' +
+        ' F.BAIRRO, ' +
+        ' F.CEP, ' +
+        ' D.CIDADE, ' +
+        ' F.ID_CIDADE, ' +
+        ' E.ESTADO, ' +
+        ' F.ID_ESTADO, ' +
+        ' F.TELEFONE, ' +
+        ' F.CNPJ, ' +
+        ' F.EMAIL, ' +
+        ' F.CADASTRO ' +
+        ' FROM FORNECEDORES F ' +
+        ' INNER JOIN CIDADES D ' +
+        ' ON F.ID_CIDADE = D.ID_CIDADE ' +
+        ' INNER JOIN ESTADOS E ' +
+        ' ON F.ID_ESTADO = E.ID_ESTADO '); // ADICIONA O SQL
+
+  if (not (cmbChave_Pesquisa.ItemIndex >= 0)) then
+  begin
+    qryPesq_Padrao.SQL.Add(' ORDER BY ID_FORNECEDOR');
+  end;
+
+  case (cmbChave_Pesquisa.ItemIndex) of
+      0: // PESQUISA O CÓDIGO
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE ID_FORNECEDOR = :PID_FORNECEDOR'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PID_FORNECEDOR').AsInteger := StrToInt(edtNome.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_FORNECEDOR');
+      end;
+
+      1: // PESQUISA O NOME
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE NOME LIKE :PNOME'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PNOME').AsString := '%' + edtNome.Text + '%';
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_FORNECEDOR');
+      end;
+
+      2: // PESQUISA PELA DATA
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE CADASTRO = :PCADASTRO'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PCADASTRO').AsDate := StrToDate(edtInicio.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_FORNECEDOR');
+      end;
+
+      3: // PESQUISA PELA PERÍODO
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE CADASTRO BETWEEN :PINICIO AND :PFIM'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PINICIO').AsDate := StrToDate(edtInicio.Text);
+          qryPesq_Padrao.ParamByName('PFIM').AsDate := StrToDate(edtFim.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_FORNECEDOR');
+      end;
+
+      4: // PESQUISA POR TODOS
+      begin
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_FORNECEDOR');
+      end;
+  end;
+
+  qryPesq_Padrao.Open; // ABRE A QUERY E MOSTRA O RESULTADO DA CONSULTA
+
+  // SE NADA FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  if (qryPesq_Padrao.IsEmpty) then
+  begin
+    MessageDlg('Registro não encontrado!', mtInformation, [mbOK], 0);
+  end
+  else // SE FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  begin
+    Abort;
+  end;
+end;
+
+procedure TPesq_FornecedorF.btnTransferirClick(Sender: TObject);
+begin
+  if (qryPesq_Padrao.RecordCount > 0) then
+  begin
+    Codigo := qryPesq_Padraoid_fornecedor.AsInteger;
+  end
+  else
+  begin
+    Abort;
+  end;
+end;
+
+procedure TPesq_FornecedorF.grdPesq_PadraoDblClick(Sender: TObject);
+begin
+  btnTransferir.Click;
+  ProdutoF.edtID_Fornecedor.Text   := IntToStr(qryPesq_Padraoid_fornecedor.Value);
+  ProdutoF.edtNome_Fornecedor.Text := qryPesq_Padraonome.Value;
+  Close;
+end;
+
+end.

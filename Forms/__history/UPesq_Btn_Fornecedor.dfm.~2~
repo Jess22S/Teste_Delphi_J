@@ -1,0 +1,15 @@
+inherited Pesq_Btn_FornecedorF: TPesq_Btn_FornecedorF
+  ExplicitWidth = 1219
+  ExplicitHeight = 585
+  TextHeight = 15
+  inherited Panel1: TPanel
+    ExplicitWidth = 1203
+    inherited Panel3: TPanel
+      ExplicitLeft = 1064
+    end
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 452
+    ExplicitWidth = 1203
+  end
+end

@@ -1,0 +1,239 @@
+unit UPesq_Produto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_PesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
+  ppParameter, ppDesignLayer, ppProd, ppClass, ppReport, ppComm, ppRelatv, ppDB,
+  ppDBPipe;
+
+type
+  TPesq_ProdutosF = class(TPesquisa_PadraoF)
+    qryPesq_Padraoid_produto: TIntegerField;
+    qryPesq_Padraodesc_produto: TWideStringField;
+    qryPesq_Padraovl_custo: TBCDField;
+    qryPesq_Padraovl_venda: TBCDField;
+    qryPesq_Padraoestoque: TBCDField;
+    qryPesq_Padraoestoque_min: TBCDField;
+    qryPesq_Padraosigla_unidade: TWideStringField;
+    qryPesq_Padraoid_fornecedor: TIntegerField;
+    qryPesq_Padraocadastro: TDateField;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure cmbChave_PesquisaChange(Sender: TObject);
+    procedure btnTransferirClick(Sender: TObject);
+    procedure grdPesq_PadraoDblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pesq_ProdutosF: TPesq_ProdutosF;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPesq_ProdutosF.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  qryPesq_Padrao.Close; // FECHA A QUERY
+  qryPesq_Padrao.SQL.Add(''); // LIMPA A QUERY
+  qryPesq_Padrao.Params.Clear; // LIMPA OS PARÂMETROS
+  qryPesq_Padrao.SQL.Clear; // LIMPA O SQL
+  qryPesq_Padrao.SQL.Add(
+        'SELECT ' +
+        ' P.ID_PRODUTO, ' +
+        ' P.DESC_PRODUTO, ' +
+        ' P.VL_CUSTO, ' +
+        ' P.VL_VENDA, ' +
+        ' P.ESTOQUE, ' +
+        ' P.ESTOQUE_MIN, ' +
+        ' P.ID_UNIDADE, ' +
+        ' U.SIGLA_UNIDADE, ' +
+        ' P.ID_FORNECEDOR, ' +
+        ' P.CADASTRO ' +
+        ' FROM PRODUTOS P ' +
+        ' INNER JOIN UNIDADES U ' +
+        ' ON P.ID_UNIDADE = U.ID_UNIDADE '); // ADICIONA O SQL
+
+  case (cmbChave_Pesquisa.ItemIndex) of
+      0: // PESQUISA O CÓDIGO
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE ID_PRODUTO = :PID_PRODUTO'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PID_PRODUTO').AsInteger := StrToInt(edtNome.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_PRODUTO')
+      end;
+
+      1: // PESQUISA O NOME
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE DESC_PRODUTO LIKE :PDESC_PRODUTO'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PDESC_PRODUTO').AsString := '%' + edtNome.Text + '%';
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_PRODUTO')
+      end;
+
+      2: // PESQUISA PELA DATA
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE CADASTRO = :PCADASTRO'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PCADASTRO').AsDate := StrToDate(edtInicio.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_PRODUTO');
+      end;
+
+      3: // PESQUISA PELA PERÍODO
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE CADASTRO BETWEEN :PINICIO AND :PFIM'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PINICIO').AsDate := StrToDate(edtInicio.Text);
+          qryPesq_Padrao.ParamByName('PFIM').AsDate := StrToDate(edtFim.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_PRODUTO');
+      end;
+
+      4: // PESQUISA PELO FORNECEDOR
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE ID_FORNECEDOR = :PID_FORNECEDOR'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PID_FORNECEDOR').AsInteger := StrToInt(edtNome.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_PRODUTO')
+      end;
+
+      5: // PESQUISA POR TODOS
+      begin
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_PRODUTO');
+      end;
+  end;
+
+  qryPesq_Padrao.Open; // ABRE A QUERY E MOSTRA O RESULTADO DA CONSULTA
+
+  // SE NADA FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  if (qryPesq_Padrao.IsEmpty) then
+  begin
+    MessageDlg('Registro não encontrado!', mtInformation, [mbOK], 0);
+  end
+  else // SE FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  begin
+    Abort;
+  end;
+end;
+
+procedure TPesq_ProdutosF.cmbChave_PesquisaChange(Sender: TObject);
+begin
+  if (cmbChave_Pesquisa.Text <> EmptyStr) or
+     (((cmbChave_Pesquisa.ItemIndex = 0) or (cmbChave_Pesquisa.ItemIndex = 1)) and (edtNome.Text <> EmptyStr)) or
+      (edtInicio.MaxLength = 10) or (edtFim.MaxLength = 10) or
+      (cmbChave_Pesquisa.ItemIndex = 5))) then
+  begin
+    btnPesquisar.Enabled  := True;
+    btnTransferir.Enabled := True;
+  end;
+
+   case (cmbChave_Pesquisa.ItemIndex) of
+      0: // PESQUISA O CÓDIGO
+      begin
+        edtNome.NumbersOnly := True;
+        edtNome.Visible     := True;
+        lblNome.Visible     := True;
+        edtInicio.Visible   := False;
+        lblInicio.Visible   := False;
+        edtFim.Visible      := False;
+        lblFim.Visible      := False;
+        edtNome.Clear;
+        edtNome.SetFocus;
+      end;
+
+      1: // PESQUISA O NOME
+      begin
+        edtNome.NumbersOnly := False;
+        edtNome.Visible     := True;
+        lblNome.Visible     := True;
+        edtInicio.Visible   := False;
+        lblInicio.Visible   := False;
+        edtFim.Visible      := False;
+        lblFim.Visible      := False;
+        edtNome.Clear;
+        edtNome.SetFocus;
+      end;
+
+      2: // PESQUISA PELA DATA
+      begin
+        edtInicio.Visible := True;
+        lblInicio.Visible := True;
+        edtNome.Visible   := False;
+        lblNome.Visible   := False;
+        edtFim.Visible    := False;
+        lblFim.Visible    := False;
+        edtInicio.Clear;
+        edtInicio.SetFocus;
+      end;
+
+      3: // PESQUISA PELA PERÍODO
+      begin
+        edtInicio.Visible := True;
+        lblInicio.Visible := True;
+        edtFim.Visible    := True;
+        lblFim.Visible    := True;
+        edtNome.Visible   := False;
+        lblNome.Visible   := False;
+        edtInicio.Clear;
+        edtFim.Clear;
+        edtInicio.SetFocus;
+      end;
+
+
+      4: // PESQUISA O FORNECEDOR
+      begin
+        edtNome.NumbersOnly := False;
+        edtNome.Visible     := True;
+        lblNome.Visible     := True;
+        edtInicio.Visible   := False;
+        lblInicio.Visible   := False;
+        edtFim.Visible      := False;
+        lblFim.Visible      := False;
+        edtNome.Clear;
+        edtNome.SetFocus;
+      end;
+
+      5: // PESQUISA POR TODOS
+      begin
+        edtNome.Visible   := False;
+        lblNome.Visible   := False;
+        edtInicio.Visible   := False;
+        lblInicio.Visible   := False;
+        edtFim.Visible      := False;
+        lblFim.Visible      := False;
+        edtNome.Clear;
+      end;
+  end;
+end;
+
+procedure TPesq_ProdutosF.btnTransferirClick(Sender: TObject);
+begin
+  if (qryPesq_Padrao.RecordCount > 0) then
+  begin
+    Codigo := qryPesq_Padraoid_produto.AsInteger;
+  end
+  else
+  begin
+    Abort;
+  end;
+end;
+
+procedure TPesq_ProdutosF.grdPesq_PadraoDblClick(Sender: TObject);
+begin
+  btnTransferir.Click;
+end;
+
+end.

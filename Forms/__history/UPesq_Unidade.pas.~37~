@@ -1,0 +1,122 @@
+unit UPesq_Unidade;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_PesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TPesq_UnidadeF = class(TPesquisa_PadraoF)
+    qryPesq_Padraoid_unidade: TIntegerField;
+    qryPesq_Padraosigla_unidade: TWideStringField;
+    qryPesq_Padraodesc_unidade: TWideStringField;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure cmbChave_PesquisaChange(Sender: TObject);
+    procedure grdPesq_PadraoDblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pesq_UnidadeF: TPesq_UnidadeF;
+
+implementation
+
+{$R *.dfm}
+
+uses U_Produto;
+
+procedure TPesq_UnidadeF.btnPesquisarClick(Sender: TObject);
+begin
+  qryPesq_Padrao.Close; // FECHA A QUERY
+  qryPesq_Padrao.SQL.Add(''); // LIMPA A QUERY
+  qryPesq_Padrao.Params.Clear; // LIMPA OS PARÂMETROS
+  qryPesq_Padrao.SQL.Clear; // LIMPA O SQL
+  qryPesq_Padrao.SQL.Add(
+        'SELECT ' +
+        ' ID_UNIDADE, ' +
+        ' SIGLA_UNIDADE, ' +
+        ' DESC_UNIDADE ' +
+        ' FROM UNIDADES '); // ADICIONA O SQL
+
+  case (cmbChave_Pesquisa.ItemIndex) of
+      0: // PESQUISA O CÓDIGO
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE ID_UNIDADE = :PID_UNIDADE'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PID_UNIDADE').AsInteger := StrToInt(edtNome.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_UNIDADE')
+      end;
+
+      1: // PESQUISA O NOME
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE DESC_UNIDADE LIKE :PDESC_UNIDADE'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PDESC_UNIDADE').AsString := '%' + edtNome.Text + '%';
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_UNIDADE')
+      end;
+
+      2: // PESQUISA POR TODOS
+      begin
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_UNIDADE');
+      end;
+  end;
+
+  qryPesq_Padrao.Open; // ABRE A QUERY E MOSTRA O RESULTADO DA CONSULTA
+
+  // SE NADA FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  if (qryPesq_Padrao.IsEmpty) then
+  begin
+    MessageDlg('Registro não encontrado!', mtInformation, [mbOK], 0);
+  end
+  else // SE FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  begin
+    Abort;
+  end;
+end;
+
+procedure TPesq_UnidadeF.cmbChave_PesquisaChange(Sender: TObject);
+begin
+  case (cmbChave_Pesquisa.ItemIndex) of
+      0: // PESQUISA O CÓDIGO
+      begin
+        edtNome.NumbersOnly := True;
+        edtNome.Visible     := True;
+        lblNome.Visible     := True;
+        edtNome.Clear;
+        edtNome.SetFocus;
+      end;
+
+      1: // PESQUISA O NOME
+      begin
+        edtNome.NumbersOnly := False;
+        edtNome.Visible     := True;
+        lblNome.Visible     := True;
+        edtNome.Clear;
+        edtNome.SetFocus;
+      end;
+
+      2: // PESQUISA POR TODOS
+      begin
+        edtNome.Visible   := False;
+        lblNome.Visible   := False;
+        edtNome.Clear;
+      end;
+  end;
+end;
+procedure TPesq_UnidadeF.grdPesq_PadraoDblClick(Sender: TObject);
+begin
+  ProdutoF.edtUnidade.Text    := qryPesq_Padraodesc_unidade.Value;
+  Close;
+end;
+
+end.

@@ -1,0 +1,305 @@
+unit U_Compra;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Movimento_Padrao, Data.Bind.Controls,
+  Data.DB, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.Bind.Components, Data.Bind.DBScope,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
+  Vcl.ComCtrls, Vcl.Buttons, Vcl.Bind.Navigator, Vcl.StdCtrls, Vcl.ExtCtrls,
+  Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TCompraF = class(TPadrao_MovimentoF)
+    qryPadraoid_compra: TFDAutoIncField;
+    qryPadraoid_fornecedor: TIntegerField;
+    qryPadraonome: TWideStringField;
+    qryPadraoid_forma_pgto: TIntegerField;
+    qryPadraodescricao: TWideStringField;
+    qryPadraousuario: TWideStringField;
+    qryPadraovalor: TBCDField;
+    qryPadraocadastro: TDateField;
+    lblID_Compra: TLabel;
+    lblUsuario: TLabel;
+    lblID_Fornecedor: TLabel;
+    lblNome_Fornecedor: TLabel;
+    lblFormaPgto: TLabel;
+    lblValor: TLabel;
+    lblCadastro: TLabel;
+    edtValor: TDBEdit;
+    edtID_Compra: TDBEdit;
+    edtUsuario: TDBEdit;
+    edtID_Fornecedor: TDBEdit;
+    edtCadastro: TDBEdit;
+    edtNome_Fornecedor: TDBEdit;
+    edtID_FormaPgto: TDBEdit;
+    edtDesc_FormaPgto: TDBEdit;
+    lblID_Produto: TLabel;
+    lblQtd: TLabel;
+    lblTotal_Item: TLabel;
+    lblVlr_Custo: TLabel;
+    lblDesconto: TLabel;
+    Image1: TImage;
+    qryItem_Compra: TFDQuery;
+    qryPadraoid_item_compra: TIntegerField;
+    qryPadraoid_produto: TIntegerField;
+    qryPadraoqtd: TBCDField;
+    qryPadraovl_custo: TBCDField;
+    qryPadraodesconto: TBCDField;
+    qryPadraototal_item: TBCDField;
+    dsItem_Compra: TDataSource;
+    qryItem_Compraid_item_compra: TIntegerField;
+    qryItem_Compraqtd: TBCDField;
+    qryItem_Compradesconto: TBCDField;
+    qryItem_Compraid_compra: TIntegerField;
+    btnFormaPgto: TBitBtn;
+    btnFornecedores: TBitBtn;
+    Label1: TLabel;
+    lblDescProduto: TLabel;
+    qryItem_Compraid_produto: TIntegerField;
+    qryItem_CompraDESCRICAO: TStringField;
+    edtID_Produto: TDBEdit;
+    edtDesc_Produto: TDBEdit;
+    edtQtd: TDBEdit;
+    edtDesconto: TDBEdit;
+    edtTotal_Item: TDBEdit;
+    qryItem_Compratotal_item: TBCDField;
+    qryProduto: TFDQuery;
+    qryProdutoid_produto: TIntegerField;
+    qryProdutodesc_produto: TWideStringField;
+    qryProdutovl_custo: TBCDField;
+    qryProdutoestoque: TBCDField;
+    qryProdutoestoque_min: TBCDField;
+    qryItem_Compravl_custo: TBCDField;
+    edtVlrCusto: TDBEdit;
+    procedure btnFornecedoresClick(Sender: TObject);
+    procedure btnFormaPgtoClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure btnItemClick(Sender: TObject);
+    procedure edtID_ProdutoExit(Sender: TObject);
+  private
+    procedure DesabilitarCampos;
+    procedure HabilitarCampos;
+    procedure LimparCamposProdutos;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  CompraF: TCompraF;
+
+implementation
+
+{$R *.dfm}
+
+uses UPesq_Btn_Fornecedor_Compra, UPesq_Btn_Forma_Pgto_Compra, U_DM,
+  UPesq_Btn_Produto;
+
+procedure TCompraF.btnFormaPgtoClick(Sender: TObject);
+begin
+  Pesq_Forma_Pgto_CompraF := TPesq_Forma_Pgto_CompraF.Create(Self);
+  Pesq_Forma_Pgto_CompraF.ShowModal;
+
+  try
+    //
+  finally
+    Pesq_Forma_Pgto_CompraF.Free;
+    Pesq_Forma_Pgto_CompraF := Nil;
+  end;
+end;
+
+procedure TCompraF.btnFornecedoresClick(Sender: TObject);
+begin
+  Pesq_Fornecedor_CompraF := TPesq_Fornecedor_CompraF.Create(Self);
+  Pesq_Fornecedor_CompraF.ShowModal;
+
+  try
+    //
+  finally
+    Pesq_Fornecedor_CompraF.Free;
+    Pesq_Fornecedor_CompraF := Nil;
+  end;
+end;
+
+procedure TCompraF.DesabilitarCampos;
+begin
+  edtID_Compra.Enabled       := False;
+  edtUsuario.Enabled         := False;
+  edtID_Fornecedor.Enabled   := False;
+  edtNome_Fornecedor.Enabled := False;
+  edtID_FormaPgto.Enabled    := False;
+  edtDesc_FormaPgto.Enabled  := False;
+  btnFormaPgto.Enabled       := False;
+  edtValor.Enabled           := False;
+  edtCadastro.Enabled        := False;
+  btnFornecedores.Enabled    := False;
+  edtID_Produto.Enabled      := False;
+  edtDesc_Produto.Enabled    := False;
+  edtVlrCusto.Enabled        := False;
+  edtQtd.Enabled             := False;
+  edtDesconto.Enabled        := False;
+  edtTotal_Item.Enabled      := False;
+  btnItem.Enabled            := False;
+  btnOk.Enabled              := False;
+  btnDeletar.Enabled         := False;
+  btnImprimir.Enabled        := False;
+  DBGrid1.Enabled            := False;
+end;
+
+procedure TCompraF.HabilitarCampos;
+begin
+  edtUsuario.Enabled       := True;
+  btnFormaPgto.Enabled     := True;
+  edtValor.Enabled         := True;
+  edtCadastro.Enabled      := True;
+  btnFornecedores.Enabled  := True;
+  edtID_Produto.Enabled    := True;
+  edtDesc_Produto.Enabled  := True;
+  edtVlrCusto.Enabled      := True;
+  edtQtd.Enabled           := True;
+  edtDesconto.Enabled      := True;
+  edtTotal_Item.Enabled    := True;
+  btnItem.Enabled          := True;
+  btnOk.Enabled            := True;
+  btnDeletar.Enabled       := True;
+  btnImprimir.Enabled      := True;
+  DBGrid1.Enabled          := True;
+end;
+
+procedure TCompraF.LimparCamposProdutos;
+begin
+  edtID_Produto.Clear;
+  edtQtd.Clear;
+  edtDesconto.Clear;
+  edtTotal_Item.Clear;
+end;
+
+procedure TCompraF.FormShow(Sender: TObject);
+begin
+  DesabilitarCampos;
+  PageControl1.TabIndex := 0;
+end;
+
+procedure TCompraF.btnNovoClick(Sender: TObject);
+var
+  Prox: Integer;
+begin
+  inherited;
+  HabilitarCampos;
+
+  qryItem_Compra.Open;
+  qryProduto.Open;
+  qryPadrao.Active;
+  qryPadrao.Last;
+  Prox := qryPadraoid_compra.AsInteger + 1;
+  qryPadrao.Append;
+  qryPadraoid_compra.AsInteger := Prox;
+
+  edtUsuario.SetFocus;
+  edtValor.Text := IntToStr(0);
+  edtCadastro.Text := DateToStr(Now);
+  edtCadastro.Enabled := False;
+end;
+
+procedure TCompraF.edtID_ProdutoExit(Sender: TObject);
+begin
+  if (qryItem_Compraid_produto.AsInteger > 0) then
+    begin
+      if (qryItem_Compra.Locate('ID_PRODUTO', qryItem_Compra.FieldByName('ID_PRODUTO').AsInteger,[])) then
+      begin
+        qryItem_Compraqtd.AsFloat        := 1;
+        qryItem_Compradesconto.AsFloat   := 0;
+        qryItem_Compravl_custo.AsFloat   := qryProdutovl_custo.AsFloat; // PEGAR O VALOR DO PRODUTO
+        qryItem_Compratotal_item.AsFloat := (qryItem_Compraqtd.AsFloat * qryItem_Compravl_custo.AsFloat) -
+                                            qryItem_Compradesconto.AsFloat; // SOMA A QTD
+
+        qryItem_Compra.Post;
+      end
+      else
+      begin
+        MessageDlg('Produto não encontrado!', mtInformation, [mbOk], 0);
+        qryItem_Compra.Cancel;
+      end;
+
+      btnItem.SetFocus;
+    end;
+end;
+
+procedure TCompraF.btnItemClick(Sender: TObject);
+var
+  Prox: Integer;
+begin
+  HabilitarCampos;
+
+  // INSERE OS ITENS NA TABELA DE ITENS COMPRAS
+  qryItem_Compra.Open; // ABRE A QUERY
+  qryItem_Compra.Last; // VAI PARA O ÚLTIMO REGISTRO
+  Prox := qryItem_Compraid_item_compra.AsInteger + 1; // RECEBE O VALOR DO CAMPO ID_ITEM E + 1
+  qryItem_Compra.Append; // ABRE UMA NOVA LINHA PARA INSERIR REGISTRO
+  qryItem_Compraid_item_compra.AsInteger := Prox; // O CAMPO ID_ITEM RECEBE O CONTEÚDO DA VAR PROXIMO
+  LimparCamposProdutos;
+  edtID_Produto.SetFocus; // O FOCO VAI PARA O BOTÃO BTNPRODUTO
+end;
+
+procedure TCompraF.btnGravarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+  qryItem_Compra.Open;
+end;
+
+procedure TCompraF.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  HabilitarCampos;
+  btnAtualizar.Enabled := True;
+  qryItem_Compra.Open;
+end;
+
+procedure TCompraF.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+  LimparCamposProdutos;
+  qryItem_Compra.Open;
+end;
+
+procedure TCompraF.btnAtualizarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+  qryItem_Compra.Open;
+end;
+
+procedure TCompraF.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+  qryItem_Compra.Open;
+end;
+
+procedure TCompraF.btnPesquisarClick(Sender: TObject);
+begin
+//  Pesq_ProdutosF := TPesq_ProdutosF.Create(Self);
+//  Pesq_ProdutosF.ShowModal;
+//
+//  try
+//    qryPadrao.Open;
+//    qryPadrao.Locate('ID_PRODUTO', Pesq_ProdutosF.Codigo, []);
+//  finally
+//    Pesq_ProdutosF.Free;
+//    Pesq_ProdutosF := Nil;
+//  end;
+end;
+end.

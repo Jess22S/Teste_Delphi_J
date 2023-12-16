@@ -1,0 +1,132 @@
+unit U_Unidade;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Padrao, Data.Bind.Controls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.Bind.Components, Data.Bind.DBScope,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons,
+  Vcl.Bind.Navigator, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TUnidadeF = class(TPadraoF)
+    lblID: TLabel;
+    lblUnidade: TLabel;
+    edtID: TDBEdit;
+    edtSigla: TDBEdit;
+    lblSigla: TLabel;
+    edtUnidade: TDBEdit;
+    qryPadraoid_unidade: TFDAutoIncField;
+    qryPadraosigla_unidade: TWideStringField;
+    qryPadraodesc_unidade: TWideStringField;
+    procedure FormShow(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    { Private declarations }
+    procedure DesabilitarCampos;
+    procedure HabilitarCampos;
+  public
+    { Public declarations }
+  end;
+
+var
+  UnidadeF: TUnidadeF;
+
+implementation
+
+{$R *.dfm}
+
+uses UPesq_Unidade;
+
+{ TUnidadeF }
+procedure TUnidadeF.DesabilitarCampos;
+begin
+  edtID.Enabled      := False;
+  edtSigla.Enabled   := False;
+  edtUnidade.Enabled := False;
+end;
+
+procedure TUnidadeF.HabilitarCampos;
+begin
+  edtID.Enabled      := True;
+  edtSigla.Enabled   := True;
+  edtUnidade.Enabled := True;
+end;
+
+procedure TUnidadeF.FormShow(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TUnidadeF.btnNovoClick(Sender: TObject);
+var
+  Prox: Integer;
+begin
+  inherited;
+  HabilitarCampos;
+
+  qryPadrao.Active;
+  qryPadrao.Last;
+  Prox := qryPadraoid_unidade.AsInteger + 1;
+  qryPadrao.Append;
+  edtID.Text := IntToStr(Prox);
+  qryPadraoid_unidade.AsInteger := Prox;
+
+  edtSigla.SetFocus;
+end;
+
+
+procedure TUnidadeF.btnPesquisarClick(Sender: TObject);
+begin
+  Pesquisa_UnidadeF := TPesquisa_UnidadeF.Create(Self);
+  Pesquisa_UnidadeF.ShowModal;
+
+  try
+    //
+  finally
+    Pesquisa_UnidadeF.Free;
+    Pesquisa_UnidadeF := Nil;
+  end;
+end;
+
+procedure TUnidadeF.btnGravarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos
+end;
+
+procedure TUnidadeF.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  HabilitarCampos;
+  btnAtualizar.Enabled := True;
+end;
+
+procedure TUnidadeF.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TUnidadeF.btnAtualizarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TUnidadeF.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+end.

@@ -1,0 +1,200 @@
+unit U_Produto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Padrao, Data.Bind.Controls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.Bind.Components, Data.Bind.DBScope,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons,
+  Vcl.Bind.Navigator, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls,
+  UPesq_Fornecedor, UPesq_Unidade;
+
+type
+  TProdutoF = class(TPadraoF)
+    lblID_Produto: TLabel;
+    lblDesc_Produto: TLabel;
+    lblID_Fornecedor: TLabel;
+    lblNome_Fornecedor: TLabel;
+    lblID_Unidade: TLabel;
+    lblVlr_Custo: TLabel;
+    lblEstoque: TLabel;
+    lblEstoque_Min: TLabel;
+    lblVlr_Venda: TLabel;
+    lblCadastro: TLabel;
+    edtVlr_Custo: TDBEdit;
+    edtEstoque: TDBEdit;
+    edtEstoque_Min: TDBEdit;
+    edtID_Produto: TDBEdit;
+    edtDesc_Produto: TDBEdit;
+    edtID_Fornecedor: TDBEdit;
+    edtCadastro: TDBEdit;
+    edtVlr_Venda: TDBEdit;
+    btnFornecedores: TSpeedButton;
+    btnUnidade: TSpeedButton;
+    qryPadraoid_produto: TFDAutoIncField;
+    qryPadraodesc_produto: TWideStringField;
+    qryPadraoid_fornecedor: TIntegerField;
+    qryPadraovl_custo: TBCDField;
+    qryPadraovl_venda: TBCDField;
+    qryPadraoestoque: TBCDField;
+    qryPadraoestoque_min: TBCDField;
+    qryPadraoid_unidade: TIntegerField;
+    qryPadraocadastro: TDateField;
+    qryPadraosigla_unidade: TWideStringField;
+    qryPadraonome: TWideStringField;
+    edtUnidade: TDBEdit;
+    edtNome_Fornecedor: TDBEdit;
+    edtID_Unidade: TDBEdit;
+    procedure FormShow(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnFornecedoresClick(Sender: TObject);
+    procedure btnUnidadeClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+  private
+    procedure DesabilitarCampos;
+    procedure HabilitarCampos;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ProdutoF: TProdutoF;
+
+implementation
+
+{$R *.dfm}
+
+uses UPesq_Produto, UPesq_Btn_Unidade;
+
+procedure TProdutoF.DesabilitarCampos;
+begin
+  edtID_Produto.Enabled      := False;
+  edtDesc_Produto.Enabled    := False;
+  edtID_Fornecedor.Enabled   := False;
+  edtNome_Fornecedor.Enabled := False;
+  edtUnidade.Enabled         := False;
+  btnUnidade.Enabled         := False;
+  edtVlr_Custo.Enabled       := False;
+  edtVlr_Venda.Enabled       := False;
+  edtCadastro.Enabled        := False;
+  edtEstoque.Enabled         := False;
+  edtEstoque_Min.Enabled     := False;
+  btnFornecedores.Enabled    := False;
+end;
+
+procedure TProdutoF.HabilitarCampos;
+begin
+  edtDesc_Produto.Enabled  := True;
+  btnUnidade.Enabled       := True;
+  edtVlr_Custo.Enabled     := True;
+  edtVlr_Venda.Enabled     := True;
+  edtCadastro.Enabled      := True;
+  edtEstoque.Enabled       := True;
+  edtEstoque_Min.Enabled   := True;
+  btnFornecedores.Enabled  := True;
+end;
+
+procedure TProdutoF.FormShow(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TProdutoF.btnNovoClick(Sender: TObject);
+var
+  Prox: Integer;
+begin
+  inherited;
+  HabilitarCampos;
+
+  qryPadrao.Active;
+  qryPadrao.Last;
+  Prox := qryPadraoid_produto.AsInteger + 1;
+  qryPadrao.Append;
+  qryPadraoid_produto.AsInteger := Prox;
+
+  edtDesc_Produto.SetFocus;
+  edtCadastro.Text := DateToStr(Now);
+  edtCadastro.Enabled := False;
+end;
+
+procedure TProdutoF.btnPesquisarClick(Sender: TObject);
+begin
+  Pesq_ProdutosF := TPesq_ProdutosF.Create(Self);
+  Pesq_ProdutosF.ShowModal;
+
+  try
+    qryPadrao.Open;
+    qryPadrao.Locate('ID_PRODUTO', Pesq_ProdutosF.Codigo, []);
+  finally
+    Pesq_ProdutosF.Free;
+    Pesq_ProdutosF := Nil;
+  end;
+end;
+
+procedure TProdutoF.btnUnidadeClick(Sender: TObject);
+begin
+  Pesq_Btn_UnidadeF := TPesq_Btn_UnidadeF.Create(Self);
+  Pesq_Btn_UnidadeF.ShowModal;
+
+  try
+    //
+  finally
+    Pesq_Btn_UnidadeF.Free;
+    Pesq_Btn_UnidadeF := Nil;
+  end;
+end;
+
+procedure TProdutoF.btnGravarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TProdutoF.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  HabilitarCampos;
+  btnAtualizar.Enabled := True;
+end;
+
+procedure TProdutoF.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TProdutoF.btnFornecedoresClick(Sender: TObject);
+begin
+  Pesq_FornecedorF := TPesq_FornecedorF.Create(Self);
+  Pesq_FornecedorF.ShowModal;
+
+  try
+    //
+  finally
+    Pesq_FornecedorF.Free;
+    Pesq_FornecedorF := Nil;
+  end;
+end;
+
+procedure TProdutoF.btnAtualizarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TProdutoF.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+end.

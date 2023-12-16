@@ -1,0 +1,176 @@
+unit UPesq_Cliente;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_PesquisaPadrao, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, FireDAC.Comp.DataSet, FireDAC.Comp.Client,
+  Vcl.Grids, Vcl.DBGrids, Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls,
+  ppBands, ppCache, ppClass, ppFormWrapper, ppRptExp, ppParameter,
+  ppDesignLayer, ppComm, ppRelatv, ppProd, ppReport, ppDB, ppDBPipe, ppPrnabl,
+  ppCtrls, ppVar;
+
+type
+  TPesq_ClienteF = class(TPesquisa_PadraoF)
+    qryPesq_Padraoid_cliente: TFDAutoIncField;
+    qryPesq_Padraonome: TWideStringField;
+    qryPesq_Padraoendereco: TWideStringField;
+    qryPesq_Padraonumero: TIntegerField;
+    qryPesq_Padraobairro: TWideStringField;
+    qryPesq_Padraocep: TWideStringField;
+    qryPesq_Padraoid_cidade: TIntegerField;
+    qryPesq_Padraoid_estado: TIntegerField;
+    qryPesq_Padraotelefone: TWideStringField;
+    qryPesq_Padraocpf: TWideStringField;
+    qryPesq_Padraoemail: TWideStringField;
+    qryPesq_Padraocadastro: TDateField;
+    qryPesq_Padraocidade: TWideStringField;
+    qryPesq_Padraoestado: TWideStringField;
+    ppHeaderBand1: TppHeaderBand;
+    ppDetailBand1: TppDetailBand;
+    ppFooterBand1: TppFooterBand;
+    ppTitleBand1: TppTitleBand;
+    ppImage1: TppImage;
+    ppImage2: TppImage;
+    ppSystemVariable1: TppSystemVariable;
+    ppSystemVariable2: TppSystemVariable;
+    ppLabel1: TppLabel;
+    ppLabel2: TppLabel;
+    ppDBText1: TppDBText;
+    ppLabel3: TppLabel;
+    ppDBText2: TppDBText;
+    ppLabel4: TppLabel;
+    ppDBText3: TppDBText;
+    ppLabel5: TppLabel;
+    ppDBText4: TppDBText;
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure btnTransferirClick(Sender: TObject);
+    procedure grdPesq_PadraoDblClick(Sender: TObject);
+    procedure btnImprimirClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pesq_ClienteF: TPesq_ClienteF;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPesq_ClienteF.btnImprimirClick(Sender: TObject);
+begin
+  try
+    REL_Pesq_Padrao.Print;
+  except on E: Exception do
+    MessageDlg('Relatório não encontrado!', mtInformation, [mbOK], 0);
+  end;
+end;
+
+procedure TPesq_ClienteF.btnPesquisarClick(Sender: TObject);
+begin
+  qryPesq_Padrao.Close; // FECHA A QUERY
+  qryPesq_Padrao.SQL.Add(''); // LIMPA A QUERY
+  qryPesq_Padrao.Params.Clear; // LIMPA OS PARÂMETROS
+  qryPesq_Padrao.SQL.Clear; // LIMPA O SQL
+  qryPesq_Padrao.SQL.Add(
+        'SELECT ' +
+        ' C.ID_CLIENTE, ' +
+        ' C.NOME, ' +
+        ' C.ENDERECO, ' +
+        ' C.NUMERO, ' +
+        ' C.BAIRRO, ' +
+        ' C.CEP, ' +
+        ' C.ID_CIDADE, ' +
+        ' D.CIDADE, ' +
+        ' C.ID_ESTADO, ' +
+        ' E.ESTADO, ' +
+        ' C.TELEFONE, ' +
+        ' C.CPF, ' +
+        ' C.EMAIL, ' +
+        ' C.CADASTRO ' +
+        ' FROM CLIENTES C ' +
+        ' INNER JOIN CIDADES D ' +
+        ' ON C.ID_CIDADE = D.ID_CIDADE ' +
+        ' INNER JOIN ESTADOS E ' +
+        ' ON C.ID_ESTADO = E.ID_ESTADO '); // ADICIONA O SQL
+
+  case (cmbChave_Pesquisa.ItemIndex) of
+      0: // PESQUISA O CÓDIGO
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE ID_CLIENTE = :PID_CLIENTE'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PID_CLIENTE').AsInteger := StrToInt(edtNome.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_CLIENTE');
+      end;
+
+      1: // PESQUISA O NOME
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE NOME LIKE :PNOME'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PNOME').AsString := '%' + edtNome.Text + '%';
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_CLIENTE');
+      end;
+
+      2: // PESQUISA PELA DATA
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE CADASTRO = :PCADASTRO'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PCADASTRO').AsDate := StrToDate(edtInicio.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_CLIENTE');
+      end;
+
+      3: // PESQUISA PELA PERÍODO
+      begin
+          qryPesq_Padrao.SQL.Add(' WHERE CADASTRO BETWEEN :PINICIO AND :PFIM'); // CRIA O PARÂMETRO
+          qryPesq_Padrao.ParamByName('PINICIO').AsDate := StrToDate(edtInicio.Text);
+          qryPesq_Padrao.ParamByName('PFIM').AsDate := StrToDate(edtFim.Text);
+          // APONTA PARA O CAMPO DO PARÂMETRO
+
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_CLIENTE');
+      end;
+
+      4: // PESQUISA POR TODOS
+      begin
+          qryPesq_Padrao.SQL.Add(' ORDER BY ID_CLIENTE');
+      end;
+  end;
+
+  qryPesq_Padrao.Open; // ABRE A QUERY E MOSTRA O RESULTADO DA CONSULTA
+
+  // SE NADA FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  if (qryPesq_Padrao.IsEmpty) then
+  begin
+    MessageDlg('Registro não encontrado!', mtInformation, [mbOK], 0);
+  end
+  else // SE FOR ENCONTRADO MOSTRA A MENSAGEM ABAIXO
+  begin
+    Abort;
+  end;
+end;
+
+procedure TPesq_ClienteF.btnTransferirClick(Sender: TObject);
+begin
+  if (qryPesq_Padrao.RecordCount > 0) then
+  begin
+    Codigo := qryPesq_Padraoid_cliente.AsInteger;
+  end
+  else
+  begin
+    Abort;
+  end;
+end;
+
+procedure TPesq_ClienteF.grdPesq_PadraoDblClick(Sender: TObject);
+begin
+  btnTransferir.Click;
+end;
+end.

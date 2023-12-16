@@ -1,0 +1,20 @@
+object LookUp: TLookUp
+  Height = 303
+  Width = 494
+  object qryEstados: TFDQuery
+    Connection = DM.Conexao
+    Transaction = FDTransaction
+    Left = 48
+    Top = 112
+  end
+  object dsEstados: TDataSource
+    DataSet = qryEstados
+    Left = 128
+    Top = 112
+  end
+  object FDTransaction: TFDTransaction
+    Connection = DM.Conexao
+    Left = 48
+    Top = 32
+  end
+end

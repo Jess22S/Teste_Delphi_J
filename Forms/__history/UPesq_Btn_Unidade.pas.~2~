@@ -1,0 +1,38 @@
+unit UPesq_Btn_Unidade;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, UPesq_Unidade, Data.DB,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, ppFormWrapper, ppRptExp, ppParameter,
+  ppDesignLayer, ppComm, ppRelatv, ppProd, ppClass, ppReport,
+  FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Grids, Vcl.DBGrids,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.Mask, Vcl.ExtCtrls;
+
+type
+  TPesq_UnidadeF1 = class(TPesq_UnidadeF)
+    procedure grdPesq_PadraoDblClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  Pesq_UnidadeF1: TPesq_UnidadeF1;
+
+implementation
+
+{$R *.dfm}
+
+procedure TPesq_UnidadeF1.grdPesq_PadraoDblClick(Sender: TObject);
+begin
+  ProdutoF.edtID_Unidade.Text := IntToStr(qryPesq_Padraoid_unidade.Value);
+  ProdutoF.edtUnidade.Text    := qryPesq_Padraosigla_unidade.Value;
+  Close;
+end;
+
+end.

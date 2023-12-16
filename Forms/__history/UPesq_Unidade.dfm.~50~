@@ -1,0 +1,144 @@
+inherited Pesq_UnidadeF: TPesq_UnidadeF
+  Caption = 'PESQUISA DE UNIDADE'
+  ClientWidth = 984
+  ExplicitWidth = 1000
+  TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 984
+    ExplicitWidth = 984
+    inherited lblInicio: TLabel
+      Enabled = False
+      Visible = False
+    end
+    inherited lblFim: TLabel
+      Enabled = False
+      Visible = False
+    end
+    inherited cmbChave_Pesquisa: TComboBox
+      Items.Strings = (
+        'C'#211'DIGO'
+        'NOME'
+        'TODOS')
+    end
+    inherited edtInicio: TMaskEdit
+      Enabled = False
+      Visible = False
+    end
+    inherited edtFim: TMaskEdit
+      Enabled = False
+      Visible = False
+    end
+    inherited btnTransferir: TBitBtn
+      Left = 550
+      OnClick = btnTransferirClick
+      ExplicitLeft = 550
+    end
+    inherited btnPesquisar: TBitBtn
+      Left = 438
+      OnClick = btnPesquisarClick
+      ExplicitLeft = 438
+    end
+    inherited btnImprimir: TBitBtn
+      Left = 654
+      ExplicitLeft = 654
+    end
+    inherited Panel3: TPanel
+      Left = 845
+      ExplicitLeft = 845
+    end
+  end
+  inherited grdPesq_Padrao: TDBGrid
+    Width = 984
+    ReadOnly = True
+    OnDblClick = grdPesq_PadraoDblClick
+    Columns = <
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'id_unidade'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 100
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'sigla_unidade'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 100
+        Visible = True
+      end
+      item
+        Alignment = taCenter
+        Expanded = False
+        FieldName = 'desc_unidade'
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -12
+        Font.Name = 'Verdana'
+        Font.Style = []
+        Title.Alignment = taCenter
+        Title.Font.Charset = ANSI_CHARSET
+        Title.Font.Color = clWindowText
+        Title.Font.Height = -12
+        Title.Font.Name = 'Verdana'
+        Title.Font.Style = [fsBold, fsItalic]
+        Width = 300
+        Visible = True
+      end>
+  end
+  inherited Panel2: TPanel
+    Width = 984
+    ExplicitWidth = 984
+  end
+  inherited qryPesq_Padrao: TFDQuery
+    UpdateOptions.GeneratorName = 'UNIDADES_UNIDADESID_UNIDADE_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_UNIDADE'
+    SQL.Strings = (
+      'SELECT'
+      '   ID_UNIDADE,'
+      '   SIGLA_UNIDADE,'
+      '   DESC_UNIDADE'
+      'FROM UNIDADES'
+      'ORDER BY ID_UNIDADE')
+    object qryPesq_Padraoid_unidade: TIntegerField
+      AutoGenerateValue = arAutoInc
+      DisplayLabel = 'ID'
+      FieldName = 'id_unidade'
+      Origin = 'id_unidade'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qryPesq_Padraosigla_unidade: TWideStringField
+      DisplayLabel = 'SIGLA'
+      FieldName = 'sigla_unidade'
+      Origin = 'sigla_unidade'
+      Size = 5
+    end
+    object qryPesq_Padraodesc_unidade: TWideStringField
+      DisplayLabel = 'UNIDADE'
+      FieldName = 'desc_unidade'
+      Origin = 'desc_unidade'
+      Size = 30
+    end
+  end
+end

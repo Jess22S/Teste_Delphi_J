@@ -1,0 +1,36 @@
+inherited Pesq_Forma_PgtoF1: TPesq_Forma_PgtoF1
+  Caption = 'Pesq_Forma_PgtoF1'
+  ClientHeight = 546
+  ClientWidth = 1199
+  TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 1199
+    inherited Panel3: TPanel
+      Left = 1060
+      ExplicitLeft = 1056
+    end
+  end
+  inherited grdPesq_Padrao: TDBGrid
+    Width = 1199
+    Height = 347
+  end
+  inherited Panel2: TPanel
+    Top = 452
+    Width = 1199
+    ExplicitTop = 451
+  end
+  inherited REL_Pesq_Padrao: TppReport
+    DataPipelineName = 'frxDB_Pesq_Padrao'
+    inherited ppDetailBand1: TppDetailBand
+      inherited ppDBText1: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText2: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText3: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+    end
+  end
+end

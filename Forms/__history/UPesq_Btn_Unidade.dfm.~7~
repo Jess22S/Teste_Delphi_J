@@ -1,0 +1,19 @@
+inherited Pesq_Btn_UnidadeF: TPesq_Btn_UnidadeF
+  Caption = 'PESQUISA DE UNIDADES'
+  ExplicitHeight = 587
+  TextHeight = 15
+  inherited REL_Pesq_Padrao: TppReport
+    DataPipelineName = 'frxDB_Pesq_Padrao'
+    inherited ppDetailBand1: TppDetailBand
+      inherited ppDBText1: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText2: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText3: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+    end
+  end
+end

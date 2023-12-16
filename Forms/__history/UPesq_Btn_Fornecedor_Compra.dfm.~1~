@@ -1,0 +1,39 @@
+inherited Pesq_FornecedorF1: TPesq_FornecedorF1
+  Caption = 'Pesq_FornecedorF1'
+  ExplicitWidth = 1211
+  ExplicitHeight = 583
+  TextHeight = 15
+  inherited Panel1: TPanel
+    ExplicitWidth = 1195
+    inherited Panel3: TPanel
+      ExplicitLeft = 1056
+    end
+  end
+  inherited Panel2: TPanel
+    ExplicitTop = 450
+    ExplicitWidth = 1195
+  end
+  inherited REL_Pesq_Padrao: TppReport
+    DataPipelineName = 'frxDB_Pesq_Padrao'
+    inherited ppDetailBand1: TppDetailBand
+      inherited ppDBText6: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText4: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText3: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText7: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText2: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText1: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+    end
+  end
+end

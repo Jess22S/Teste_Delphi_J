@@ -1,0 +1,76 @@
+inherited Pesq_Compra_ProdutosF: TPesq_Compra_ProdutosF
+  ClientHeight = 547
+  ClientWidth = 1207
+  TextHeight = 15
+  inherited Panel1: TPanel
+    Width = 1207
+    inherited Panel3: TPanel
+      Left = 1068
+      ExplicitLeft = 1064
+    end
+  end
+  inherited grdPesq_Padrao: TDBGrid
+    Width = 1207
+    Height = 348
+  end
+  inherited Panel2: TPanel
+    Top = 453
+    Width = 1207
+  end
+  inherited qryPesq_Padrao: TFDQuery
+    SQL.Strings = (
+      'SELECT'
+      '   P.ID_PRODUTO,'
+      '   P.DESC_PRODUTO,'
+      '   P.VL_CUSTO,'
+      '   P.VL_VENDA,'
+      '   P.ESTOQUE,'
+      '   P.ESTOQUE_MIN,'
+      '   U.SIGLA_UNIDADE,'
+      '   P.ID_FORNECEDOR,'
+      '   P.CADASTRO,'
+      '   I.ID_ITEM_COMPRA,'
+      '   I.QTD,'
+      '   I.VL_CUSTO,'
+      '   I.DESCONTO,'
+      '   I.TOTAL_ITEM'
+      'FROM PRODUTOS P'
+      'INNER JOIN UNIDADES U'
+      'ON P.ID_UNIDADE = U.ID_UNIDADE  '
+      'INNER JOIN ITEM_COMPRA I'
+      'ON P.ID_PRODUTO = I.ID_PRODUTO'
+      'ORDER BY ID_PRODUTO    ')
+  end
+  inherited REL_Pesq_Padrao: TppReport
+    DataPipelineName = 'frxDB_Pesq_Padrao'
+    inherited ppDetailBand1: TppDetailBand
+      inherited ppDBText1: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText2: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText5: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText7: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText4: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText3: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText6: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText8: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+      inherited ppDBText9: TppDBText
+        DataPipelineName = 'frxDB_Pesq_Padrao'
+      end
+    end
+  end
+end

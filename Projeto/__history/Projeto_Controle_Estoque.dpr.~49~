@@ -1,0 +1,46 @@
+program Projeto_Controle_Estoque;
+
+uses
+  Vcl.Forms,
+  U_Principal in '..\Forms\U_Principal.pas' {PrincipalF},
+  U_DM in '..\Forms\U_DM.pas' {DM: TDataModule},
+  U_Padrao in '..\Forms\U_Padrao.pas' {PadraoF},
+  U_Usuario in '..\Forms\U_Usuario.pas' {UsuarioF},
+  U_Empresa in '..\Forms\U_Empresa.pas' {EmpresaF},
+  U_Fornecedor in '..\Forms\U_Fornecedor.pas' {FornecedorF},
+  U_LookUp in '..\Compartilhamento\U_LookUp.pas' {LookUp: TDataModule},
+  U_Cliente in '..\Forms\U_Cliente.pas' {ClienteF},
+  U_Produto in '..\Forms\U_Produto.pas' {ProdutoF},
+  U_FormaPgto in '..\Forms\U_FormaPgto.pas' {FormaPgtoF},
+  U_PesquisaPadrao in '..\Forms\U_PesquisaPadrao.pas' {Pesquisa_PadraoF},
+  UPesq_Usuario in '..\Forms\UPesq_Usuario.pas' {Pesq_UsuariosF},
+  UPesq_Cliente in '..\Forms\UPesq_Cliente.pas' {Pesq_ClienteF},
+  UPesq_Fornecedor in '..\Forms\UPesq_Fornecedor.pas' {Pesq_FornecedorF},
+  UPesq_Produto in '..\Forms\UPesq_Produto.pas' {Pesq_ProdutosF},
+  U_Unidade in '..\Forms\U_Unidade.pas' {UnidadeF},
+  UPesq_Unidade in '..\Forms\UPesq_Unidade.pas' {Pesq_UnidadeF},
+  UPesq_Btn_Unidade in '..\Forms\UPesq_Btn_Unidade.pas' {Pesq_Btn_UnidadeF},
+  UPesq_Btn_Fornecedor in '..\Forms\UPesq_Btn_Fornecedor.pas' {Pesq_Btn_FornecedorF},
+  UPesq_Empresa in '..\Forms\UPesq_Empresa.pas' {Pesq_EmpresaF},
+  UPesq_Forma_Pgto in '..\Forms\UPesq_Forma_Pgto.pas' {Pesquisa_Forma_PgtoF},
+  U_Movimento_Padrao in '..\Forms\U_Movimento_Padrao.pas' {Padrao_MovimentoF},
+  U_Compra in '..\Forms\U_Compra.pas' {CompraF},
+  UPesq_Btn_Fornecedor_Compra in '..\Forms\UPesq_Btn_Fornecedor_Compra.pas' {Pesq_FornecedorF1};
+
+{$R *.res}
+
+begin
+  Application.Initialize;
+  Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TPrincipalF, PrincipalF);
+  Application.CreateForm(TDM, DM);
+  Application.CreateForm(TLookUp, LookUp);
+  Application.CreateForm(TPesq_Btn_UnidadeF, Pesq_Btn_UnidadeF);
+  Application.CreateForm(TPesq_Btn_FornecedorF, Pesq_Btn_FornecedorF);
+  Application.CreateForm(TPesq_EmpresaF, Pesq_EmpresaF);
+  Application.CreateForm(TPesquisa_Forma_PgtoF, Pesquisa_Forma_PgtoF);
+  Application.CreateForm(TPadrao_MovimentoF, Padrao_MovimentoF);
+  Application.CreateForm(TCompraF, CompraF);
+  Application.CreateForm(TPesq_FornecedorF1, Pesq_FornecedorF1);
+  Application.Run;
+end.

@@ -1,0 +1,120 @@
+unit U_FormaPgto;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Padrao, Data.Bind.Controls,
+  FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.Bind.Components, Data.Bind.DBScope,
+  Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons,
+  Vcl.Bind.Navigator, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls;
+
+type
+  TFormaPgtoF = class(TPadraoF)
+    qryPadraoid_forma_pgto: TIntegerField;
+    qryPadraodescricao: TWideStringField;
+    qryPadraocadastro: TDateField;
+    lblID_FormaPgto: TLabel;
+    edtID_FormaPgto: TDBEdit;
+    edtDesc_FormaPgto: TDBEdit;
+    lblDesc_FormaPgto: TLabel;
+    lblCadastro: TLabel;
+    edtCadastro: TDBEdit;
+    procedure FormShow(Sender: TObject);
+    procedure btnAtualizarClick(Sender: TObject);
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnEditarClick(Sender: TObject);
+    procedure btnExcluirClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
+    procedure btnFornecedoresClick(Sender: TObject);
+  private
+    procedure DesabilitarCampos;
+    procedure HabilitarCampos;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  FormaPgtoF: TFormaPgtoF;
+
+implementation
+
+{$R *.dfm}
+
+procedure TFormaPgtoF.DesabilitarCampos;
+begin
+  edtDesc_FormaPgto.Enabled := False;
+  edtCadastro.Enabled := False;
+end;
+
+procedure TFormaPgtoF.HabilitarCampos;
+begin
+  edtDesc_FormaPgto.Enabled := True;
+  edtCadastro.Enabled := True;
+end;
+
+procedure TFormaPgtoF.FormShow(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TFormaPgtoF.btnNovoClick(Sender: TObject);
+var
+  Prox: Integer;
+begin
+  inherited;
+  HabilitarCampos;
+
+  qryPadrao.Active;
+  qryPadrao.Last;
+  Prox := qryPadraoid_forma_pgto.AsInteger + 1;
+  qryPadrao.Append;
+  qryPadraoid_forma_pgto.AsInteger := Prox;
+
+
+  edtDesc_FormaPgto.SetFocus;
+  edtCadastro.Text := DateToStr(Now);
+  edtCadastro.Enabled := False;
+end;
+
+procedure TFormaPgtoF.btnGravarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TFormaPgtoF.btnEditarClick(Sender: TObject);
+begin
+  inherited;
+  HabilitarCampos;
+  btnAtualizar.Enabled := True;
+end;
+
+procedure TFormaPgtoF.btnExcluirClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TFormaPgtoF.btnFornecedoresClick(Sender: TObject);
+begin
+//
+end;
+
+procedure TFormaPgtoF.btnAtualizarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
+procedure TFormaPgtoF.btnCancelarClick(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+end.

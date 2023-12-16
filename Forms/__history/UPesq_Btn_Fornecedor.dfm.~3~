@@ -1,0 +1,10 @@
+inherited Pesq_Btn_FornecedorF: TPesq_Btn_FornecedorF
+  TextHeight = 15
+  inherited Panel2: TPanel
+    ExplicitTop = 454
+    ExplicitWidth = 1211
+  end
+  inherited REL_Pesq_Padrao: TppReport
+    DataPipelineName = 'frxDB_Pesq_Padrao'
+  end
+end

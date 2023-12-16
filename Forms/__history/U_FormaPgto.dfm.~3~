@@ -1,0 +1,113 @@
+inherited FormaPgtoF: TFormaPgtoF
+  Caption = 'CADASTRO DE FORMAS DE PAGAMENTO'
+  ClientHeight = 281
+  ClientWidth = 1011
+  ExplicitWidth = 1023
+  ExplicitHeight = 319
+  TextHeight = 15
+  object lblID_Produto: TLabel [0]
+    Left = 184
+    Top = 71
+    Width = 95
+    Height = 22
+    Caption = 'ID Produto:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Monotype Corsiva'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+  end
+  object lblDesc_Produto: TLabel [1]
+    Left = 184
+    Top = 125
+    Width = 149
+    Height = 22
+    Caption = 'Descri'#231#227'o Produto:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Monotype Corsiva'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+  end
+  object lblCadastro: TLabel [2]
+    Left = 336
+    Top = 71
+    Width = 74
+    Height = 22
+    Caption = 'Cadastro:'
+    Font.Charset = ANSI_CHARSET
+    Font.Color = clWindowText
+    Font.Height = -19
+    Font.Name = 'Monotype Corsiva'
+    Font.Style = [fsBold, fsItalic]
+    ParentFont = False
+  end
+  inherited Panel1: TPanel
+    Width = 1011
+    inherited Panel3: TPanel
+      Left = 861
+    end
+  end
+  inherited Panel2: TPanel
+    Top = 211
+    Width = 1011
+    inherited BindNavigator1: TBindNavigator
+      Hints.Strings = ()
+    end
+  end
+  object edtID_Produto: TDBEdit [5]
+    Left = 184
+    Top = 96
+    Width = 138
+    Height = 23
+    CharCase = ecUpperCase
+    DataField = 'id_produto'
+    DataSource = dsPadrao
+    TabOrder = 2
+  end
+  object edtDesc_Produto: TDBEdit [6]
+    Left = 184
+    Top = 150
+    Width = 459
+    Height = 23
+    CharCase = ecUpperCase
+    DataField = 'desc_produto'
+    DataSource = dsPadrao
+    TabOrder = 3
+  end
+  object edtCadastro: TDBEdit [7]
+    Left = 336
+    Top = 97
+    Width = 132
+    Height = 23
+    DataField = 'cadastro'
+    DataSource = dsPadrao
+    Enabled = False
+    TabOrder = 4
+  end
+  inherited qryPadrao: TFDQuery
+    SQL.Strings = (
+      'SELECT   '
+      '   ID_FORMA_PGTO,'
+      '   DESCRICAO,'
+      '   CADASTRO'
+      'FROM FORMA_PGTOS'
+      'ORDER BY ID_FORMA_PGTO')
+    object qryPadraoid_forma_pgto: TIntegerField
+      FieldName = 'id_forma_pgto'
+      Origin = 'id_forma_pgto'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qryPadraodescricao: TWideStringField
+      FieldName = 'descricao'
+      Origin = 'descricao'
+      Size = 100
+    end
+    object qryPadraocadastro: TDateField
+      FieldName = 'cadastro'
+      Origin = 'cadastro'
+    end
+  end
+end
