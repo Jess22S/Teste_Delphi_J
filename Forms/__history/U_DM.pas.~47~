@@ -39,6 +39,24 @@ type
     qryEndereco: TFDQuery;
     dspEndereco: TDataSetProvider;
     cdsEndereco: TClientDataSet;
+    qryPessoaid_pessoa: TFDAutoIncField;
+    qryPessoanome: TWideStringField;
+    qryPessoatelefone: TWideStringField;
+    qryPessoarg: TWideStringField;
+    qryPessoacpf_cnpj: TWideStringField;
+    qryPessoaemail: TWideStringField;
+    qryPessoaid_tipo_pessoa: TIntegerField;
+    qryPessoastatus: TBooleanField;
+    qryPessoacadastro: TDateField;
+    cdsPessoaid_pessoa: TAutoIncField;
+    cdsPessoanome: TWideStringField;
+    cdsPessoatelefone: TWideStringField;
+    cdsPessoarg: TWideStringField;
+    cdsPessoacpf_cnpj: TWideStringField;
+    cdsPessoaemail: TWideStringField;
+    cdsPessoaid_tipo_pessoa: TIntegerField;
+    cdsPessoastatus: TBooleanField;
+    cdsPessoacadastro: TDateField;
     qryEstados: TFDQuery;
     qryCidades: TFDQuery;
     cdsUsuarioid_usuario: TAutoIncField;
@@ -79,31 +97,7 @@ type
     qryEnderecoid_endereco1: TIntegerField;
     qryEnderecoid_endereco2: TIntegerField;
     qryEnderecoid_endereco3: TIntegerField;
-    cdsEnderecoid_endereco1: TIntegerField;
-    cdsEnderecoid_endereco2: TIntegerField;
-    cdsEnderecoid_endereco3: TIntegerField;
-    qryPessoaid_pessoa: TFDAutoIncField;
-    qryPessoanome: TWideStringField;
-    qryPessoatelefone: TWideStringField;
-    qryPessoarg: TWideStringField;
-    qryPessoacpf: TWideStringField;
-    qryPessoacnpj: TWideStringField;
-    qryPessoaemail: TWideStringField;
-    qryPessoaid_tipo_pessoa: TIntegerField;
-    qryPessoastatus: TBooleanField;
-    qryPessoacadastro: TDateField;
-    cdsPessoaid_pessoa: TAutoIncField;
-    cdsPessoanome: TWideStringField;
-    cdsPessoatelefone: TWideStringField;
-    cdsPessoarg: TWideStringField;
-    cdsPessoacpf: TWideStringField;
-    cdsPessoacnpj: TWideStringField;
-    cdsPessoaemail: TWideStringField;
-    cdsPessoaid_tipo_pessoa: TIntegerField;
-    cdsPessoastatus: TBooleanField;
-    cdsPessoacadastro: TDateField;
-    cdsPessoacdsEndereco: TDataSetField;
-    cdsPessoaqryEndereco: TDataSetField;
+    procedure qryPessoacpf_cnpjChange(Sender: TField);
   private
     { Private declarations }
   public
@@ -120,5 +114,21 @@ implementation
 uses U_Pessoa;
 
 {$R *.dfm}
+
+procedure TDM.qryPessoacpf_cnpjChange(Sender: TField);
+begin
+  if (PessoaF.DBRadioGroup1.ItemIndex = 0) then
+  begin
+    PessoaF.edtCPF_CNPJ.Clear;
+    DM.qryPessoacpf_cnpj.EditMask := '###.###.###-##';
+    PessoaF.edtCPF_CNPJ.Text := DM.qryPessoacpf_cnpj.EditMask;
+  end
+  else
+  begin
+    PessoaF.edtCPF_CNPJ.Clear;
+    DM.qryPessoacpf_cnpj.EditMask := '##.###.###/####-##';
+    PessoaF.edtCPF_CNPJ.Text := DM.qryPessoacpf_cnpj.EditMask;
+  end;
+end;
 
 end.

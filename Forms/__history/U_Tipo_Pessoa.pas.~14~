@@ -67,21 +67,26 @@ procedure TTipo_PessoaF.btnNovoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
-  DM.qryTipoPessoa.Open;
+  try
+    DM.qryTipoPessoa.Open;
 
-  inherited;
+    inherited;
 
-  HabilitarCampos;
-  DM.qryTipoPessoa.Active;
-  DM.qryTipoPessoa.Last;
-  Prox := DM.qryTipoPessoaid_tipo_pessoa.AsInteger + 1;
-  DM.qryTipoPessoa.Append;
-  edtID.Text := IntToStr(Prox);
-  DM.qryTipoPessoaid_tipo_pessoa.AsInteger := Prox;
+    HabilitarCampos;
+    DM.qryTipoPessoa.Active;
+    DM.qryTipoPessoa.Last;
+    Prox := DM.qryTipoPessoaid_tipo_pessoa.AsInteger + 1;
+    DM.qryTipoPessoa.Append;
+    edtID.Text := IntToStr(Prox);
+    DM.qryTipoPessoaid_tipo_pessoa.AsInteger := Prox;
 
-  edtNome.SetFocus;
-  DM.qryTipoPessoacadastro.AsDateTime := Now;
-  edtCadastro.Enabled:= False;
+    edtNome.SetFocus;
+    DM.qryTipoPessoacadastro.AsDateTime := Now;
+    edtCadastro.Enabled:= False;
+
+  except on E: Exception do
+     MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
 end;
 
 procedure TTipo_PessoaF.btnGravarClick(Sender: TObject);

@@ -200,7 +200,7 @@ inherited PessoaF: TPessoaF
         ParentFont = False
       end
       object lblTelefone: TLabel
-        Left = 551
+        Left = 398
         Top = 53
         Width = 72
         Height = 22
@@ -212,6 +212,21 @@ inherited PessoaF: TPessoaF
         Font.Name = 'Monotype Corsiva'
         Font.Style = [fsBold, fsItalic]
         ParentFont = False
+      end
+      object lblCNPJ: TLabel
+        Left = 229
+        Top = 53
+        Width = 51
+        Height = 22
+        Caption = 'CNPJ;'
+        FocusControl = edtCNPJ
+        Font.Charset = ANSI_CHARSET
+        Font.Color = clWindowText
+        Font.Height = -19
+        Font.Name = 'Monotype Corsiva'
+        Font.Style = [fsBold, fsItalic]
+        ParentFont = False
+        Transparent = False
       end
       object lblEmail: TLabel
         Left = 82
@@ -228,8 +243,8 @@ inherited PessoaF: TPessoaF
         ParentFont = False
       end
       object lblCadastro: TLabel
-        Left = 553
-        Top = 108
+        Left = 551
+        Top = 53
         Width = 74
         Height = 22
         Caption = 'Cadastro:'
@@ -261,20 +276,6 @@ inherited PessoaF: TPessoaF
         Height = 22
         Caption = 'CPF;'
         FocusControl = edtCPF
-        Font.Charset = ANSI_CHARSET
-        Font.Color = clWindowText
-        Font.Height = -19
-        Font.Name = 'Monotype Corsiva'
-        Font.Style = [fsBold, fsItalic]
-        ParentFont = False
-      end
-      object Label9: TLabel
-        Left = 382
-        Top = 53
-        Width = 51
-        Height = 22
-        Caption = 'CNPJ;'
-        FocusControl = edtCNPJ
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
@@ -315,14 +316,25 @@ inherited PessoaF: TPessoaF
         TabOrder = 1
       end
       object edtTelefone: TDBEdit
-        Left = 551
+        Left = 398
         Top = 76
-        Width = 136
+        Width = 149
         Height = 23
         DataField = 'telefone'
         DataSource = dsPadrao
         Enabled = False
-        TabOrder = 5
+        TabOrder = 6
+      end
+      object edtCNPJ: TDBEdit
+        Left = 229
+        Top = 76
+        Width = 164
+        Height = 23
+        DataField = 'cpf_cnpj'
+        DataSource = dsPadrao
+        Enabled = False
+        TabOrder = 3
+        Visible = False
       end
       object edtEmail: TDBEdit
         Left = 81
@@ -333,17 +345,17 @@ inherited PessoaF: TPessoaF
         DataField = 'email'
         DataSource = dsPadrao
         Enabled = False
-        TabOrder = 6
+        TabOrder = 7
       end
       object edtCadastro: TDBEdit
         Left = 551
-        Top = 131
+        Top = 76
         Width = 136
         Height = 23
         DataField = 'cadastro'
         DataSource = dsPadrao
         Enabled = False
-        TabOrder = 4
+        TabOrder = 5
       end
       object cmbTipoPessoa: TDBLookupComboBox
         Left = 82
@@ -356,7 +368,7 @@ inherited PessoaF: TPessoaF
         KeyField = 'id_tipo_pessoa'
         ListField = 'tipo_pessoa'
         ListSource = dsTipo_Pessoa
-        TabOrder = 3
+        TabOrder = 4
       end
       object s: TDBGrid
         Left = 0
@@ -365,7 +377,7 @@ inherited PessoaF: TPessoaF
         Height = 223
         Align = alBottom
         DataSource = dsPadrao
-        TabOrder = 8
+        TabOrder = 9
         TitleFont.Charset = DEFAULT_CHARSET
         TitleFont.Color = clWindowText
         TitleFont.Height = -12
@@ -430,7 +442,7 @@ inherited PessoaF: TPessoaF
           end>
       end
       object cbAtivo: TDBCheckBox
-        Left = 735
+        Left = 551
         Top = 134
         Width = 97
         Height = 17
@@ -439,24 +451,14 @@ inherited PessoaF: TPessoaF
         DataField = 'status'
         DataSource = dsPadrao
         ParentBiDiMode = False
-        TabOrder = 7
+        TabOrder = 8
       end
       object edtCPF: TDBEdit
         Left = 229
         Top = 76
-        Width = 150
-        Height = 23
-        DataField = 'cpf'
-        DataSource = dsPadrao
-        Enabled = False
-        TabOrder = 9
-      end
-      object edtCNPJ: TDBEdit
-        Left = 383
-        Top = 76
         Width = 164
         Height = 23
-        DataField = 'cnpj'
+        DataField = 'cpf_cnpj'
         DataSource = dsPadrao
         Enabled = False
         TabOrder = 10

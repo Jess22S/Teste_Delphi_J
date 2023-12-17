@@ -83,10 +83,8 @@ type
     chbPrincipal1: TDBCheckBox;
     chbPrincipal3: TDBCheckBox;
     chbPrincipal2: TDBCheckBox;
-    edtCPF: TDBEdit;
+    edtCPF_CNPJ: TDBEdit;
     lblCPF: TLabel;
-    Label9: TLabel;
-    edtCNPJ: TDBEdit;
     procedure FormShow(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
@@ -94,6 +92,7 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
+    procedure cmbTipoPessoaExit(Sender: TObject);
   private
     { Private declarations }
     procedure HabilitarCampos;
@@ -116,8 +115,7 @@ procedure TPessoaF.HabilitarCampos;
 begin
   edtNome.Enabled              := True;
   edtRG.Enabled                := True;
-  edtCPF.Enabled               := True;
-  edtCNPJ.Enabled              := True;
+  edtCPF_CNPJ.Enabled          := True;
   cmbTipoPessoa.Enabled        := True;
   cmbTipoPessoa.ListFieldIndex := 0;
   edtTelefone.Enabled          := True;
@@ -154,8 +152,7 @@ procedure TPessoaF.DesabilitarCampos;
 begin
   edtNome.Enabled              := False;
   edtRG.Enabled                := False;
-  edtCPF.Enabled               := False;
-  edtCNPJ.Enabled              := False;
+  CPF_CNPJ.Enabled             := False;
   cmbTipoPessoa.Enabled        := False;
   cmbTipoPessoa.ListFieldIndex := 0;
   edtTelefone.Enabled          := False;
@@ -260,6 +257,23 @@ begin
   cmbUF3.ListFieldIndex           := 0;
 
   edtCadastro.Enabled := False;
+end;
+
+procedure TPessoaF.cmbTipoPessoaExit(Sender: TObject);
+begin
+  case cmbTipoPessoa.ListFieldIndex of
+        0:
+          begin
+            DM.qryPessoacpf_cnpj.EditMask := '###.###.###-##';
+            break;
+          end;
+
+        1:
+          begin
+            DM.qryPessoacpf_cnpj.EditMask := '##.###.###/####-##';
+            break;
+          end;
+  end;
 end;
 
 procedure TPessoaF.btnGravarClick(Sender: TObject);

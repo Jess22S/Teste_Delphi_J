@@ -260,7 +260,7 @@ inherited PessoaF: TPessoaF
         Width = 40
         Height = 22
         Caption = 'CPF;'
-        FocusControl = edtCPF
+        FocusControl = edtCPF_CNPJ
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
         Font.Height = -19
@@ -441,7 +441,7 @@ inherited PessoaF: TPessoaF
         ParentBiDiMode = False
         TabOrder = 7
       end
-      object edtCPF: TDBEdit
+      object edtCPF_CNPJ: TDBEdit
         Left = 229
         Top = 76
         Width = 150

@@ -154,8 +154,7 @@ procedure TPessoaF.DesabilitarCampos;
 begin
   edtNome.Enabled              := False;
   edtRG.Enabled                := False;
-  edtCPF.Enabled               := False;
-  edtCNPJ.Enabled              := False;
+  edtCPF_CNPJ.Enabled          := False;
   cmbTipoPessoa.Enabled        := False;
   cmbTipoPessoa.ListFieldIndex := 0;
   edtTelefone.Enabled          := False;

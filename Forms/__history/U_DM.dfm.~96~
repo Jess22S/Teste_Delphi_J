@@ -205,13 +205,11 @@ object DM: TDM
     object qryPessoacpf: TWideStringField
       FieldName = 'cpf'
       Origin = 'cpf'
-      EditMask = '###.###.###-##;1;_'
       Size = 11
     end
     object qryPessoacnpj: TWideStringField
       FieldName = 'cnpj'
       Origin = 'cnpj'
-      EditMask = '##.###.###/####-##;1;_'
       Size = 16
     end
     object qryPessoaemail: TWideStringField
@@ -245,49 +243,6 @@ object DM: TDM
     ProviderName = 'dspPessoa'
     Left = 257
     Top = 240
-    object cdsPessoaid_pessoa: TAutoIncField
-      FieldName = 'id_pessoa'
-      ReadOnly = True
-    end
-    object cdsPessoanome: TWideStringField
-      FieldName = 'nome'
-      Size = 100
-    end
-    object cdsPessoatelefone: TWideStringField
-      FieldName = 'telefone'
-      Size = 15
-    end
-    object cdsPessoarg: TWideStringField
-      FieldName = 'rg'
-      Size = 9
-    end
-    object cdsPessoacpf: TWideStringField
-      FieldName = 'cpf'
-      Size = 11
-    end
-    object cdsPessoacnpj: TWideStringField
-      FieldName = 'cnpj'
-      Size = 16
-    end
-    object cdsPessoaemail: TWideStringField
-      FieldName = 'email'
-      Size = 100
-    end
-    object cdsPessoaid_tipo_pessoa: TIntegerField
-      FieldName = 'id_tipo_pessoa'
-    end
-    object cdsPessoastatus: TBooleanField
-      FieldName = 'status'
-    end
-    object cdsPessoacadastro: TDateField
-      FieldName = 'cadastro'
-    end
-    object cdsPessoacdsEndereco: TDataSetField
-      FieldName = 'cdsEndereco'
-    end
-    object cdsPessoaqryEndereco: TDataSetField
-      FieldName = 'qryEndereco'
-    end
   end
   object qryEndereco: TFDQuery
     Active = True

@@ -92,14 +92,20 @@ procedure TPadraoF.btnNovoClick(Sender: TObject);
 begin
   DesabilitarBotoes;
   btnGravar.Enabled      := True;
-  btnAtualizar.Enabled   := False; 
-end;
+  btnAtualizar.Enabled   := False;
+end;   
 
 procedure TPadraoF.btnEditarClick(Sender: TObject);
-begin       
-  DesabilitarBotoes;
-  btnGravar.Enabled := False;
-  btnAtualizar.Enabled := True; 
+begin
+  try
+    DesabilitarBotoes;
+    btnGravar.Enabled := False;
+    btnAtualizar.Enabled := True;
+    
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
+  
 end;
 
 procedure TPadraoF.btnGravarClick(Sender: TObject);
@@ -126,8 +132,13 @@ end;
 
 procedure TPadraoF.btnCancelarClick(Sender: TObject);
 begin
-  MessageDlg('Ação cancelada pelo usuário!', mtInformation, [mbOk], 0);
-  HabilitarBotoes; 
+  try
+    MessageDlg('Ação cancelada pelo usuário!', mtInformation, [mbOk], 0);
+    HabilitarBotoes; 
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
 end;
 
 procedure TPadraoF.btnSairClick(Sender: TObject);

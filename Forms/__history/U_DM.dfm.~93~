@@ -194,6 +194,7 @@ object DM: TDM
     object qryPessoatelefone: TWideStringField
       FieldName = 'telefone'
       Origin = 'telefone'
+      EditMask = '(##) #####-####;1;_'
       Size = 15
     end
     object qryPessoarg: TWideStringField
@@ -202,15 +203,9 @@ object DM: TDM
       EditMask = '##.###.###-##;1;_'
       Size = 9
     end
-    object qryPessoacpf: TWideStringField
-      FieldName = 'cpf'
-      Origin = 'cpf'
-      EditMask = '###.###.###-##;1;_'
-      Size = 11
-    end
-    object qryPessoacnpj: TWideStringField
-      FieldName = 'cnpj'
-      Origin = 'cnpj'
+    object qryPessoacpf_cnpj: TWideStringField
+      FieldName = 'cpf_cnpj'
+      Origin = 'cpf_cnpj'
       EditMask = '##.###.###/####-##;1;_'
       Size = 16
     end
@@ -220,8 +215,10 @@ object DM: TDM
       Size = 100
     end
     object qryPessoaid_tipo_pessoa: TIntegerField
-      AutoGenerateValue = arDefault
       FieldName = 'id_tipo_pessoa'
+      LookupDataSet = qryTipoPessoa
+      LookupKeyFields = 'id_tipo_pessoa'
+      LookupResultField = 'tipo_pessoa'
       Origin = 'id_tipo_pessoa'
     end
     object qryPessoastatus: TBooleanField
@@ -247,6 +244,9 @@ object DM: TDM
     Top = 240
     object cdsPessoaid_pessoa: TAutoIncField
       FieldName = 'id_pessoa'
+      LookupDataSet = qryTipoPessoa
+      LookupKeyFields = 'id_tipo_pessoa'
+      LookupResultField = 'tipo_pessoa'
       ReadOnly = True
     end
     object cdsPessoanome: TWideStringField
@@ -261,12 +261,8 @@ object DM: TDM
       FieldName = 'rg'
       Size = 9
     end
-    object cdsPessoacpf: TWideStringField
-      FieldName = 'cpf'
-      Size = 11
-    end
-    object cdsPessoacnpj: TWideStringField
-      FieldName = 'cnpj'
+    object cdsPessoacpf_cnpj: TWideStringField
+      FieldName = 'cpf_cnpj'
       Size = 16
     end
     object cdsPessoaemail: TWideStringField
@@ -282,15 +278,8 @@ object DM: TDM
     object cdsPessoacadastro: TDateField
       FieldName = 'cadastro'
     end
-    object cdsPessoacdsEndereco: TDataSetField
-      FieldName = 'cdsEndereco'
-    end
-    object cdsPessoaqryEndereco: TDataSetField
-      FieldName = 'qryEndereco'
-    end
   end
   object qryEndereco: TFDQuery
-    Active = True
     IndexFieldNames = 'id_pessoa'
     MasterSource = PessoaF.dsPadrao
     MasterFields = 'id_pessoa'
@@ -334,9 +323,9 @@ object DM: TDM
       item
         Position = 1
         Name = 'ID_PESSOA'
-        DataType = ftAutoInc
+        DataType = ftInteger
         ParamType = ptInput
-        Value = Null
+        Value = 1
       end>
     object qryEnderecoid_pessoa: TIntegerField
       FieldName = 'id_pessoa'
@@ -428,7 +417,6 @@ object DM: TDM
     Top = 304
   end
   object cdsEndereco: TClientDataSet
-    Active = True
     Aggregates = <>
     IndexFieldNames = 'id_pessoa'
     MasterFields = 'id_pessoa'
@@ -446,72 +434,56 @@ object DM: TDM
     Top = 304
     object cdsEnderecoid_pessoa: TIntegerField
       FieldName = 'id_pessoa'
-      Origin = 'id_pessoa'
     end
     object cdsEnderecoid_endereco: TAutoIncField
       FieldName = 'id_endereco'
-      Origin = 'id_endereco'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
       ReadOnly = True
     end
     object cdsEnderecoid_endereco1: TIntegerField
       FieldName = 'id_endereco1'
-      Origin = 'id_endereco1'
     end
     object cdsEnderecoendereco1: TWideStringField
       FieldName = 'endereco1'
-      Origin = 'endereco1'
       Size = 100
     end
     object cdsEnderecoid_endereco2: TIntegerField
       FieldName = 'id_endereco2'
-      Origin = 'id_endereco2'
     end
     object cdsEnderecoendereco2: TWideStringField
       FieldName = 'endereco2'
-      Origin = 'endereco2'
       Size = 100
     end
     object cdsEnderecoid_endereco3: TIntegerField
       FieldName = 'id_endereco3'
-      Origin = 'id_endereco3'
     end
     object cdsEnderecoendereco3: TWideStringField
       FieldName = 'endereco3'
-      Origin = 'endereco3'
       Size = 100
     end
     object cdsEndereconumero: TIntegerField
       FieldName = 'numero'
-      Origin = 'numero'
     end
     object cdsEnderecobairro: TWideStringField
       FieldName = 'bairro'
-      Origin = 'bairro'
       Size = 100
     end
     object cdsEnderecotipo_endereco: TWideStringField
       FieldName = 'tipo_endereco'
-      Origin = 'tipo_endereco'
       FixedChar = True
       Size = 1
     end
     object cdsEnderecoprincipal: TBooleanField
       FieldName = 'principal'
-      Origin = 'principal'
     end
     object cdsEnderecocep: TWideStringField
       FieldName = 'cep'
-      Origin = 'cep'
       Size = 16
     end
     object cdsEnderecoid_cidade: TIntegerField
       FieldName = 'id_cidade'
-      Origin = 'id_cidade'
     end
     object cdsEnderecoid_estado: TIntegerField
       FieldName = 'id_estado'
-      Origin = 'id_estado'
     end
   end
   object qryEstados: TFDQuery

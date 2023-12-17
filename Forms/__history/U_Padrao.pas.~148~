@@ -104,13 +104,8 @@ end;
 
 procedure TPadraoF.btnGravarClick(Sender: TObject);
 begin
-  try
-    MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOk], 0);
-    HabilitarBotoes;
-    
-  except on E: Exception do
-    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
-  end;    
+  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOk], 0);
+  HabilitarBotoes;   
 end;   
 
 procedure TPadraoF.btnAtualizarClick(Sender: TObject);

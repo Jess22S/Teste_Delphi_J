@@ -39,6 +39,23 @@ type
     qryEndereco: TFDQuery;
     dspEndereco: TDataSetProvider;
     cdsEndereco: TClientDataSet;
+    qryPessoaid_pessoa: TFDAutoIncField;
+    qryPessoanome: TWideStringField;
+    qryPessoatelefone: TWideStringField;
+    qryPessoarg: TWideStringField;
+    qryPessoaemail: TWideStringField;
+    qryPessoaid_tipo_pessoa: TIntegerField;
+    qryPessoastatus: TBooleanField;
+    qryPessoacadastro: TDateField;
+    cdsPessoaid_pessoa: TAutoIncField;
+    cdsPessoanome: TWideStringField;
+    cdsPessoatelefone: TWideStringField;
+    cdsPessoarg: TWideStringField;
+    cdsPessoacpf_cnpj: TWideStringField;
+    cdsPessoaemail: TWideStringField;
+    cdsPessoaid_tipo_pessoa: TIntegerField;
+    cdsPessoastatus: TBooleanField;
+    cdsPessoacadastro: TDateField;
     qryEstados: TFDQuery;
     qryCidades: TFDQuery;
     cdsUsuarioid_usuario: TAutoIncField;
@@ -82,28 +99,8 @@ type
     cdsEnderecoid_endereco1: TIntegerField;
     cdsEnderecoid_endereco2: TIntegerField;
     cdsEnderecoid_endereco3: TIntegerField;
-    qryPessoaid_pessoa: TFDAutoIncField;
-    qryPessoanome: TWideStringField;
-    qryPessoatelefone: TWideStringField;
-    qryPessoarg: TWideStringField;
     qryPessoacpf: TWideStringField;
     qryPessoacnpj: TWideStringField;
-    qryPessoaemail: TWideStringField;
-    qryPessoaid_tipo_pessoa: TIntegerField;
-    qryPessoastatus: TBooleanField;
-    qryPessoacadastro: TDateField;
-    cdsPessoaid_pessoa: TAutoIncField;
-    cdsPessoanome: TWideStringField;
-    cdsPessoatelefone: TWideStringField;
-    cdsPessoarg: TWideStringField;
-    cdsPessoacpf: TWideStringField;
-    cdsPessoacnpj: TWideStringField;
-    cdsPessoaemail: TWideStringField;
-    cdsPessoaid_tipo_pessoa: TIntegerField;
-    cdsPessoastatus: TBooleanField;
-    cdsPessoacadastro: TDateField;
-    cdsPessoacdsEndereco: TDataSetField;
-    cdsPessoaqryEndereco: TDataSetField;
   private
     { Private declarations }
   public
