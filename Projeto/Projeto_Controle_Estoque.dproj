@@ -123,9 +123,8 @@
             <Form>PessoaF</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Forms\U_Cliente.pas">
-            <Form>ClienteF</Form>
-            <FormType>dfm</FormType>
+        <DCCReference Include="..\Forms\U_Tipo_Pessoa.pas">
+            <Form>Tipo_PessoaF</Form>
         </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>

@@ -1,10 +1,10 @@
 inherited UsuarioF: TUsuarioF
   Caption = 'CADASTRO DE USU'#193'RIOS'
-  ClientHeight = 323
-  ClientWidth = 991
+  ClientHeight = 322
+  ClientWidth = 987
   OnShow = FormShow
-  ExplicitWidth = 1003
-  ExplicitHeight = 361
+  ExplicitWidth = 999
+  ExplicitHeight = 360
   TextHeight = 15
   object lblID: TLabel [0]
     Left = 200
@@ -76,9 +76,9 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   inherited Panel1: TPanel
-    Width = 991
+    Width = 987
     TabOrder = 5
-    ExplicitWidth = 987
+    ExplicitWidth = 983
     inherited btnNovo: TBitBtn
       Left = 35
       Width = 95
@@ -88,6 +88,7 @@ inherited UsuarioF: TUsuarioF
     inherited btnExcluir: TBitBtn
       Left = 137
       Width = 95
+      OnClick = btnExcluirClick
       ExplicitLeft = 137
       ExplicitWidth = 95
     end
@@ -122,16 +123,16 @@ inherited UsuarioF: TUsuarioF
       ExplicitWidth = 103
     end
     inherited Panel3: TPanel
-      Left = 841
-      ExplicitLeft = 837
+      Left = 837
+      ExplicitLeft = 833
     end
   end
   inherited Panel2: TPanel
-    Top = 253
-    Width = 991
+    Top = 252
+    Width = 987
     TabOrder = 6
-    ExplicitTop = 252
-    ExplicitWidth = 987
+    ExplicitTop = 251
+    ExplicitWidth = 983
     inherited BindNavigator1: TBindNavigator
       Left = 239
       Width = 496

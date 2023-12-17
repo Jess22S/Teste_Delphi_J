@@ -10,9 +10,9 @@ uses
 type
   TPrincipalF = class(TForm)
     Panel1: TPanel;
-    btnUsuario: TSpeedButton;
     btnPessoa: TSpeedButton;
     btnTipoPessoa: TSpeedButton;
+    btnUsuario: TSpeedButton;
     btnFechar: TSpeedButton;
     StatusBar1: TStatusBar;
     Timer1: TTimer;
@@ -24,14 +24,15 @@ type
     mmSobreoSistema: TMenuItem;
     mmSair: TMenuItem;
     mmFechar: TMenuItem;
+    Panel2: TPanel;
     procedure Timer1Timer(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure mmSairClick(Sender: TObject);
-    procedure btnUsuarioClick(Sender: TObject);
     procedure btnPessoaClick(Sender: TObject);
+    procedure btnTipoPessoaClick(Sender: TObject);
     procedure mmUsuarioClick(Sender: TObject);
     procedure mmPessoaClick(Sender: TObject);
-    procedure btnTipoPessoaClick(Sender: TObject);
+    procedure btnUsuarioClick(Sender: TObject);
     procedure mmTipoPessoaClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
   private
@@ -47,31 +48,41 @@ implementation
 
 {$R *.dfm}
 
-uses U_Usuario, U_Cliente;
+uses U_Usuario, U_Tipo_Pessoa;
 
-procedure TPrincipalF.btnTipoPessoaClick(Sender: TObject);
+procedure TPrincipalF.btnUsuarioClick(Sender: TObject);
 begin
-  ClienteF := TClienteF.Create(Self);
-  ClienteF.ShowModal;
-
   try
-    //
-  finally
-    ClienteF.Free;
-    ClienteF := Nil;
+    UsuarioF := TUsuarioF.Create(Self);
+    UsuarioF.ShowModal;
+
+    try
+      //
+    finally
+      UsuarioF.Free;
+      UsuarioF := Nil;
+    end;
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
   end;
 end;
 
-procedure TPrincipalF.btnPessoaClick(Sender: TObject);
+procedure TPrincipalF.btnTipoPessoaClick(Sender: TObject);
 begin
-  PessoaF := TPessoaF.Create(Self);
-  PessoaF.ShowModal;
-
   try
-    //
-  finally
-    PessoaF.Free;
-    PessoaF := Nil;
+    Tipo_PessoaF := TTipo_PessoaF.Create(Self);
+    Tipo_PessoaF.ShowModal;
+
+    try
+      //
+    finally
+      Tipo_PessoaF.Free;
+      Tipo_PessoaF := Nil;
+    end;
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
   end;
 end;
 
@@ -87,17 +98,23 @@ begin
   end;
 end;
 
-procedure TPrincipalF.btnUsuarioClick(Sender: TObject);
+procedure TPrincipalF.btnPessoaClick(Sender: TObject);
 begin
-  UsuarioF := TUsuarioF.Create(Self);
-  UsuarioF.ShowModal;
-
   try
-    //
-  finally
-    UsuarioF.Free;
-    UsuarioF := Nil;
+    PessoaF := TPessoaF.Create(Self);
+    PessoaF.ShowModal;
+
+    try
+      //
+    finally
+      PessoaF.Free;
+      PessoaF := Nil;
+    end;
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
   end;
+ 
 end;
 
 procedure TPrincipalF.mmTipoPessoaClick(Sender: TObject);

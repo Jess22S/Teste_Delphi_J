@@ -72,43 +72,6 @@ begin
   btnCancelar.Enabled  := True;
 end;
 
-procedure TPadraoF.btnAtualizarClick(Sender: TObject);
-begin
-  MessageDlg('Registro atualizado com sucesso!', mtInformation, [mbOk], 0);
-  HabilitarBotoes;
-end;
-
-procedure TPadraoF.btnCancelarClick(Sender: TObject);
-begin
-  MessageDlg('Ação cancelada pelo usuário!', mtInformation, [mbOk], 0);
-  HabilitarBotoes;
-end;
-
-procedure TPadraoF.btnEditarClick(Sender: TObject);
-begin
-  DesabilitarBotoes;
-  btnGravar.Enabled := False;
-  btnAtualizar.Enabled := True;
-end;
-
-procedure TPadraoF.btnGravarClick(Sender: TObject);
-begin
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOk], 0);
-  HabilitarBotoes;
-end;
-
-procedure TPadraoF.btnNovoClick(Sender: TObject);
-begin
-  DesabilitarBotoes;
-  btnGravar.Enabled      := True;
-  btnAtualizar.Enabled   := False;
-end;
-
-procedure TPadraoF.btnSairClick(Sender: TObject);
-begin
-  Close;
-end;
-
 procedure TPadraoF.FormKeyPress(Sender: TObject; var Key: Char);
 begin
   // FAZ A TECLA ENTER TER A MESMA FUNÇÃO DA TECLA TAB
@@ -124,4 +87,62 @@ begin
     Close;
   end;
 end;
+
+procedure TPadraoF.btnNovoClick(Sender: TObject);
+begin
+  DesabilitarBotoes;
+  btnGravar.Enabled      := True;
+  btnAtualizar.Enabled   := False;
+end;   
+
+procedure TPadraoF.btnEditarClick(Sender: TObject);
+begin
+  try
+    DesabilitarBotoes;
+    btnGravar.Enabled := False;
+    btnAtualizar.Enabled := True;
+    
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
+  
+end;
+
+procedure TPadraoF.btnGravarClick(Sender: TObject);
+begin
+  try
+    MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOk], 0);
+    HabilitarBotoes;
+    
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;    
+end;   
+
+procedure TPadraoF.btnAtualizarClick(Sender: TObject);
+begin
+  try
+    MessageDlg('Registro atualizado com sucesso!', mtInformation, [mbOk], 0);
+    HabilitarBotoes;
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
+end;
+
+procedure TPadraoF.btnCancelarClick(Sender: TObject);
+begin
+  try
+    MessageDlg('Ação cancelada pelo usuário!', mtInformation, [mbOk], 0);
+    HabilitarBotoes; 
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
+end;
+
+procedure TPadraoF.btnSairClick(Sender: TObject);
+begin
+  Close;
+end; 
 end.

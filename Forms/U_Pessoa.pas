@@ -80,6 +80,9 @@ type
     dsEstados: TDataSource;
     dsCidades: TDataSource;
     DBRadioGroup1: TDBRadioGroup;
+    edtID_End1: TDBEdit;
+    edtID_End2: TDBEdit;
+    edtID_End3: TDBEdit;
     procedure FormShow(Sender: TObject);
     procedure btnNovoClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
@@ -189,6 +192,7 @@ end;
 
 procedure TPessoaF.FormShow(Sender: TObject);
 begin
+  PageControl1.ActivePageIndex := 0;
   DesabilitarCampos;
 
   DM.qryPessoa.Open;
@@ -206,43 +210,67 @@ end;
 
 procedure TPessoaF.btnNovoClick(Sender: TObject);
 var
-  Prox: Integer;
+  Prox, Prox_End1, Prox_End2, Prox_End3: Integer;
 begin
-  DM.qryPessoa.Open;
-  DM.qryEndereco.Open;
-  DM.qryTipoPessoa.Open;
-  DM.qryEstados.Open;
-  DM.qryCidades.Open;
+  try
+    DM.qryPessoa.Open;
+    DM.qryEndereco.Open;
+    DM.qryTipoPessoa.Open;
+    DM.qryEstados.Open;
+    DM.qryCidades.Open;
 
-  inherited;
-  
-  HabilitarCampos;
-  DM.qryPessoa.Append;
-  DM.qryEndereco.Append;
-  DM.qryPessoa.Active;
-  DM.qryEndereco.Active;
-  DM.qryTipoPessoa.Active;
-  DM.qryEstados.Active;
-  DM.qryCidades.Active;
+    inherited;
 
-  DM.qryPessoa.Last;
-  Prox := DM.qryPessoaid_pessoa.AsInteger + 1;
-  DM.qryPessoa.Append;
-  edtID.Text := IntToStr(Prox);
-  DM.qryPessoaid_pessoa.AsInteger := Prox;
+    HabilitarCampos;
+    DM.qryPessoa.Append;
+    DM.qryEndereco.Append;
+    DM.qryPessoa.Active;
+    DM.qryEndereco.Active;
+    DM.qryTipoPessoa.Active;
+    DM.qryEstados.Active;
+    DM.qryCidades.Active;
 
-  PageControl1.ActivePageIndex := 0;
-  edtNome.SetFocus;
-  edtCadastro.Text             := DateToStr(Now);
-  cmbTipoPessoa.ListFieldIndex := 0;
-  cmbCidade1.ListFieldIndex    := 0;
-  cmbCidade2.ListFieldIndex    := 0;
-  cmbCidade3.ListFieldIndex    := 0;
-  cmbUF1.ListFieldIndex        := 0;
-  cmbUF2.ListFieldIndex        := 0;
-  cmbUF3.ListFieldIndex        := 0;
+    DM.qryPessoa.Last;
+    Prox := DM.qryPessoaid_pessoa.AsInteger + 1;
+    DM.qryPessoa.Append;
+    edtID.Text := IntToStr(Prox);
+    DM.qryPessoaid_pessoa.AsInteger := Prox;
 
-  edtCadastro.Enabled := False;
+    DM.qryEndereco.Last;
+    Prox_End1 := DM.qryEnderecoid_endereco.AsInteger + 1;
+    DM.qryEndereco.Append;
+    edtID_End1.Text := IntToStr(Prox_End1);
+    DM.qryEnderecoid_endereco.AsInteger := Prox_End1;
+
+    DM.qryEndereco.Last;
+    Prox_End2 := Prox_End1 + 1;
+    DM.qryEndereco.Append;
+    edtID_End2.Text := IntToStr(Prox_End2);
+    DM.qryEnderecoid_endereco.AsInteger := Prox_End2;
+
+    DM.qryEndereco.Last;
+    Prox_End3 := Prox_End2 + 1;
+    DM.qryEndereco.Append;
+    edtID_End3.Text := IntToStr(Prox_End3);
+    DM.qryEnderecoid_endereco.AsInteger := Prox_End3;
+
+    PageControl1.ActivePageIndex := 0;
+    edtNome.SetFocus;
+    DM.qryPessoacadastro.AsDateTime := Now;
+    cmbTipoPessoa.ListFieldIndex    := 0;
+    cmbCidade1.ListFieldIndex       := 0;
+    cmbCidade2.ListFieldIndex       := 0;
+    cmbCidade3.ListFieldIndex       := 0;
+    cmbUF1.ListFieldIndex           := 0;
+    cmbUF2.ListFieldIndex           := 0;
+    cmbUF3.ListFieldIndex           := 0;
+
+    edtCadastro.Enabled := False;
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
+
 end;
 
 procedure TPessoaF.btnGravarClick(Sender: TObject);

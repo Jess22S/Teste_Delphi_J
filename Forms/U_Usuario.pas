@@ -78,20 +78,26 @@ procedure TUsuarioF.btnNovoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
-  DM.qryUsuario.Open;
-  inherited;
-  HabilitarCampos;
-  DM.qryUsuario.Append;
-  DM.qryUsuario.Active;
-  DM.qryUsuario.Last;
-  Prox := DM.qryUsuarioid_usuario.AsInteger + 1;
-  DM.qryUsuario.Append;
-  edtID.Text := IntToStr(Prox);
-  DM.qryUsuarioid_usuario.AsInteger := Prox;
+  try
+    DM.qryUsuario.Open;
+    inherited;
+    HabilitarCampos;
+    DM.qryUsuario.Append;
+    DM.qryUsuario.Active;
+    DM.qryUsuario.Last;
+    Prox := DM.qryUsuarioid_usuario.AsInteger + 1;
+    DM.qryUsuario.Append;
+    edtID.Text := IntToStr(Prox);
+    DM.qryUsuarioid_usuario.AsInteger := Prox;
 
-  edtNome.SetFocus;
-  edtCadastro.Text    := DateToStr(Now);
-  edtCadastro.Enabled := False;
+    edtNome.SetFocus;
+    DM.qryUsuariocadastro.AsDateTime := Now;
+    edtCadastro.Enabled              := False;
+
+  except on E: Exception do
+    MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+  end;
+  
 end;
 
 procedure TUsuarioF.btnGravarClick(Sender: TObject);

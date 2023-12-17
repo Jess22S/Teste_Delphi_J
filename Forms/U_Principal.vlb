@@ -7,3 +7,12 @@ Visible=False
 [UnidadeF.dsPadrao]
 Visible=False
 
+[ClienteF.dsPadrao]
+Visible=False
+
+[PessoaF.dsPadrao]
+Visible=False
+
+[Tipo_PessoaF.dsPadrao]
+Visible=False
+
