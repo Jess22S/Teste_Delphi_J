@@ -60,8 +60,6 @@ implementation
 
 {$R *.dfm}
 
-uses U_LookUp;
-
 { TClienteF }
 
 procedure TClienteF.DesabilitarCampos;
@@ -102,11 +100,6 @@ procedure TClienteF.FormShow(Sender: TObject);
 begin
   inherited;
   DesabilitarCampos;
-  LookUp.qryEstados.Open();
-  LookUp.qryEstados.FetchAll;
-
-  LookUp.qryCidades.Open();
-  LookUp.qryCidades.FetchAll;
 end;
 
 procedure TClienteF.btnNovoClick(Sender: TObject);
@@ -158,5 +151,4 @@ begin
   inherited;
   DesabilitarCampos;
 end;
-
 end.

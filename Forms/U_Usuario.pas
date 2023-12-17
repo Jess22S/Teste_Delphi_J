@@ -48,16 +48,16 @@ implementation
 
 procedure TUsuarioF.DesabilitarCampos;
 begin
-  edtNome.Enabled := False;
+  edtNome.Enabled  := False;
   edtSenha.Enabled := False;
-  cmbTipo.Enabled := False;
+  cmbTipo.Enabled  := False;
 end;
 
 procedure TUsuarioF.HabilitarCampos;
 begin
-  edtNome.Enabled := True;
+  edtNome.Enabled  := True;
   edtSenha.Enabled := True;
-  cmbTipo.Enabled := True;
+  cmbTipo.Enabled  := True;
 end;
 
 procedure TUsuarioF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
@@ -90,7 +90,7 @@ begin
   DM.qryUsuarioid_usuario.AsInteger := Prox;
 
   edtNome.SetFocus;
-  edtCadastro.Text := DateToStr(Now);
+  edtCadastro.Text    := DateToStr(Now);
   edtCadastro.Enabled := False;
 end;
 

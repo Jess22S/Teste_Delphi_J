@@ -119,21 +119,12 @@
             <Form>UsuarioF</Form>
             <FormType>dfm</FormType>
         </DCCReference>
-        <DCCReference Include="..\Forms\U_Empresa.pas">
-            <Form>EmpresaF</Form>
+        <DCCReference Include="..\Forms\U_Pessoa.pas">
+            <Form>PessoaF</Form>
             <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\Compartilhamento\U_LookUp.pas">
-            <Form>LookUp</Form>
-            <FormType>dfm</FormType>
-            <DesignClass>TDataModule</DesignClass>
         </DCCReference>
         <DCCReference Include="..\Forms\U_Cliente.pas">
             <Form>ClienteF</Form>
-            <FormType>dfm</FormType>
-        </DCCReference>
-        <DCCReference Include="..\Forms\U_PesquisaPadrao.pas">
-            <Form>Pesquisa_PadraoF</Form>
             <FormType>dfm</FormType>
         </DCCReference>
         <BuildConfiguration Include="Base">

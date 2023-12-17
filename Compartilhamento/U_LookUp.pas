@@ -10,11 +10,6 @@ uses
 
 type
   TLookUp = class(TDataModule)
-    qryEstados: TFDQuery;
-    dsEstados: TDataSource;
-    FDTransaction: TFDTransaction;
-    qryCidades: TFDQuery;
-    dsCidades: TDataSource;
   private
     { Private declarations }
   public

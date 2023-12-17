@@ -37,14 +37,8 @@ type
     dspPessoa: TDataSetProvider;
     cdsPessoa: TClientDataSet;
     qryEndereco: TFDQuery;
-    FDAutoIncField2: TFDAutoIncField;
-    WideStringField3: TWideStringField;
-    DateField3: TDateField;
     dspEndereco: TDataSetProvider;
     cdsEndereco: TClientDataSet;
-    AutoIncField2: TAutoIncField;
-    WideStringField4: TWideStringField;
-    DateField4: TDateField;
     qryPessoaid_pessoa: TFDAutoIncField;
     qryPessoanome: TWideStringField;
     qryPessoatelefone: TWideStringField;
@@ -63,6 +57,36 @@ type
     cdsPessoaid_tipo_pessoa: TIntegerField;
     cdsPessoastatus: TBooleanField;
     cdsPessoacadastro: TDateField;
+    qryEnderecoid_pessoa: TIntegerField;
+    qryEnderecoid_endereco: TFDAutoIncField;
+    qryEnderecoendereco: TWideStringField;
+    qryEndereconumero: TIntegerField;
+    qryEnderecobairro: TWideStringField;
+    qryEnderecocep: TWideStringField;
+    qryEnderecoid_cidade: TIntegerField;
+    qryEnderecoid_estado: TIntegerField;
+    cdsEnderecoid_pessoa: TIntegerField;
+    cdsEnderecoid_endereco: TAutoIncField;
+    cdsEnderecoendereco: TWideStringField;
+    cdsEndereconumero: TIntegerField;
+    cdsEnderecobairro: TWideStringField;
+    cdsEnderecocep: TWideStringField;
+    cdsEnderecoid_cidade: TIntegerField;
+    cdsEnderecoid_estado: TIntegerField;
+    qryEstados: TFDQuery;
+    qryCidades: TFDQuery;
+    cdsUsuarioid_usuario: TAutoIncField;
+    cdsUsuarionome: TWideStringField;
+    cdsUsuariosenha: TWideStringField;
+    cdsUsuariotipo: TWideStringField;
+    cdsUsuariocadastro: TDateField;
+    qryEstadosid_estado: TIntegerField;
+    qryEstadosestado: TWideStringField;
+    qryEstadossigla: TWideStringField;
+    qryCidadesid_cidade: TIntegerField;
+    qryCidadescidade: TWideStringField;
+    qryCidadesid_estado: TIntegerField;
+    procedure qryPessoacpf_cnpjChange(Sender: TField);
   private
     { Private declarations }
   public
@@ -76,6 +100,24 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
+uses U_Pessoa;
+
 {$R *.dfm}
+
+procedure TDM.qryPessoacpf_cnpjChange(Sender: TField);
+begin
+  if (PessoaF.DBRadioGroup1.ItemIndex = 0) then
+  begin
+    PessoaF.edtCPF_CNPJ.Clear;
+    DM.qryPessoacpf_cnpj.EditMask := '###.###.###-##';
+    PessoaF.edtCPF_CNPJ.Text := DM.qryPessoacpf_cnpj.EditMask;
+  end
+  else
+  begin
+    PessoaF.edtCPF_CNPJ.Clear;
+    DM.qryPessoacpf_cnpj.EditMask := '##.###.###/####-##';
+    PessoaF.edtCPF_CNPJ.Text := DM.qryPessoacpf_cnpj.EditMask;
+  end;
+end;
 
 end.

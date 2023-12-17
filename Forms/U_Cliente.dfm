@@ -1,7 +1,7 @@
 inherited ClienteF: TClienteF
   Caption = 'CADASTRO DE CLIENTE'
-  ClientHeight = 438
-  ClientWidth = 1014
+  ClientHeight = 437
+  ClientWidth = 1010
   OnShow = FormShow
   ExplicitWidth = 1026
   ExplicitHeight = 476
@@ -167,7 +167,7 @@ inherited ClienteF: TClienteF
     ParentFont = False
   end
   inherited Panel1: TPanel
-    Width = 1014
+    Width = 1010
     ExplicitWidth = 1010
     inherited Panel3: TPanel
       Left = 864
@@ -175,8 +175,8 @@ inherited ClienteF: TClienteF
     end
   end
   inherited Panel2: TPanel
-    Top = 368
-    Width = 1014
+    Top = 367
+    Width = 1010
     TabOrder = 13
     ExplicitTop = 367
     ExplicitWidth = 1010
@@ -293,7 +293,6 @@ inherited ClienteF: TClienteF
     DataSource = dsPadrao
     KeyField = 'id_cidade'
     ListField = 'cidade'
-    ListSource = LookUp.dsCidades
     TabOrder = 7
   end
   object cmbUF: TDBLookupComboBox [25]
@@ -305,7 +304,6 @@ inherited ClienteF: TClienteF
     DataSource = dsPadrao
     KeyField = 'id_estado'
     ListField = 'sigla'
-    ListSource = LookUp.dsEstados
     TabOrder = 8
   end
   inherited dsPadrao: TDataSource

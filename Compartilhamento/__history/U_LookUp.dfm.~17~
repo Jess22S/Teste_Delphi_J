@@ -1,0 +1,9 @@
+object LookUp: TLookUp
+  Height = 303
+  Width = 494
+  object FDTransaction: TFDTransaction
+    Connection = DM.Conexao
+    Left = 48
+    Top = 32
+  end
+end

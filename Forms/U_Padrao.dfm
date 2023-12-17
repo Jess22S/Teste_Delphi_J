@@ -1066,7 +1066,7 @@ object PadraoF: TPadraoF
   end
   object dsPadrao: TDataSource
     Left = 128
-    Top = 80
+    Top = 88
   end
   object BindSourceDB1: TBindSourceDB
     DataSource = dsPadrao
