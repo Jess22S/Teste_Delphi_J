@@ -26,14 +26,12 @@ type
   private
     { Private declarations }
     procedure LimparCampos;
-    var Contagem: Integer;
   public
     { Public declarations }
   end;
 
 var
   LoginF: TLoginF;
-  StatusBar1: TPanel;
 
 implementation
 
@@ -52,7 +50,6 @@ procedure TLoginF.FormShow(Sender: TObject);
 begin
   LimparCampos;
   edtNome.SetFocus;
-  //StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
 end;
 
 procedure TLoginF.btnCancelarClick(Sender: TObject);
@@ -94,16 +91,19 @@ begin
       Exit;
    end;
 
+   MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+   DM.Usuario := edtNome.Text;
+   DM.TipoUsuario := cmbTipo.Text;
+   PrincipalF:= TPrincipalF.create(Self);
 
-   if (DM.qryLogin.RecordCount > 0) then
+   if (cmbTipo.Text = 'Apoio') then
    begin
-     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-     DM.Usuario := edtNome.Text;
-     DM.TipoUsuario := cmbTipo.Text;
-     PrincipalF:= TPrincipalF.create(Self);
-     PrincipalF.ShowModal;
-     LoginF.Hide;
+     PrincipalF.btnUsuario.Visible := False;
+     PrincipalF.mmUsuario.Visible  := False;
    end;
+
+   PrincipalF.ShowModal;
+   LoginF.Hide;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);

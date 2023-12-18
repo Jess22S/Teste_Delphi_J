@@ -68,27 +68,6 @@ begin
   end;
 end;
 
-procedure TPrincipalF.Timer1Timer(Sender: TObject);
-begin
-  // INSERE DADOS NO STATUSBAR
-  StatusBar1.Panels[0].Text := DateToStr(now);
-  StatusBar1.Panels[1].Text := TimeToStr(now);
-  StatusBar1.Panels[2].Text := 'SEJA BEM-VINDO AO SISTEMA Sr(a): ' + DM.Usuario;
-  StatusBar1.Panels[3].Text := 'TIPO DE USUÁRIO: ' + DM.TipoUsuario;
-end;
-
-procedure TPrincipalF.AppIdle(Sender: TObject; var Done: Boolean);
-begin
-  Timer1.Enabled := True;
-end;
-
-procedure TPrincipalF.AppMessage(var Msg: TMsg; var Handled: Boolean);
-begin
-  Case Msg.message of
-      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer1.Enabled := False;
-  end;
-end;
-
 procedure TPrincipalF.btnUsuarioClick(Sender: TObject);
 begin
   if (not (Assigned(UsuarioF))) then
@@ -119,6 +98,18 @@ begin
   Tipo_PessoaF.Show;
 end;
 
+procedure TPrincipalF.AppIdle(Sender: TObject; var Done: Boolean);
+begin
+  Timer1.Enabled := True;
+end;
+
+procedure TPrincipalF.AppMessage(var Msg: TMsg; var Handled: Boolean);
+begin
+  Case Msg.message of
+      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer1.Enabled := False;
+  end;
+end;
+
 procedure TPrincipalF.btnFecharClick(Sender: TObject);
 begin
  if (MessageDlg('Deseja sair do Sistema?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
@@ -136,18 +127,29 @@ begin
   btnTipoPessoa.Click;
 end;
 
-procedure TPrincipalF.mmUsuarioClick(Sender: TObject);
-begin
-  btnUsuario.Click;
-end;
-
 procedure TPrincipalF.mmPessoaClick(Sender: TObject);
 begin
   btnPessoa.Click;
 end;
 
+
+
 procedure TPrincipalF.mmSairClick(Sender: TObject);
 begin
   Close;
+end;
+
+procedure TPrincipalF.Timer1Timer(Sender: TObject);
+begin
+  // INSERE DADOS NO STATUSBAR
+  StatusBar1.Panels[0].Text := DateToStr(now);
+  StatusBar1.Panels[1].Text := TimeToStr(now);
+  StatusBar1.Panels[2].Text := 'SEJA BEM-VINDO AO SISTEMA Sr(a): ' + DM.Usuario;
+  StatusBar1.Panels[3].Text := 'TIPO DE USUÁRIO: ' + DM.TipoUsuario;
+end;
+
+procedure TPrincipalF.mmUsuarioClick(Sender: TObject);
+begin
+  btnUsuario.Click;
 end;
 end.

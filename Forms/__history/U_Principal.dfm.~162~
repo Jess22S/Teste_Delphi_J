@@ -2,14 +2,15 @@ object PrincipalF: TPrincipalF
   Left = 0
   Top = 0
   Caption = 'SISTEMA DE CADASTRO'
-  ClientHeight = 526
-  ClientWidth = 1333
+  ClientHeight = 525
+  ClientWidth = 1329
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  FormStyle = fsMDIForm
   Icon.Data = {
     0000010001004040000001002000284200001600000028000000400000008000
     0000010020000000000000420000000000000000000000000000000000000000
@@ -543,13 +544,12 @@ object PrincipalF: TPrincipalF
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   Menu = MainMenu1
   WindowState = wsMaximized
-  OnCreate = FormCreate
   OnKeyPress = FormKeyPress
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1333
+    Width = 1329
     Height = 100
     Align = alTop
     Color = clSkyBlue
@@ -559,9 +559,8 @@ object PrincipalF: TPrincipalF
     ParentShowHint = False
     ShowHint = False
     TabOrder = 0
-    ExplicitWidth = 1329
     DesignSize = (
-      1333
+      1329
       100)
     object btnPessoa: TSpeedButton
       Left = 30
@@ -1770,10 +1769,11 @@ object PrincipalF: TPrincipalF
         B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6}
       Layout = blGlyphTop
       ParentFont = False
+      Visible = False
       OnClick = btnUsuarioClick
     end
     object btnFechar: TSpeedButton
-      Left = 1187
+      Left = 1183
       Top = 0
       Width = 100
       Height = 100
@@ -2180,8 +2180,8 @@ object PrincipalF: TPrincipalF
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 507
-    Width = 1333
+    Top = 506
+    Width = 1329
     Height = 19
     Panels = <
       item
@@ -2196,14 +2196,12 @@ object PrincipalF: TPrincipalF
       item
         Width = 250
       end>
-    ExplicitTop = 506
-    ExplicitWidth = 1329
   end
   object Panel2: TPanel
     Left = 0
     Top = 100
-    Width = 1333
-    Height = 407
+    Width = 1329
+    Height = 406
     Align = alClient
     Caption = 'SISTEMA DE CADASTRO'
     Color = clBlack
@@ -2215,11 +2213,8 @@ object PrincipalF: TPrincipalF
     ParentBackground = False
     ParentFont = False
     TabOrder = 2
-    ExplicitWidth = 1329
-    ExplicitHeight = 406
   end
   object Timer1: TTimer
-    Interval = 2000
     OnTimer = Timer1Timer
     Left = 64
     Top = 128

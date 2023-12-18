@@ -3,7 +3,6 @@ inherited PessoaF: TPessoaF
   Caption = 'CADASTRO DE PESSOA'
   ClientHeight = 567
   ClientWidth = 980
-  Visible = True
   OnShow = FormShow
   ExplicitWidth = 988
   ExplicitHeight = 594

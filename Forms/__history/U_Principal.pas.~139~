@@ -77,18 +77,6 @@ begin
   StatusBar1.Panels[3].Text := 'TIPO DE USUÁRIO: ' + DM.TipoUsuario;
 end;
 
-procedure TPrincipalF.AppIdle(Sender: TObject; var Done: Boolean);
-begin
-  Timer1.Enabled := True;
-end;
-
-procedure TPrincipalF.AppMessage(var Msg: TMsg; var Handled: Boolean);
-begin
-  Case Msg.message of
-      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer1.Enabled := False;
-  end;
-end;
-
 procedure TPrincipalF.btnUsuarioClick(Sender: TObject);
 begin
   if (not (Assigned(UsuarioF))) then
@@ -117,6 +105,18 @@ begin
   end;
 
   Tipo_PessoaF.Show;
+end;
+
+procedure TPrincipalF.AppIdle(Sender: TObject; var Done: Boolean);
+begin
+  Timer1.Enabled := True;
+end;
+
+procedure TPrincipalF.AppMessage(var Msg: TMsg; var Handled: Boolean);
+begin
+  Case Msg.message of
+      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer1.Enabled := False;
+  end;
 end;
 
 procedure TPrincipalF.btnFecharClick(Sender: TObject);

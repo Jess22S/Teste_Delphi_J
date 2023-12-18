@@ -4,7 +4,6 @@ inherited Tipo_PessoaF: TTipo_PessoaF
   ClientHeight = 446
   ClientWidth = 1002
   DoubleBuffered = True
-  Visible = True
   OnShow = FormShow
   ExplicitWidth = 1010
   ExplicitHeight = 473

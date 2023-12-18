@@ -2219,7 +2219,6 @@ object PrincipalF: TPrincipalF
     ExplicitHeight = 406
   end
   object Timer1: TTimer
-    Interval = 2000
     OnTimer = Timer1Timer
     Left = 64
     Top = 128
