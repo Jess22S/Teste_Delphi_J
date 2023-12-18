@@ -164,24 +164,19 @@ object DM: TDM
     UpdateOptions.AutoIncFields = 'ID_PESSOA'
     SQL.Strings = (
       'SELECT'
-      '   P.ID_PESSOA,'
-      '   P.NOME,  '
-      '   P.TELEFONE,'
-      '   P.RG,'
-      '   P.CPF,'
-      '   P.CNPJ,'
-      '   P.SEXO,'
-      '   P.ESTADO_CIVIL,'
-      '   P.EMAIL,'
-      '   T.ID_TIPO_PESSOA,'
-      '   E.ID_ENDERECO,'
-      '   P.STATUS,'
-      '   P.CADASTRO'
-      'FROM PESSOA P'
-      'LEFT JOIN TIPO_PESSOA T'
-      'ON P.ID_TIPO_PESSOA = T.ID_TIPO_PESSOA'
-      'RIGHT JOIN ENDERECO E'
-      'ON P.ID_PESSOA = E.ID_PESSOA'
+      '   ID_PESSOA,'
+      '   NOME,  '
+      '   TELEFONE,'
+      '   RG,'
+      '   CPF,'
+      '   CNPJ,'
+      '   SEXO,'
+      '   ESTADO_CIVIL,'
+      '   EMAIL,'
+      '   ID_TIPO_PESSOA,   '
+      '   STATUS,'
+      '   CADASTRO'
+      'FROM PESSOA'
       'ORDER BY ID_PESSOA;')
     Left = 48
     Top = 240
@@ -240,12 +235,7 @@ object DM: TDM
       FieldName = 'id_tipo_pessoa'
       Origin = 'id_tipo_pessoa'
     end
-    object qryPessoaid_endereco: TIntegerField
-      AutoGenerateValue = arDefault
-      FieldName = 'id_endereco'
-      Origin = 'id_endereco'
-    end
-    object qryPessoastatus: TBooleanField
+    object S: TBooleanField
       FieldName = 'status'
       Origin = 'status'
     end
@@ -305,9 +295,6 @@ object DM: TDM
     object cdsPessoaid_tipo_pessoa: TIntegerField
       FieldName = 'id_tipo_pessoa'
     end
-    object cdsPessoaid_endereco: TIntegerField
-      FieldName = 'id_endereco'
-    end
     object cdsPessoastatus: TBooleanField
       FieldName = 'status'
     end
@@ -335,28 +322,23 @@ object DM: TDM
     UpdateOptions.AutoIncFields = 'ID_ENDERECO'
     SQL.Strings = (
       'SELECT '
-      '   E.ID_PESSOA,'#9
-      '   E.ID_ENDERECO,'
-      '   E.ENDERECO,'
-      '   E.NUMERO,'
-      '   E.BAIRRO,'
-      '   E.TIPO_ENDERECO,'
-      '   E.PRINCIPAL,'
-      '   E.CEP,'
-      '   C.ID_CIDADE,'
-      '   S.ID_ESTADO   '
-      'FROM ENDERECO E'
-      'LEFT JOIN CIDADE C'
-      'ON E.ID_CIDADE = C.ID_CIDADE'
-      'LEFT JOIN ESTADO S'
-      'ON E.ID_ESTADO = S.ID_ESTADO'
-      'WHERE E.ID_PESSOA = :ID_PESSOA       '
+      '   ID_PESSOA,'#9
+      '   ID_ENDERECO,'
+      '   ENDERECO,'
+      '   NUMERO,'
+      '   BAIRRO,'
+      '   TIPO_ENDERECO,'
+      '   PRINCIPAL,'
+      '   CEP,'
+      '   ID_CIDADE,'
+      '   ID_ESTADO   '
+      'FROM ENDERECO'
+      'WHERE ID_PESSOA = :ID_PESSOA       '
       'ORDER BY ID_ENDERECO;')
     Left = 48
     Top = 304
     ParamData = <
       item
-        Position = 1
         Name = 'ID_PESSOA'
         DataType = ftInteger
         ParamType = ptInput

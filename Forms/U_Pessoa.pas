@@ -338,6 +338,21 @@ procedure TPessoaF.btnNovoEnderecoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
+    DM.qryEndereco.SQL.Add('INSERT INTO ENDERECO (:ID_PESSOA)');
+    DM.qryEndereco.ParamByName('ID_PESSOA').AsInteger := StrToInt(edtID.Text);
+
+    try
+      DM.qryEndereco.ExecSQL;
+      DM.qryEndereco.Refresh;
+      DM.cdsEndereco.Refresh;
+
+    except on E:exception do
+      begin
+        MessageDlg('Entre em contato com o suporte.', mtError, [mbOK], 0);
+        Exit;
+      end;
+    end;
+
     DM.qryEndereco.Last;
     Prox := DM.qryEnderecoid_endereco.AsInteger + 1;
     DM.qryEndereco.Append;

@@ -136,11 +136,10 @@ begin
   edtNumero.Clear;
   edtBairro.Clear;
   edtCEP.Clear;
-  cbAtivo.Checked     := False;
-  cbPrincipal.Checked := False;
+  cbAtivo.Checked              := False;
+  cbPrincipal.Checked          := False;
   cbAtivo.Checked;
-  cmbSexo.ItemIndex            := 0;
-  cmbEstado_Civil.Clear;
+  cmbEstado_Civil.ItemIndex    := 0;
   cmbTipoPessoa.ListFieldIndex := 0;
   cmbCidade.ListFieldIndex     := 0;
   cmbUF.ListFieldIndex         := 0;
@@ -199,6 +198,7 @@ begin
   DM.qryLog.Post;
   DM.qryPessoa.Append;
   DM.qryPessoacadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TPessoaF.Alterar;
@@ -214,6 +214,7 @@ begin
   DM.qryLog.Post;
   DM.qryPessoa.Append;
   DM.qryPessoacadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TPessoaF.Excluir;
@@ -228,7 +229,8 @@ begin
   DM.qryLoglog_operacao.AsString     := 'Excluiu';
   DM.qryLog.Post;
   DM.qryPessoa.Append;
-  DM.qryPessoacadastro.Value        := Date;
+  DM.qryPessoacadastro.Value         := Date;
+  LimparCampos;
 end;
 
 procedure TPessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
@@ -336,6 +338,20 @@ procedure TPessoaF.btnNovoEnderecoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
+    DM.qryEndereco.SQL.Add('INSERT INTO ENDERECO (:ID_PESSOA)');
+    DM.qryEndereco.ParamByName('ID_PESSOA').AsInteger := StrToInt(edtID.Text);
+
+    try
+    DM.qryEndereco.ExecSQL;
+    DM.qryEndereco.Refresh;
+    DM.cdsEndereco.Refresh;
+
+    except on E:exception do
+      begin
+
+      end;
+    end;
+
     DM.qryEndereco.Last;
     Prox := DM.qryEnderecoid_endereco.AsInteger + 1;
     DM.qryEndereco.Append;
@@ -346,7 +362,8 @@ begin
     cmbCidade.ListFieldIndex := 0;
     cmbUF.ListFieldIndex     := 0;
 
-    edtCadastro.Enabled := False;
+    edtCadastro.Enabled      := False;
+    LimparCamposEndereco;
 end;
 
 procedure TPessoaF.btnEditarClick(Sender: TObject);
@@ -468,8 +485,11 @@ procedure TPessoaF.btnCancelarClick(Sender: TObject);
 begin
   DM.qryPessoa.Cancel;
   DM.qryEstados.Cancel;
+
   inherited;
   DesabilitarCampos;
+  LimparCampos;
+
   Qry_DesabilitaBotao(btnCancelar);
   Qry_DesabilitaBotao(btnExcluir);
   Qry_DesabilitaBotao(btnEditar);

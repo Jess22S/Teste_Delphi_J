@@ -387,8 +387,8 @@ inherited PessoaF: TPessoaF
       end
       object s: TDBGrid
         Left = 0
-        Top = 187
-        Width = 972
+        Top = 175
+        Width = 964
         Height = 223
         Align = alBottom
         DataSource = dsPadrao

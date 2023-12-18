@@ -335,22 +335,18 @@ object DM: TDM
     UpdateOptions.AutoIncFields = 'ID_ENDERECO'
     SQL.Strings = (
       'SELECT '
-      '   E.ID_PESSOA,'#9
-      '   E.ID_ENDERECO,'
-      '   E.ENDERECO,'
-      '   E.NUMERO,'
-      '   E.BAIRRO,'
-      '   E.TIPO_ENDERECO,'
-      '   E.PRINCIPAL,'
-      '   E.CEP,'
-      '   C.ID_CIDADE,'
-      '   S.ID_ESTADO   '
-      'FROM ENDERECO E'
-      'LEFT JOIN CIDADE C'
-      'ON E.ID_CIDADE = C.ID_CIDADE'
-      'LEFT JOIN ESTADO S'
-      'ON E.ID_ESTADO = S.ID_ESTADO'
-      'WHERE E.ID_PESSOA = :ID_PESSOA       '
+      '   ID_PESSOA,'#9
+      '   ID_ENDERECO,'
+      '   ENDERECO,'
+      '   NUMERO,'
+      '   BAIRRO,'
+      '   TIPO_ENDERECO,'
+      '   PRINCIPAL,'
+      '   CEP,'
+      '   ID_CIDADE,'
+      '   ID_ESTADO   '
+      'FROM ENDERECO'
+      'WHERE ID_PESSOA = :ID_PESSOA       '
       'ORDER BY ID_ENDERECO;')
     Left = 48
     Top = 304
@@ -576,6 +572,9 @@ object DM: TDM
     end
   end
   object qryLogin: TFDQuery
+    MasterSource = UsuarioF.dsPadrao
+    MasterFields = 'id_usuario'
+    DetailFields = 'id_usuario'
     Connection = Conexao
     SQL.Strings = (
       'SELECT '
@@ -608,11 +607,6 @@ object DM: TDM
       Size = 30
     end
   end
-  object dsLogin: TDataSource
-    DataSet = qryLogin
-    Left = 258
-    Top = 368
-  end
   object qryLog: TFDQuery
     Connection = Conexao
     UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
@@ -625,8 +619,8 @@ object DM: TDM
       '   LOG_DATA,'
       '   LOG_HORA,'
       '   LOG_NOME_USUARIO,'
-      '   LOG_NOME_OPERACAO,'
-      '   LOG_NOME_TABELA'
+      '   LOG_OPERACAO,'
+      '   LOG_TABELA'
       'FROM LOGS'
       'ORDER BY ID_LOG;')
     Left = 149
@@ -651,15 +645,24 @@ object DM: TDM
       Origin = 'log_nome_usuario'
       Size = 50
     end
-    object qryLoglog_nome_operacao: TWideStringField
-      FieldName = 'log_nome_operacao'
-      Origin = 'log_nome_operacao'
+    object qryLoglog_operacao: TWideStringField
+      FieldName = 'log_operacao'
+      Origin = 'log_operacao'
       Size = 50
     end
-    object qryLoglog_nome_tabela: TWideStringField
-      FieldName = 'log_nome_tabela'
-      Origin = 'log_nome_tabela'
+    object qryLoglog_tabela: TWideStringField
+      FieldName = 'log_tabela'
+      Origin = 'log_tabela'
       Size = 50
     end
+  end
+  object dsLog: TDataSource
+    Left = 258
+    Top = 432
+  end
+  object dsLogin: TDataSource
+    DataSet = qryLogin
+    Left = 258
+    Top = 368
   end
 end

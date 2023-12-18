@@ -82,8 +82,7 @@ type
     qryPessoaestado_civil: TWideStringField;
     qryPessoaemail: TWideStringField;
     qryPessoaid_tipo_pessoa: TIntegerField;
-    qryPessoaid_endereco: TIntegerField;
-    qryPessoastatus: TBooleanField;
+    S: TBooleanField;
     qryPessoacadastro: TDateField;
     cdsPessoaid_pessoa: TAutoIncField;
     cdsPessoanome: TWideStringField;
@@ -95,7 +94,6 @@ type
     cdsPessoaestado_civil: TWideStringField;
     cdsPessoaemail: TWideStringField;
     cdsPessoaid_tipo_pessoa: TIntegerField;
-    cdsPessoaid_endereco: TIntegerField;
     cdsPessoastatus: TBooleanField;
     cdsPessoacadastro: TDateField;
     cdsPessoacdsEndereco: TDataSetField;

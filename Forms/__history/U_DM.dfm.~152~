@@ -164,24 +164,19 @@ object DM: TDM
     UpdateOptions.AutoIncFields = 'ID_PESSOA'
     SQL.Strings = (
       'SELECT'
-      '   P.ID_PESSOA,'
-      '   P.NOME,  '
-      '   P.TELEFONE,'
-      '   P.RG,'
-      '   P.CPF,'
-      '   P.CNPJ,'
-      '   P.SEXO,'
-      '   P.ESTADO_CIVIL,'
-      '   P.EMAIL,'
-      '   T.ID_TIPO_PESSOA,'
-      '   E.ID_ENDERECO,'
-      '   P.STATUS,'
-      '   P.CADASTRO'
-      'FROM PESSOA P'
-      'LEFT JOIN TIPO_PESSOA T'
-      'ON P.ID_TIPO_PESSOA = T.ID_TIPO_PESSOA'
-      'RIGHT JOIN ENDERECO E'
-      'ON P.ID_PESSOA = E.ID_PESSOA'
+      '   ID_PESSOA,'
+      '   NOME,  '
+      '   TELEFONE,'
+      '   RG,'
+      '   CPF,'
+      '   CNPJ,'
+      '   SEXO,'
+      '   ESTADO_CIVIL,'
+      '   EMAIL,'
+      '   ID_TIPO_PESSOA,   '
+      '   STATUS,'
+      '   CADASTRO'
+      'FROM PESSOA'
       'ORDER BY ID_PESSOA;')
     Left = 48
     Top = 240
@@ -335,22 +330,18 @@ object DM: TDM
     UpdateOptions.AutoIncFields = 'ID_ENDERECO'
     SQL.Strings = (
       'SELECT '
-      '   E.ID_PESSOA,'#9
-      '   E.ID_ENDERECO,'
-      '   E.ENDERECO,'
-      '   E.NUMERO,'
-      '   E.BAIRRO,'
-      '   E.TIPO_ENDERECO,'
-      '   E.PRINCIPAL,'
-      '   E.CEP,'
-      '   C.ID_CIDADE,'
-      '   S.ID_ESTADO   '
-      'FROM ENDERECO E'
-      'LEFT JOIN CIDADE C'
-      'ON E.ID_CIDADE = C.ID_CIDADE'
-      'LEFT JOIN ESTADO S'
-      'ON E.ID_ESTADO = S.ID_ESTADO'
-      'WHERE E.ID_PESSOA = :ID_PESSOA       '
+      '   ID_PESSOA,'#9
+      '   ID_ENDERECO,'
+      '   ENDERECO,'
+      '   NUMERO,'
+      '   BAIRRO,'
+      '   TIPO_ENDERECO,'
+      '   PRINCIPAL,'
+      '   CEP,'
+      '   ID_CIDADE,'
+      '   ID_ESTADO   '
+      'FROM ENDERECO'
+      'WHERE ID_PESSOA = :ID_PESSOA       '
       'ORDER BY ID_ENDERECO;')
     Left = 48
     Top = 304
@@ -576,6 +567,9 @@ object DM: TDM
     end
   end
   object qryLogin: TFDQuery
+    MasterSource = UsuarioF.dsPadrao
+    MasterFields = 'id_usuario'
+    DetailFields = 'id_usuario'
     Connection = Conexao
     SQL.Strings = (
       'SELECT '
@@ -608,42 +602,62 @@ object DM: TDM
       Size = 30
     end
   end
+  object qryLog: TFDQuery
+    Connection = Conexao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'LOGS_LOGSID_LOG_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_LOG'
+    SQL.Strings = (
+      'SELECT '
+      '   ID_LOG,'
+      '   LOG_DATA,'
+      '   LOG_HORA,'
+      '   LOG_NOME_USUARIO,'
+      '   LOG_OPERACAO,'
+      '   LOG_TABELA'
+      'FROM LOGS'
+      'ORDER BY ID_LOG;')
+    Left = 149
+    Top = 432
+    object qryLogid_log: TFDAutoIncField
+      FieldName = 'id_log'
+      Origin = 'id_log'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryLoglog_data: TDateField
+      FieldName = 'log_data'
+      Origin = 'log_data'
+    end
+    object qryLoglog_hora: TTimeField
+      FieldName = 'log_hora'
+      Origin = 'log_hora'
+      ProviderFlags = [pfInUpdate]
+    end
+    object qryLoglog_nome_usuario: TWideStringField
+      FieldName = 'log_nome_usuario'
+      Origin = 'log_nome_usuario'
+      Size = 50
+    end
+    object qryLoglog_operacao: TWideStringField
+      FieldName = 'log_operacao'
+      Origin = 'log_operacao'
+      Size = 50
+    end
+    object qryLoglog_tabela: TWideStringField
+      FieldName = 'log_tabela'
+      Origin = 'log_tabela'
+      Size = 50
+    end
+  end
+  object dsLog: TDataSource
+    Left = 258
+    Top = 432
+  end
   object dsLogin: TDataSource
     DataSet = qryLogin
     Left = 258
     Top = 368
-  end
-  object qryLog: TFDQuery
-    Connection = Conexao
-    SQL.Strings = (
-      'SELECT '
-      '   ID_USUARIO,'
-      '   NOME,'
-      '   SENHA,'
-      '   TIPO'
-      'FROM USUARIO'
-      'ORDER BY ID_USUARIO;')
-    Left = 141
-    Top = 432
-    object IntegerField1: TIntegerField
-      FieldName = 'id_usuario'
-      Origin = 'id_usuario'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
-    object WideStringField1: TWideStringField
-      FieldName = 'nome'
-      Origin = 'nome'
-      Size = 100
-    end
-    object WideStringField2: TWideStringField
-      FieldName = 'senha'
-      Origin = 'senha'
-      Size = 30
-    end
-    object WideStringField3: TWideStringField
-      FieldName = 'tipo'
-      Origin = 'tipo'
-      Size = 30
-    end
   end
 end
