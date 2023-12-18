@@ -33,6 +33,10 @@ type
     { Private declarations }
     procedure HabilitarCampos;
     procedure DesabilitarCampos;
+    procedure Qry_DesabilitaBotao(btnPadrao: TBitBtn);
+    procedure Incluir;
+    procedure Alterar;
+    procedure Excluir;
   public
     { Public declarations }
   end;
@@ -57,10 +61,33 @@ begin
   edtNome.Enabled := True;
 end;
 
+procedure TTipo_PessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
+begin
+  if ((DM.qryUsuario.Active = False) or (DM.qryUsuario.IsEmpty)) then
+  begin
+    btnPadrao.Enabled := False;
+  end;
+end;
+
 procedure TTipo_PessoaF.FormShow(Sender: TObject);
 begin
   DM.qryTipoPessoa.Close;
   DesabilitarCampos;
+end;
+
+procedure TTipo_PessoaF.Incluir;
+begin
+  //
+end;
+
+procedure TTipo_PessoaF.Alterar;
+begin
+  //
+end;
+
+procedure TTipo_PessoaF.Excluir;
+begin
+  //
 end;
 
 procedure TTipo_PessoaF.btnNovoClick(Sender: TObject);
@@ -99,7 +126,18 @@ end;
 
 procedure TTipo_PessoaF.btnExcluirClick(Sender: TObject);
 begin
-  inherited;
+   Qry_DesabilitaBotao(btnExcluir);
+
+  if (MessageDlg('Deseja excluir este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
+  begin
+    DM.qryTipoPessoa.Delete;
+    MessageDlg('Registro excluído com sucesso!', mtInformation, [mbOk], 0);
+  end
+  else
+  begin
+    Abort;
+  end;
+
   DesabilitarCampos;
 end;
 

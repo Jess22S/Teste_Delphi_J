@@ -33,6 +33,10 @@ type
     { Private declarations }
     procedure HabilitarCampos;
     procedure DesabilitarCampos;
+    procedure Qry_DesabilitaBotao(btnPadrao: TBitBtn);
+    procedure Incluir;
+    procedure Alterar;
+    procedure Excluir;
   public
     { Public declarations }
   end;
@@ -57,10 +61,53 @@ begin
   edtNome.Enabled := True;
 end;
 
+procedure TTipo_PessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
+begin
+  if ((DM.qryUsuario.Active = False) or (DM.qryUsuario.IsEmpty)) then
+  begin
+    btnPadrao.Enabled := False;
+  end;
+end;
+
 procedure TTipo_PessoaF.FormShow(Sender: TObject);
 begin
-  inherited;
+  DM.qryTipoPessoa.Close;
   DesabilitarCampos;
+end;
+
+procedure TTipo_PessoaF.Incluir;
+begin
+  DM.qryLog.Open;
+  DM.qryLog.Active;
+  DM.qryLog.Insert;
+  DM.qryLoglog_data.Value            := Date;
+  DM.qryLoglog_hora.Value            := Time;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_tabela.Value          := 'Usuário';
+  DM.qryLoglog_operacao.Value        := 'incluiu';
+  DM.qryLog.Post;
+  DM.qryUsuario.Append;
+  DM.qryUsuariocadastro.Value        := Date;
+end;
+
+procedure TTipo_PessoaF.Alterar;
+begin
+  DM.qryLog.Open;
+  DM.qryLog.Active;
+  DM.qryLog.Edit;
+  DM.qryLoglog_data.Value            := Date;
+  DM.qryLoglog_hora.Value            := Time;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_tabela.Value          := 'Usuário';
+  DM.qryLoglog_operacao.Value        := 'alterou';
+  DM.qryLog.Post;
+  DM.qryUsuario.Append;
+  DM.qryUsuariocadastro.Value        := Date;
+end;
+
+procedure TTipo_PessoaF.Excluir;
+begin
+  //
 end;
 
 procedure TTipo_PessoaF.btnNovoClick(Sender: TObject);
@@ -77,11 +124,11 @@ begin
   Prox := DM.qryTipoPessoaid_tipo_pessoa.AsInteger + 1;
   DM.qryTipoPessoa.Append;
   edtID.Text := IntToStr(Prox);
-  DM.qryTipoPessoaid_tipo_pessoa.AsInteger := StrToInt(edtID.Text);
+  DM.qryTipoPessoaid_tipo_pessoa.AsInteger := Prox;
 
   edtNome.SetFocus;
-  edtCadastro.Text := DateToStr(Now);
-  edtCadastro.Enabled := False;
+  DM.qryTipoPessoacadastro.AsDateTime := Now;
+  edtCadastro.Enabled:= False;
 end;
 
 procedure TTipo_PessoaF.btnGravarClick(Sender: TObject);
@@ -99,7 +146,18 @@ end;
 
 procedure TTipo_PessoaF.btnExcluirClick(Sender: TObject);
 begin
-  inherited;
+   Qry_DesabilitaBotao(btnExcluir);
+
+  if (MessageDlg('Deseja excluir este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
+  begin
+    DM.qryTipoPessoa.Delete;
+    MessageDlg('Registro excluído com sucesso!', mtInformation, [mbOk], 0);
+  end
+  else
+  begin
+    Abort;
+  end;
+
   DesabilitarCampos;
 end;
 

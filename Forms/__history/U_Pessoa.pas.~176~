@@ -78,6 +78,9 @@ type
     procedure DesabilitarCampos;
     procedure LimparCamposEndereco;
     procedure Qry_DesabilitaBotao(btnPadrao: TBitBtn);
+    procedure Incluir;
+    procedure Alterar;
+    procedure Excluir;
   public
     { Public declarations }
   end;
@@ -114,6 +117,10 @@ begin
   rgTipo_Endereco.Enabled      := True;
   cbPrincipal.Enabled          := True;
   btnNovoEndereco.Enabled      := True;
+  cmbSexo.Enabled              := True;
+  cmbSexo.ItemIndex            := 0;
+  cmbEstado_Civil.Enabled      := True;
+  cmbSexo.ItemIndex            := 0;
 end;
 
 procedure TPessoaF.LimparCamposEndereco;
@@ -149,6 +156,25 @@ begin
   cbAtivo.Checked              := True;
   cbPrincipal.Enabled          := False;
   btnNovoEndereco.Enabled      := False;
+  cmbSexo.Enabled              := False;
+  cmbSexo.ItemIndex            := 0;
+  cmbEstado_Civil.Enabled      := False;
+  cmbSexo.ItemIndex            := 0;
+end;
+
+procedure TPessoaF.Incluir;
+begin
+//
+end;
+
+procedure TPessoaF.Alterar;
+begin
+//
+end;
+
+procedure TPessoaF.Excluir;
+begin
+  //
 end;
 
 procedure TPessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
@@ -191,7 +217,10 @@ begin
 
     HabilitarCampos;
     DM.qryPessoa.Append;
+    DM.qryTipoPessoa.Append;
     DM.qryEndereco.Append;
+    DM.qryEstados.Append;
+    DM.qryCidades.Append;
     DM.qryPessoa.Active;
     DM.qryEndereco.Active;
     DM.qryTipoPessoa.Active;
@@ -224,14 +253,9 @@ procedure TPessoaF.btnNovoEnderecoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
-    DM.qryEndereco.Active;
-    DM.qryEstados.Active;
-    DM.qryCidades.Active;
-
     DM.qryEndereco.Last;
     Prox := DM.qryEnderecoid_endereco.AsInteger + 1;
     DM.qryEndereco.Append;
-    edtID.Text := IntToStr(Prox);
     DM.qryEnderecoid_endereco.AsInteger := Prox;
 
     edtEndereco.SetFocus;
