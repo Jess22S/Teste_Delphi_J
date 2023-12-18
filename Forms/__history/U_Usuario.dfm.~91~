@@ -1,10 +1,10 @@
 inherited UsuarioF: TUsuarioF
   Caption = 'CADASTRO DE USU'#193'RIOS'
-  ClientHeight = 324
-  ClientWidth = 995
+  ClientHeight = 322
+  ClientWidth = 987
   OnShow = FormShow
-  ExplicitWidth = 1007
-  ExplicitHeight = 362
+  ExplicitWidth = 999
+  ExplicitHeight = 360
   TextHeight = 15
   object lblID: TLabel [0]
     Left = 200
@@ -76,9 +76,9 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   inherited Panel1: TPanel
-    Width = 995
+    Width = 987
     TabOrder = 5
-    ExplicitWidth = 991
+    ExplicitWidth = 983
     inherited btnNovo: TBitBtn
       Left = 35
       Width = 95
@@ -88,6 +88,7 @@ inherited UsuarioF: TUsuarioF
     inherited btnExcluir: TBitBtn
       Left = 137
       Width = 95
+      OnClick = btnExcluirClick
       ExplicitLeft = 137
       ExplicitWidth = 95
     end
@@ -118,24 +119,27 @@ inherited UsuarioF: TUsuarioF
     inherited btnPesquisar: TBitBtn
       Left = 648
       Width = 103
+      Visible = False
       ExplicitLeft = 648
       ExplicitWidth = 103
     end
     inherited Panel3: TPanel
-      Left = 845
-      ExplicitLeft = 841
+      Left = 837
+      ExplicitLeft = 833
     end
   end
   inherited Panel2: TPanel
-    Top = 254
-    Width = 995
+    Top = 252
+    Width = 987
     TabOrder = 6
-    ExplicitTop = 253
-    ExplicitWidth = 991
+    ExplicitTop = 251
+    ExplicitWidth = 983
     inherited BindNavigator1: TBindNavigator
+      Left = 239
       Width = 496
       Hints.Strings = ()
-      ExplicitWidth = 492
+      ExplicitLeft = 239
+      ExplicitWidth = 496
     end
   end
   object edtID: TDBEdit [7]
@@ -190,50 +194,11 @@ inherited UsuarioF: TUsuarioF
       'APOIO')
     TabOrder = 3
   end
-  inherited qryPadrao: TFDQuery
-    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
-    UpdateOptions.FetchGeneratorsPoint = gpImmediate
-    UpdateOptions.GeneratorName = 'USUARIO_USUARIOID_USUARIO_SEQ'
-    UpdateOptions.AutoIncFields = 'ID_USUARIO'
-    SQL.Strings = (
-      'SELECT'
-      '   ID_USUARIO,'
-      '   NOME,'
-      '   SENHA,'
-      '   TIPO,'
-      '   CADASTRO'
-      'FROM USUARIO'
-      'ORDER BY ID_USUARIO;')
-    object qryPadraoid_usuario: TIntegerField
-      AutoGenerateValue = arAutoInc
-      DisplayLabel = 'ID'
-      FieldName = 'id_usuario'
-      Origin = 'id_usuario'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
-    object qryPadraonome: TWideStringField
-      DisplayLabel = 'Nome'
-      FieldName = 'nome'
-      Origin = 'nome'
-      Size = 100
-    end
-    object qryPadraosenha: TWideStringField
-      DisplayLabel = 'Senha'
-      FieldName = 'senha'
-      Origin = 'senha'
-      Size = 30
-    end
-    object qryPadraotipo: TWideStringField
-      DisplayLabel = 'Tipo'
-      FieldName = 'tipo'
-      Origin = 'tipo'
-      Size = 30
-    end
-    object qryPadraocadastro: TDateField
-      DisplayLabel = 'Cadastro'
-      FieldName = 'cadastro'
-      Origin = 'cadastro'
-      EditMask = '##/##/####;1;_'
-    end
+  inherited dsPadrao: TDataSource
+    DataSet = DM.qryUsuario
+    Top = 72
+  end
+  inherited BindSourceDB1: TBindSourceDB
+    Top = 72
   end
 end

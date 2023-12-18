@@ -99,13 +99,14 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  edtNome.SetFocus;
 end;
 
 procedure TUsuarioF.Excluir;
 begin
   DM.qryLog.Open;
   DM.qryLog.Active;
-  DM.qryLog.Edit;
+  DM.qryLog.Delete;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
@@ -114,6 +115,8 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  //Writeln()
+  edtNome.SetFocus;
 end;
 
 procedure TUsuarioF.FormShow(Sender: TObject);

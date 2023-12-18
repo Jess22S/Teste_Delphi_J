@@ -577,8 +577,6 @@ object DM: TDM
   end
   object qryLogin: TFDQuery
     Connection = Conexao
-    Transaction = Transacao
-    UpdateTransaction = Transacao
     SQL.Strings = (
       'SELECT '
       '   ID_USUARIO,'
@@ -610,7 +608,7 @@ object DM: TDM
       Size = 30
     end
   end
-  object dsUsuario: TDataSource
+  object dsLogin: TDataSource
     DataSet = qryLogin
     Left = 258
     Top = 368

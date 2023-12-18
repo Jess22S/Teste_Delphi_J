@@ -1,0 +1,6 @@
+Log de Exclusão de Registros
+Data: 18/12/2023
+Hora: 03:09:57
+Usuário: 
+Tabela: Usuário
+Operação: excluiu

@@ -613,4 +613,58 @@ object DM: TDM
     Left = 258
     Top = 368
   end
+  object qryLog: TFDQuery
+    Connection = Conexao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'LOGS_LOGSID_LOG_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_LOG'
+    SQL.Strings = (
+      'SELECT '
+      '   ID_LOG,'
+      '   LOG_DATA,'
+      '   LOG_HORA,'
+      '   LOG_NOME_USUARIO,'
+      '   LOG_OPERACAO,'
+      '   LOG_TABELA'
+      'FROM LOGS'
+      'ORDER BY ID_LOG;')
+    Left = 149
+    Top = 432
+    object qryLogid_log: TFDAutoIncField
+      FieldName = 'id_log'
+      Origin = 'id_log'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+      IdentityInsert = True
+    end
+    object qryLoglog_data: TDateField
+      FieldName = 'log_data'
+      Origin = 'log_data'
+    end
+    object qryLoglog_hora: TTimeField
+      FieldName = 'log_hora'
+      Origin = 'log_hora'
+      ProviderFlags = [pfInUpdate]
+    end
+    object qryLoglog_nome_usuario: TWideStringField
+      FieldName = 'log_nome_usuario'
+      Origin = 'log_nome_usuario'
+      Size = 50
+    end
+    object qryLoglog_operacao: TWideStringField
+      FieldName = 'log_operacao'
+      Origin = 'log_operacao'
+      Size = 50
+    end
+    object qryLoglog_tabela: TWideStringField
+      FieldName = 'log_tabela'
+      Origin = 'log_tabela'
+      Size = 50
+    end
+  end
+  object dsLog: TDataSource
+    DataSet = qryLog
+    Left = 258
+    Top = 432
+  end
 end

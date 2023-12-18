@@ -99,13 +99,14 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  edtNome.SetFocus;
 end;
 
 procedure TUsuarioF.Excluir;
 begin
   DM.qryLog.Open;
   DM.qryLog.Active;
-  DM.qryLog.Edit;
+  DM.qryLog.Delete;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
@@ -114,6 +115,8 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  //Writeln()
+  edtNome.SetFocus;
 end;
 
 procedure TUsuarioF.FormShow(Sender: TObject);
@@ -222,15 +225,6 @@ begin
     Rewrite(Arquivo);
   end;
 
-  if (FileExists(NomeDoLog)) then
-  begin
-    Append(Arquivo);
-  end
-  else
-  begin
-    Rewrite(Arquivo);
-  end;
-
   try
     Excluir;
     Writeln(Arquivo, 'Log de Exclusão de Registros');
@@ -259,14 +253,7 @@ begin
   NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Alterado.txt';
   AssignFile(Arquivo, NomeDoLog);
 
-  if (FileExists(NomeDoLog)) then
-  begin
-    Append(Arquivo);
-  end
-  else
-  begin
-    Rewrite(Arquivo);
-  end;
+
 
   try
     Alterar;

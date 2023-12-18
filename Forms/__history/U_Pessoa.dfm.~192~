@@ -830,6 +830,7 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 300
             Visible = True
           end
           item
@@ -848,6 +849,7 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 100
             Visible = True
           end
           item
@@ -866,6 +868,7 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 150
             Visible = True
           end
           item
@@ -884,6 +887,7 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 150
             Visible = True
           end
           item
@@ -902,6 +906,7 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 300
             Visible = True
           end
           item
@@ -914,11 +919,13 @@ inherited PessoaF: TPessoaF
             Font.Name = 'Verdana'
             Font.Style = []
             Title.Alignment = taCenter
+            Title.Caption = 'ESTADO'
             Title.Font.Charset = ANSI_CHARSET
             Title.Font.Color = clWindowText
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 150
             Visible = True
           end>
       end

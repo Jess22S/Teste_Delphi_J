@@ -1,0 +1,6 @@
+Log de Inclusão de Registros
+Data: 18/12/2023
+Hora: 03:06:29
+Usuário: 
+Tabela: Usuário
+Operação: incluiu

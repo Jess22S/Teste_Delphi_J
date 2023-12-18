@@ -112,8 +112,12 @@ begin
   cbAtivo.Enabled              := True;
   cbAtivo.Checked              := True;
   rgTipo_Endereco.Enabled      := True;
-  chbPrincipal.Enabled         := True;
+  cbPrincipal.Enabled          := True;
   btnNovoEndereco.Enabled      := True;
+  cmbSexo.Enabled              := True;
+  cmbSexo.ItemIndex            := 0;
+  cmbEstado_Civil.Enabled      := True;
+  cmbSexo.ItemIndex            := 0;
 end;
 
 procedure TPessoaF.LimparCamposEndereco;
@@ -124,7 +128,7 @@ begin
   edtCEP.Clear;
   cmbCidade.ListFieldIndex := 0;
   cmbUF.ListFieldIndex     := 0;
-  chbPrincipal.Checked     := False;
+  cbPrincipal.Checked      := False;
 end;
 
 procedure TPessoaF.DesabilitarCampos;
@@ -147,8 +151,12 @@ begin
   cmbUF.ListFieldIndex         := 0;
   cbAtivo.Enabled              := False;
   cbAtivo.Checked              := True;
-  chbPrincipal.Enabled         := False;
+  cbPrincipal.Enabled          := False;
   btnNovoEndereco.Enabled      := False;
+  cmbSexo.Enabled              := False;
+  cmbSexo.ItemIndex            := 0;
+  cmbEstado_Civil.Enabled      := False;
+  cmbSexo.ItemIndex            := 0;
 end;
 
 procedure TPessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
@@ -191,7 +199,10 @@ begin
 
     HabilitarCampos;
     DM.qryPessoa.Append;
+    DM.qryTipoPessoa.Append;
     DM.qryEndereco.Append;
+    DM.qryEstados.Append;
+    DM.qryCidades.Append;
     DM.qryPessoa.Active;
     DM.qryEndereco.Active;
     DM.qryTipoPessoa.Active;
@@ -224,13 +235,9 @@ procedure TPessoaF.btnNovoEnderecoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
-    DM.qryEndereco.Append;
-    DM.qryEndereco.Active;
-
     DM.qryEndereco.Last;
     Prox := DM.qryEnderecoid_endereco.AsInteger + 1;
     DM.qryEndereco.Append;
-    edtID.Text := IntToStr(Prox);
     DM.qryEnderecoid_endereco.AsInteger := Prox;
 
     edtEndereco.SetFocus;
@@ -264,25 +271,17 @@ end;
 
 procedure TPessoaF.btnExcluirClick(Sender: TObject);
 begin
-  try
-    Qry_DesabilitaBotao(btnExcluir);
+  Qry_DesabilitaBotao(btnExcluir);
 
-    if (MessageDlg('Deseja excluir este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
-    begin
-      DM.qryPessoa.Delete;
-      DM.qryEstados.Delete;
-      MessageDlg('Registro excluído com sucesso!', mtInformation, [mbOk], 0);
-    end
-    else
-    begin
-      Abort;
-    end;
-
-  except on E: Exception do
-    begin
-      MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
-      Exit;
-    end;
+  if (MessageDlg('Deseja excluir este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
+  begin
+    DM.qryPessoa.Delete;
+    DM.qryEstados.Delete;
+    MessageDlg('Registro excluído com sucesso!', mtInformation, [mbOk], 0);
+  end
+  else
+  begin
+    Abort;
   end;
 
   DesabilitarCampos;

@@ -110,6 +110,14 @@ type
     qryLoginnome: TWideStringField;
     qryLoginsenha: TWideStringField;
     qryLogintipo: TWideStringField;
+    qryLog: TFDQuery;
+    dsLog: TDataSource;
+    qryLogid_log: TFDAutoIncField;
+    qryLoglog_data: TDateField;
+    qryLoglog_hora: TTimeField;
+    qryLoglog_nome_usuario: TWideStringField;
+    qryLoglog_operacao: TWideStringField;
+    qryLoglog_tabela: TWideStringField;
   private
     { Private declarations }
   public

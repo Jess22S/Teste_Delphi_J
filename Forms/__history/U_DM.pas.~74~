@@ -100,7 +100,21 @@ type
     cdsPessoacadastro: TDateField;
     cdsPessoacdsEndereco: TDataSetField;
     cdsPessoaqryEndereco: TDataSetField;
-    qryEnderecocidade: TIntegerField;
+    qryEnderecoestado: TStringField;
+    cdsEnderecoestado: TStringField;
+    qryEnderecocidade: TStringField;
+    cdsEnderecocidade: TStringField;
+    qryLogin: TFDQuery;
+    dsLogin: TDataSource;
+    qryLoginid_usuario: TIntegerField;
+    qryLoginnome: TWideStringField;
+    qryLoginsenha: TWideStringField;
+    qryLogintipo: TWideStringField;
+    qryLog: TFDQuery;
+    IntegerField1: TIntegerField;
+    WideStringField1: TWideStringField;
+    WideStringField2: TWideStringField;
+    WideStringField3: TWideStringField;
   private
     { Private declarations }
   public

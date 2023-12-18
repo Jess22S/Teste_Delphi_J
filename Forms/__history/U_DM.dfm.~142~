@@ -577,8 +577,6 @@ object DM: TDM
   end
   object qryLogin: TFDQuery
     Connection = Conexao
-    Transaction = Transacao
-    UpdateTransaction = Transacao
     SQL.Strings = (
       'SELECT '
       '   ID_USUARIO,'
@@ -589,10 +587,69 @@ object DM: TDM
       'ORDER BY ID_USUARIO;')
     Left = 149
     Top = 368
+    object qryLoginid_usuario: TIntegerField
+      FieldName = 'id_usuario'
+      Origin = 'id_usuario'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object qryLoginnome: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 100
+    end
+    object qryLoginsenha: TWideStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 30
+    end
+    object qryLogintipo: TWideStringField
+      FieldName = 'tipo'
+      Origin = 'tipo'
+      Size = 30
+    end
   end
-  object dsUsuario: TDataSource
+  object dsLogin: TDataSource
     DataSet = qryLogin
     Left = 258
     Top = 368
+  end
+  object qryLog: TFDQuery
+    Connection = Conexao
+    UpdateOptions.AssignedValues = [uvFetchGeneratorsPoint, uvGeneratorName]
+    UpdateOptions.FetchGeneratorsPoint = gpImmediate
+    UpdateOptions.GeneratorName = 'LOGS_LOGSID_LOG_SEQ'
+    UpdateOptions.AutoIncFields = 'ID_LOG'
+    SQL.Strings = (
+      'SELECT '
+      '   ID_LOG,'
+      '   LOG_DATA,'
+      '   LOG_HORA,'
+      '   LOG_NOME_USUARIO,'
+      '   LOG_NOME_OPERACAO,'
+      '   LOG_NOME_TABELA'
+      'FROM LOGS'
+      'ORDER BY ID_LOG;')
+    Left = 149
+    Top = 432
+    object IntegerField1: TIntegerField
+      FieldName = 'id_usuario'
+      Origin = 'id_usuario'
+      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
+    end
+    object WideStringField1: TWideStringField
+      FieldName = 'nome'
+      Origin = 'nome'
+      Size = 100
+    end
+    object WideStringField2: TWideStringField
+      FieldName = 'senha'
+      Origin = 'senha'
+      Size = 30
+    end
+    object WideStringField3: TWideStringField
+      FieldName = 'tipo'
+      Origin = 'tipo'
+      Size = 30
+    end
   end
 end
