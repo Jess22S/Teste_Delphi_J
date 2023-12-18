@@ -114,10 +114,6 @@ begin
   rgTipo_Endereco.Enabled      := True;
   cbPrincipal.Enabled          := True;
   btnNovoEndereco.Enabled      := True;
-  cmbSexo.Enabled              := True;
-  cmbSexo.ItemIndex            := 0;
-  cmbEstado_Civil.Enabled      := True;
-  cmbSexo.ItemIndex            := 0;
 end;
 
 procedure TPessoaF.LimparCamposEndereco;
@@ -153,10 +149,6 @@ begin
   cbAtivo.Checked              := True;
   cbPrincipal.Enabled          := False;
   btnNovoEndereco.Enabled      := False;
-  cmbSexo.Enabled              := False;
-  cmbSexo.ItemIndex            := 0;
-  cmbEstado_Civil.Enabled      := False;
-  cmbSexo.ItemIndex            := 0;
 end;
 
 procedure TPessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
@@ -233,12 +225,11 @@ var
   Prox: Integer;
 begin
     DM.qryEndereco.Active;
-    DM.qryEstados.Active;
-    DM.qryCidades.Active;
 
     DM.qryEndereco.Last;
     Prox := DM.qryEnderecoid_endereco.AsInteger + 1;
     DM.qryEndereco.Append;
+    edtID.Text := IntToStr(Prox);
     DM.qryEnderecoid_endereco.AsInteger := Prox;
 
     edtEndereco.SetFocus;

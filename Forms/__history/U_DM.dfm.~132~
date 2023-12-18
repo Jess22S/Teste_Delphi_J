@@ -577,6 +577,8 @@ object DM: TDM
   end
   object qryLogin: TFDQuery
     Connection = Conexao
+    Transaction = Transacao
+    UpdateTransaction = Transacao
     SQL.Strings = (
       'SELECT '
       '   ID_USUARIO,'
@@ -587,28 +589,8 @@ object DM: TDM
       'ORDER BY ID_USUARIO;')
     Left = 149
     Top = 368
-    object qryLoginid_usuario: TIntegerField
-      FieldName = 'id_usuario'
-      Origin = 'id_usuario'
-      ProviderFlags = [pfInUpdate, pfInWhere, pfInKey]
-    end
-    object qryLoginnome: TWideStringField
-      FieldName = 'nome'
-      Origin = 'nome'
-      Size = 100
-    end
-    object qryLoginsenha: TWideStringField
-      FieldName = 'senha'
-      Origin = 'senha'
-      Size = 30
-    end
-    object qryLogintipo: TWideStringField
-      FieldName = 'tipo'
-      Origin = 'tipo'
-      Size = 30
-    end
   end
-  object dsLogin: TDataSource
+  object dsUsuario: TDataSource
     DataSet = qryLogin
     Left = 258
     Top = 368

@@ -150,7 +150,7 @@ inherited PessoaF: TPessoaF
     Top = 57
     Width = 976
     Height = 429
-    ActivePage = tsDadosPessoais
+    ActivePage = tsEndereco
     Align = alClient
     TabOrder = 2
     ExplicitWidth = 972
@@ -902,6 +902,7 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 300
             Visible = True
           end
           item
@@ -920,6 +921,7 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
+            Width = 300
             Visible = True
           end>
       end
@@ -1045,8 +1047,8 @@ inherited PessoaF: TPessoaF
   end
   object dsEndereco: TDataSource
     DataSet = DM.qryEndereco
-    Left = 140
-    Top = 499
+    Left = 148
+    Top = 498
   end
   object dsTipo_Pessoa: TDataSource
     DataSet = DM.qryTipoPessoa

@@ -7,15 +7,14 @@ uses
   U_Padrao in '..\Forms\U_Padrao.pas' {PadraoF},
   U_Usuario in '..\Forms\U_Usuario.pas' {UsuarioF},
   U_Pessoa in '..\Forms\U_Pessoa.pas' {PessoaF},
-  U_Tipo_Pessoa in '..\Forms\U_Tipo_Pessoa.pas' {Tipo_PessoaF},
-  U_Login in '..\Forms\U_Login.pas' {LoginF};
+  U_Tipo_Pessoa in '..\Forms\U_Tipo_Pessoa.pas' {Tipo_PessoaF};
 
 {$R *.res}
 
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
-  Application.CreateForm(TLoginF, LoginF);
+  Application.CreateForm(TPrincipalF, PrincipalF);
   Application.CreateForm(TDM, DM);
   Application.Run;
 end.

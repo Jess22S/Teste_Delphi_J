@@ -150,7 +150,7 @@ inherited PessoaF: TPessoaF
     Top = 57
     Width = 976
     Height = 429
-    ActivePage = tsDadosPessoais
+    ActivePage = tsEndereco
     Align = alClient
     TabOrder = 2
     ExplicitWidth = 972
@@ -896,7 +896,6 @@ inherited PessoaF: TPessoaF
             Font.Name = 'Verdana'
             Font.Style = []
             Title.Alignment = taCenter
-            Title.Caption = 'CIDADE'
             Title.Font.Charset = ANSI_CHARSET
             Title.Font.Color = clWindowText
             Title.Font.Height = -12
@@ -914,7 +913,6 @@ inherited PessoaF: TPessoaF
             Font.Name = 'Verdana'
             Font.Style = []
             Title.Alignment = taCenter
-            Title.Caption = 'ESTADO'
             Title.Font.Charset = ANSI_CHARSET
             Title.Font.Color = clWindowText
             Title.Font.Height = -12

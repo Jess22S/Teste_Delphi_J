@@ -105,11 +105,6 @@ type
     qryEnderecocidade: TStringField;
     cdsEnderecocidade: TStringField;
     qryLogin: TFDQuery;
-    dsLogin: TDataSource;
-    qryLoginid_usuario: TIntegerField;
-    qryLoginnome: TWideStringField;
-    qryLoginsenha: TWideStringField;
-    qryLogintipo: TWideStringField;
   private
     { Private declarations }
   public

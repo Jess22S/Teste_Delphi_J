@@ -126,6 +126,10 @@
         <DCCReference Include="..\Forms\U_Tipo_Pessoa.pas">
             <Form>Tipo_PessoaF</Form>
         </DCCReference>
+        <DCCReference Include="..\Forms\U_Login.pas">
+            <Form>LoginF</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -152,7 +156,7 @@
                 </Excluded_Packages>
             </Delphi.Personality>
             <Deployment Version="4">
-                <DeployFile LocalName="..\..\EXE\Projeto_Controle_Estoque.exe" Configuration="Debug" Class="ProjectOutput">
+                <DeployFile LocalName="..\..\Programas - Linguagem Delphi\Projeto - Curso 3\EXE\Projeto_Controle_Estoque.exe" Configuration="Debug" Class="ProjectOutput">
                     <Platform Name="Win32">
                         <RemoteName>Projeto_Controle_Estoque.exe</RemoteName>
                         <Overwrite>true</Overwrite>

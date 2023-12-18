@@ -239,6 +239,7 @@ begin
     DM.qryEndereco.Last;
     Prox := DM.qryEnderecoid_endereco.AsInteger + 1;
     DM.qryEndereco.Append;
+    edtID.Text := IntToStr(Prox);
     DM.qryEnderecoid_endereco.AsInteger := Prox;
 
     edtEndereco.SetFocus;

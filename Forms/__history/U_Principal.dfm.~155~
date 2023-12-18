@@ -1769,7 +1769,6 @@ object PrincipalF: TPrincipalF
         B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6}
       Layout = blGlyphTop
       ParentFont = False
-      Visible = False
       OnClick = btnUsuarioClick
     end
     object btnFechar: TSpeedButton

@@ -150,7 +150,7 @@ inherited PessoaF: TPessoaF
     Top = 57
     Width = 976
     Height = 429
-    ActivePage = tsDadosPessoais
+    ActivePage = tsEndereco
     Align = alClient
     TabOrder = 2
     ExplicitWidth = 972

@@ -608,7 +608,7 @@ object DM: TDM
       Size = 30
     end
   end
-  object dsLogin: TDataSource
+  object dsUsuario: TDataSource
     DataSet = qryLogin
     Left = 258
     Top = 368

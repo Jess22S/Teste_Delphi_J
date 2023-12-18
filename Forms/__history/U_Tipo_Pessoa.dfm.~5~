@@ -1,6 +1,7 @@
 inherited Tipo_PessoaF: TTipo_PessoaF
   Caption = 'CADASTRO DE CLIENTE'
   ClientHeight = 436
+  ClientWidth = 1006
   OnShow = FormShow
   ExplicitWidth = 1022
   ExplicitHeight = 475
@@ -45,16 +46,19 @@ inherited Tipo_PessoaF: TTipo_PessoaF
     ParentFont = False
   end
   inherited Panel1: TPanel
+    Width = 1006
     ExplicitWidth = 1006
     inherited btnExcluir: TBitBtn
       OnClick = btnExcluirClick
     end
     inherited Panel3: TPanel
+      Left = 856
       ExplicitLeft = 856
     end
   end
   inherited Panel2: TPanel
     Top = 366
+    Width = 1006
     TabOrder = 4
     ExplicitTop = 366
     ExplicitWidth = 1006

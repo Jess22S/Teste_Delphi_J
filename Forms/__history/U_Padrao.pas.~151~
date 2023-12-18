@@ -104,20 +104,45 @@ end;
 
 procedure TPadraoF.btnGravarClick(Sender: TObject);
 begin
-  MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOk], 0);
-  HabilitarBotoes;
+  try
+    MessageDlg('Registro salvo com sucesso!', mtInformation, [mbOk], 0);
+    HabilitarBotoes;
+    
+  except on E: Exception do
+    begin
+      MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+      Exit;
+    end;
+  end;
 end;   
 
 procedure TPadraoF.btnAtualizarClick(Sender: TObject);
 begin
-  MessageDlg('Registro atualizado com sucesso!', mtInformation, [mbOk], 0);
-  HabilitarBotoes;
+  try
+    MessageDlg('Registro atualizado com sucesso!', mtInformation, [mbOk], 0);
+    HabilitarBotoes;
+
+  except on E: Exception do
+     begin
+      MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+      Exit;
+    end;
+  end;
 end;
 
 procedure TPadraoF.btnCancelarClick(Sender: TObject);
 begin
-  MessageDlg('Ação cancelada pelo usuário!', mtInformation, [mbOk], 0);
-  HabilitarBotoes;
+  try
+    MessageDlg('Ação cancelada pelo usuário!', mtInformation, [mbOk], 0);
+    HabilitarBotoes;
+
+  except on E: Exception do
+     begin
+      MessageDlg('Entre em contato com o suporte.', mtError, [mbOk], 0);
+      Exit;
+    end;
+  end;
+
 end;
 
 procedure TPadraoF.btnSairClick(Sender: TObject);
