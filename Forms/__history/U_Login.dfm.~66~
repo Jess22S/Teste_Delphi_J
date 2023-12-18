@@ -2,7 +2,7 @@ object LoginF: TLoginF
   Left = 0
   Top = 0
   Caption = 'LOGIN'
-  ClientHeight = 278
+  ClientHeight = 265
   ClientWidth = 409
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,7 +18,7 @@ object LoginF: TLoginF
     Left = 0
     Top = 0
     Width = 409
-    Height = 278
+    Height = 265
     Align = alClient
     Color = clBlack
     ParentBackground = False
@@ -1874,17 +1874,6 @@ object LoginF: TLoginF
       Items.Strings = (
         'ADMINSTRADOR'
         'APOIO')
-    end
-    object StatusBar1: TStatusBar
-      Left = 1
-      Top = 257
-      Width = 407
-      Height = 20
-      Panels = <
-        item
-          Width = 50
-        end>
-      ExplicitTop = 258
     end
   end
 end

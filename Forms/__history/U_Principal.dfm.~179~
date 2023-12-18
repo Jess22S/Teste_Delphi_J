@@ -3355,10 +3355,4 @@ object PrincipalF: TPrincipalF
       OnClick = mmSairClick
     end
   end
-  object Timer2: TTimer
-    Interval = 120000
-    OnTimer = Timer2Timer
-    Left = 208
-    Top = 124
-  end
 end

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, Vcl.StdCtrls,
-  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons, Vcl.ComCtrls;
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons;
 
 type
   TLoginF = class(TForm)
@@ -19,7 +19,6 @@ type
     edtSenha: TEdit;
     cmbTipo: TComboBox;
     imgLogin: TImage;
-    StatusBar1: TStatusBar;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnCancelarClick(Sender: TObject);
@@ -53,7 +52,7 @@ procedure TLoginF.FormShow(Sender: TObject);
 begin
   LimparCampos;
   edtNome.SetFocus;
-  StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+  //StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
 end;
 
 procedure TLoginF.btnCancelarClick(Sender: TObject);
@@ -97,12 +96,16 @@ begin
    end;
 
 
-   MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-   DM.Usuario := edtNome.Text;
-   DM.TipoUsuario := cmbTipo.Text;
-   PrincipalF:= TPrincipalF.create(Self);
-   PrincipalF.ShowModal;
-   Contagem := 0;
+   if (DM.qryLogin.RecordCount > 0) then
+   begin
+     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+     DM.Usuario := edtNome.Text;
+     DM.TipoUsuario := cmbTipo.Text;
+     PrincipalF:= TPrincipalF.create(Self);
+     PrincipalF.ShowModal;
+     LoginF.Hide;
+     Contagem := 0;
+   end;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);

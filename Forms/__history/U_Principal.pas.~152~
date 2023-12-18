@@ -100,13 +100,13 @@ end;
 
 procedure TPrincipalF.AppIdle(Sender: TObject; var Done: Boolean);
 begin
-  Timer2.Enabled := True;
+  Timer1.Enabled := True;
 end;
 
 procedure TPrincipalF.AppMessage(var Msg: TMsg; var Handled: Boolean);
 begin
   Case Msg.message of
-      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer2.Enabled := False;
+      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer1.Enabled := False;
   end;
 end;
 

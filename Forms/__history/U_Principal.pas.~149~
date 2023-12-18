@@ -26,7 +26,6 @@ type
     mmFechar: TMenuItem;
     Panel2: TPanel;
     btnUsuario: TSpeedButton;
-    Timer2: TTimer;
     procedure Timer1Timer(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure mmSairClick(Sender: TObject);
@@ -40,7 +39,6 @@ type
     procedure FormCreate(Sender: TObject);
     procedure btnUsuarioClick(Sender: TObject);
     procedure FormShow(Sender: TObject);
-    procedure Timer2Timer(Sender: TObject);
   private
     { Private declarations }
     procedure AppIdle(Sender: TObject; var Done: Boolean);
@@ -80,33 +78,26 @@ begin
     btnUsuario.Enabled := False;
     mmUsuario.Enabled  := False;
   end;
-
-  Timer1Timer(Self);
 end;
 
 procedure TPrincipalF.Timer1Timer(Sender: TObject);
 begin
-   // INSERE DADOS NO STATUSBAR
+  // INSERE DADOS NO STATUSBAR
   StatusBar1.Panels[0].Text := DateToStr(now);
   StatusBar1.Panels[1].Text := TimeToStr(now);
   StatusBar1.Panels[2].Text := 'SEJA BEM-VINDO AO SISTEMA Sr(a): ' + DM.Usuario;
   StatusBar1.Panels[3].Text := 'TIPO DE USUÁRIO: ' + DM.TipoUsuario;
 end;
 
-procedure TPrincipalF.Timer2Timer(Sender: TObject);
-begin
-  Application.Terminate;
-end;
-
 procedure TPrincipalF.AppIdle(Sender: TObject; var Done: Boolean);
 begin
-  Timer2.Enabled := True;
+  Timer1.Enabled := True;
 end;
 
 procedure TPrincipalF.AppMessage(var Msg: TMsg; var Handled: Boolean);
 begin
   Case Msg.message of
-      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer2.Enabled := False;
+      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer1.Enabled := False;
   end;
 end;
 

@@ -1880,10 +1880,7 @@ object LoginF: TLoginF
       Top = 257
       Width = 407
       Height = 20
-      Panels = <
-        item
-          Width = 50
-        end>
+      Panels = <>
       ExplicitTop = 258
     end
   end

@@ -3,6 +3,7 @@ inherited UsuarioF: TUsuarioF
   Caption = 'CADASTRO DE USU'#193'RIOS'
   ClientHeight = 333
   ClientWidth = 991
+  Visible = True
   OnShow = FormShow
   ExplicitWidth = 999
   ExplicitHeight = 360

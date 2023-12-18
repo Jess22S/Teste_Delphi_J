@@ -542,11 +542,9 @@ object PrincipalF: TPrincipalF
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF
     FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFF}
   Menu = MainMenu1
-  Position = poDefault
   WindowState = wsMaximized
   OnCreate = FormCreate
   OnKeyPress = FormKeyPress
-  OnShow = FormShow
   TextHeight = 15
   object Panel1: TPanel
     Left = 0
@@ -2580,7 +2578,7 @@ object PrincipalF: TPrincipalF
         B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6B7B9B6}
       Layout = blGlyphTop
       ParentFont = False
-      OnClick = btnUsuarioClick
+      OnClick = btnTrocarUsuarioClick
     end
   end
   object StatusBar1: TStatusBar
@@ -2624,7 +2622,7 @@ object PrincipalF: TPrincipalF
     ExplicitHeight = 406
   end
   object Timer1: TTimer
-    Interval = 120000
+    Interval = 2000
     OnTimer = Timer1Timer
     Left = 64
     Top = 128
@@ -3354,11 +3352,5 @@ object PrincipalF: TPrincipalF
       Caption = '&Sair'
       OnClick = mmSairClick
     end
-  end
-  object Timer2: TTimer
-    Interval = 120000
-    OnTimer = Timer2Timer
-    Left = 208
-    Top = 124
   end
 end

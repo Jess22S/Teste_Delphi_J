@@ -97,12 +97,15 @@ begin
    end;
 
 
-   MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-   DM.Usuario := edtNome.Text;
-   DM.TipoUsuario := cmbTipo.Text;
-   PrincipalF:= TPrincipalF.create(Self);
-   PrincipalF.ShowModal;
-   Contagem := 0;
+   if (DM.qryLogin.RecordCount > 0) then
+   begin
+     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+     DM.Usuario := edtNome.Text;
+     DM.TipoUsuario := cmbTipo.Text;
+     PrincipalF:= TPrincipalF.create(Self);
+     PrincipalF.ShowModal;
+     Contagem := 0;
+   end;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);
