@@ -71,6 +71,12 @@ begin
   end;
 end;
 
+procedure TUsuarioF.FormShow(Sender: TObject);
+begin
+  inherited;
+  DesabilitarCampos;
+end;
+
 procedure TUsuarioF.Incluir;
 begin
   DM.qryLog.Open;
@@ -99,14 +105,13 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
-  edtNome.SetFocus;
 end;
 
 procedure TUsuarioF.Excluir;
 begin
   DM.qryLog.Open;
   DM.qryLog.Active;
-  DM.qryLog.Delete;
+  DM.qryLog.Edit;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
@@ -115,14 +120,6 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
-  //Writeln()
-  edtNome.SetFocus;
-end;
-
-procedure TUsuarioF.FormShow(Sender: TObject);
-begin
-  inherited;
-  DesabilitarCampos;
 end;
 
 procedure TUsuarioF.btnNovoClick(Sender: TObject);
@@ -168,12 +165,11 @@ begin
   try
     Incluir;
     Writeln(Arquivo, 'Log de Inclusão de Registros');
-     Writeln(Arquivo, 'Data    Hora     Usuário    Tabela   Operação');
-    Writeln(Arquivo, DateToStr(DM.qryLoglog_data.Value));
-    Writeln(Arquivo, TimeToStr(DM.qryLoglog_hora.Value));
-    Writeln(Arquivo, DM.qryLoglog_nome_usuario.AsString);
-    Writeln(Arquivo, DM.qryLoglog_tabela.AsString) ;
-    Writeln(Arquivo, DM.qryLoglog_operacao.AsString);
+    Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
+    Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
+    Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
+    Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
+    Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
   finally
     CloseFile(Arquivo);
   end;
@@ -198,6 +194,9 @@ begin
 end;
 
 procedure TUsuarioF.btnExcluirClick(Sender: TObject);
+var
+  NomeDoLog: String;
+  Arquivo: TextFile;
 begin
   Qry_DesabilitaBotao(btnExcluir);
 
@@ -211,15 +210,75 @@ begin
     Abort;
   end;
 
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Excluido.txt';
+  AssignFile(Arquivo, NomeDoLog);
+
+  if (FileExists(NomeDoLog)) then
+  begin
+    Append(Arquivo);
+  end
+  else
+  begin
+    Rewrite(Arquivo);
+  end;
+
+  if (FileExists(NomeDoLog)) then
+  begin
+    Append(Arquivo);
+  end
+  else
+  begin
+    Rewrite(Arquivo);
+  end;
+
+  try
+    Excluir;
+    Writeln(Arquivo, 'Log de Exclusão de Registros');
+    Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
+    Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
+    Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
+    Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
+    Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+  finally
+    CloseFile(Arquivo);
+  end;
+
   DesabilitarCampos;
 end;
 
 procedure TUsuarioF.btnAtualizarClick(Sender: TObject);
+var
+  NomeDoLog: String;
+  Arquivo: TextFile;
 begin
   DM.qryUsuario.Refresh;
   inherited;
   DesabilitarCampos;
   Qry_DesabilitaBotao(btnAtualizar);
+
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Alterado.txt';
+  AssignFile(Arquivo, NomeDoLog);
+
+  if (FileExists(NomeDoLog)) then
+  begin
+    Append(Arquivo);
+  end
+  else
+  begin
+    Rewrite(Arquivo);
+  end;
+
+  try
+    Alterar;
+    Writeln(Arquivo, 'Log de Alteração de Registros');
+    Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
+    Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
+    Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
+    Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
+    Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+  finally
+    CloseFile(Arquivo);
+  end;
 end;
 
 procedure TUsuarioF.btnCancelarClick(Sender: TObject);

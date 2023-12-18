@@ -1,30 +1,29 @@
-unit U_Usuario;
+unit U_Tipo_Pessoa;
 
 interface
 
 uses
-  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants,
+  System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, U_Padrao, Data.Bind.Controls,
   FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
   FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
   FireDAC.Stan.Async, FireDAC.DApt, Data.Bind.Components, Data.Bind.DBScope,
   Data.DB, FireDAC.Comp.DataSet, FireDAC.Comp.Client, Vcl.Buttons,
-  Vcl.Bind.Navigator, Vcl.StdCtrls, Vcl.ExtCtrls, U_DM, Vcl.Mask, Vcl.DBCtrls;
+  Vcl.Bind.Navigator, Vcl.StdCtrls, Vcl.ExtCtrls, Vcl.Mask, Vcl.DBCtrls,
+  Vcl.Grids, Vcl.DBGrids, U_DM;
 
 type
-  TUsuarioF = class(TPadraoF)
+  TTipo_PessoaF = class(TPadraoF)
     lblID: TLabel;
-    edtID: TDBEdit;
     lblNome: TLabel;
-    edtNome: TDBEdit;
-    lblSemha: TLabel;
-    edtSenha: TDBEdit;
-    lblTipo: TLabel;
     lblCadastro: TLabel;
+    edtID: TDBEdit;
+    edtNome: TDBEdit;
     edtCadastro: TDBEdit;
-    cmbTipo: TDBComboBox;
-    procedure btnNovoClick(Sender: TObject);
+    DBGrid1: TDBGrid;
     procedure FormShow(Sender: TObject);
+    procedure btnNovoClick(Sender: TObject);
     procedure btnGravarClick(Sender: TObject);
     procedure btnEditarClick(Sender: TObject);
     procedure btnExcluirClick(Sender: TObject);
@@ -43,27 +42,26 @@ type
   end;
 
 var
-  UsuarioF: TUsuarioF;
+  Tipo_PessoaF: TTipo_PessoaF;
 
 implementation
 
 {$R *.dfm}
 
-procedure TUsuarioF.DesabilitarCampos;
+{ TTipo_PessoaF }
+
+procedure TTipo_PessoaF.DesabilitarCampos;
 begin
-  edtNome.Enabled  := False;
-  edtSenha.Enabled := False;
-  cmbTipo.Enabled  := False;
+  edtNome.Enabled     := False;
+  edtCadastro.Enabled := False;
 end;
 
-procedure TUsuarioF.HabilitarCampos;
+procedure TTipo_PessoaF.HabilitarCampos;
 begin
-  edtNome.Enabled  := True;
-  edtSenha.Enabled := True;
-  cmbTipo.Enabled  := True;
+  edtNome.Enabled := True;
 end;
 
-procedure TUsuarioF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
+procedure TTipo_PessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
 begin
   if ((DM.qryUsuario.Active = False) or (DM.qryUsuario.IsEmpty)) then
   begin
@@ -71,13 +69,13 @@ begin
   end;
 end;
 
-procedure TUsuarioF.FormShow(Sender: TObject);
+procedure TTipo_PessoaF.FormShow(Sender: TObject);
 begin
-  inherited;
+  DM.qryTipoPessoa.Close;
   DesabilitarCampos;
 end;
 
-procedure TUsuarioF.Incluir;
+procedure TTipo_PessoaF.Incluir;
 begin
   DM.qryLog.Open;
   DM.qryLog.Active;
@@ -85,14 +83,14 @@ begin
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
-  DM.qryLoglog_tabela.Value          := 'Usuário';
-  DM.qryLoglog_operacao.Value        := 'Incluiu';
+  DM.qryLoglog_tabela.Value          := 'Tipo Pessoa';
+  DM.qryLoglog_operacao.Value        := 'incluiu';
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
 end;
 
-procedure TUsuarioF.Alterar;
+procedure TTipo_PessoaF.Alterar;
 begin
   DM.qryLog.Open;
   DM.qryLog.Active;
@@ -100,14 +98,14 @@ begin
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
-  DM.qryLoglog_tabela.Value          := 'Usuário';
-  DM.qryLoglog_operacao.Value        := 'Alterou';
+  DM.qryLoglog_tabela.Value          := 'Tipo Pessoa';
+  DM.qryLoglog_operacao.Value        := 'alterou';
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
 end;
 
-procedure TUsuarioF.Excluir;
+procedure TTipo_PessoaF.Excluir;
 begin
   DM.qryLog.Open;
   DM.qryLog.Active;
@@ -115,34 +113,35 @@ begin
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
-  DM.qryLoglog_tabela.AsString       := 'Usuário';
-  DM.qryLoglog_operacao.AsString     := 'Excluiu';
+  DM.qryLoglog_tabela.AsString       := 'Tipo Pessoa';
+  DM.qryLoglog_operacao.AsString     := 'excluiu';
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
 end;
 
-procedure TUsuarioF.btnNovoClick(Sender: TObject);
+procedure TTipo_PessoaF.btnNovoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
-  DM.qryUsuario.Open;
+  DM.qryTipoPessoa.Open;
+
   inherited;
+
   HabilitarCampos;
-  DM.qryUsuario.Append;
-  DM.qryUsuario.Active;
-  DM.qryUsuario.Last;
-  Prox := DM.qryUsuarioid_usuario.AsInteger + 1;
-  DM.qryUsuario.Append;
+  DM.qryTipoPessoa.Active;
+  DM.qryTipoPessoa.Last;
+  Prox := DM.qryTipoPessoaid_tipo_pessoa.AsInteger + 1;
+  DM.qryTipoPessoa.Append;
   edtID.Text := IntToStr(Prox);
-  DM.qryUsuarioid_usuario.AsInteger := Prox;
+  DM.qryTipoPessoaid_tipo_pessoa.AsInteger := Prox;
 
   edtNome.SetFocus;
-  DM.qryUsuariocadastro.AsDateTime := Now;
-  edtCadastro.Enabled              := False;
+  DM.qryTipoPessoacadastro.AsDateTime := Now;
+  edtCadastro.Enabled:= False;
 end;
 
-procedure TUsuarioF.btnGravarClick(Sender: TObject);
+procedure TTipo_PessoaF.btnGravarClick(Sender: TObject);
 var
   NomeDoLog: String;
   Arquivo: TextFile;
@@ -164,47 +163,34 @@ begin
 
   try
     Incluir;
-    Writeln(Arquivo, '----------------------------');
     Writeln(Arquivo, 'Log de Inclusão de Registros');
     Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
     Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
     Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
     Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
     Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
-    Writeln(Arquivo, '----------------------------');
   finally
     CloseFile(Arquivo);
   end;
 end;
 
-procedure TUsuarioF.btnEditarClick(Sender: TObject);
+procedure TTipo_PessoaF.btnEditarClick(Sender: TObject);
 begin
   inherited;
-  Qry_DesabilitaBotao(btnEditar);
-
-  if (MessageDlg('Deseja editar este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
-  begin
-    DM.qryUsuario.Edit;
-  end
-  else
-  begin
-    Abort;
-  end;
-
   HabilitarCampos;
   btnAtualizar.Enabled := True;
 end;
 
-procedure TUsuarioF.btnExcluirClick(Sender: TObject);
+procedure TTipo_PessoaF.btnExcluirClick(Sender: TObject);
 var
   NomeDoLog: String;
   Arquivo: TextFile;
 begin
-  Qry_DesabilitaBotao(btnExcluir);
+   Qry_DesabilitaBotao(btnExcluir);
 
   if (MessageDlg('Deseja excluir este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
   begin
-    DM.qryUsuario.Delete;
+    DM.qryTipoPessoa.Delete;
     MessageDlg('Registro excluído com sucesso!', mtInformation, [mbOk], 0);
   end
   else
@@ -235,14 +221,12 @@ begin
 
   try
     Excluir;
-    Writeln(Arquivo, '----------------------------');
     Writeln(Arquivo, 'Log de Exclusão de Registros');
     Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
     Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
     Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
     Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
     Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
-    Writeln(Arquivo, '----------------------------');
   finally
     CloseFile(Arquivo);
   end;
@@ -250,15 +234,13 @@ begin
   DesabilitarCampos;
 end;
 
-procedure TUsuarioF.btnAtualizarClick(Sender: TObject);
+procedure TTipo_PessoaF.btnAtualizarClick(Sender: TObject);
 var
   NomeDoLog: String;
   Arquivo: TextFile;
 begin
-  DM.qryUsuario.Refresh;
   inherited;
   DesabilitarCampos;
-  Qry_DesabilitaBotao(btnAtualizar);
 
   NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Alterado.txt';
   AssignFile(Arquivo, NomeDoLog);
@@ -274,26 +256,20 @@ begin
 
   try
     Alterar;
-    Writeln(Arquivo, '----------------------------');
     Writeln(Arquivo, 'Log de Alteração de Registros');
     Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
     Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
     Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
     Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
     Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
-    Writeln(Arquivo, '----------------------------');
   finally
     CloseFile(Arquivo);
   end;
 end;
 
-procedure TUsuarioF.btnCancelarClick(Sender: TObject);
+procedure TTipo_PessoaF.btnCancelarClick(Sender: TObject);
 begin
-  DM.qryUsuario.Cancel;
   inherited;
   DesabilitarCampos;
-  Qry_DesabilitaBotao(btnCancelar);
-  Qry_DesabilitaBotao(btnExcluir);
-  Qry_DesabilitaBotao(btnEditar);
 end;
 end.

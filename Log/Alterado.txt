@@ -1,0 +1,8 @@
+----------------------------
+Log de Alteração de Registros
+Data: 18/12/2023
+Hora: 03:32:20
+Usuário: 
+Tabela: Tipo Pessoa
+Operação: alterou
+----------------------------

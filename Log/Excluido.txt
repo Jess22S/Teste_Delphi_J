@@ -4,3 +4,19 @@ Hora: 03:09:57
 Usuário: 
 Tabela: Usuário
 Operação: excluiu
+----------------------------
+Log de Exclusão de Registros
+Data: 18/12/2023
+Hora: 03:32:12
+Usuário: 
+Tabela: Tipo Pessoa
+Operação: excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 18/12/2023
+Hora: 03:32:25
+Usuário: 
+Tabela: Tipo Pessoa
+Operação: excluiu
+----------------------------

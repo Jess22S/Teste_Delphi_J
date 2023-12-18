@@ -164,17 +164,47 @@ end;
 
 procedure TPessoaF.Incluir;
 begin
-//
+  DM.qryLog.Open;
+  DM.qryLog.Active;
+  DM.qryLog.Insert;
+  DM.qryLoglog_data.Value            := Date;
+  DM.qryLoglog_hora.Value            := Time;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_tabela.Value          := 'Pessoa';
+  DM.qryLoglog_operacao.Value        := 'incluiu';
+  DM.qryLog.Post;
+  DM.qryPessoa.Append;
+  DM.qryPessoacadastro.Value        := Date;
 end;
 
 procedure TPessoaF.Alterar;
 begin
-//
+  DM.qryLog.Open;
+  DM.qryLog.Active;
+  DM.qryLog.Edit;
+  DM.qryLoglog_data.Value            := Date;
+  DM.qryLoglog_hora.Value            := Time;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_tabela.Value          := 'Pessoa';
+  DM.qryLoglog_operacao.Value        := 'alterou';
+  DM.qryLog.Post;
+  DM.qryPessoa.Append;
+  DM.qryPessoacadastro.Value        := Date;
 end;
 
 procedure TPessoaF.Excluir;
 begin
-  //
+  DM.qryLog.Open;
+  DM.qryLog.Active;
+  DM.qryLog.Edit;
+  DM.qryLoglog_data.Value            := Date;
+  DM.qryLoglog_hora.Value            := Time;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_tabela.AsString       := 'Pessoa';
+  DM.qryLoglog_operacao.AsString     := 'excluiu';
+  DM.qryLog.Post;
+  DM.qryPessoa.Append;
+  DM.qryPessoacadastro.Value        := Date;
 end;
 
 procedure TPessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
@@ -244,9 +274,38 @@ begin
 end;
 
 procedure TPessoaF.btnGravarClick(Sender: TObject);
+var
+  NomeDoLog: String;
+  Arquivo: TextFile;
 begin
   inherited;
   DesabilitarCampos;
+
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Gravado.txt';
+  AssignFile(Arquivo, NomeDoLog);
+
+  if (FileExists(NomeDoLog)) then
+  begin
+    Append(Arquivo);
+  end
+  else
+  begin
+    Rewrite(Arquivo);
+  end;
+
+  try
+    Incluir;
+    Writeln(Arquivo, '----------------------------');
+    Writeln(Arquivo, 'Log de Inclusão de Registros');
+    Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
+    Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
+    Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
+    Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
+    Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+    Writeln(Arquivo, '----------------------------');
+  finally
+    CloseFile(Arquivo);
+  end;
 end;
 
 procedure TPessoaF.btnNovoEnderecoClick(Sender: TObject);
@@ -288,6 +347,9 @@ begin
 end;
 
 procedure TPessoaF.btnExcluirClick(Sender: TObject);
+var
+  NomeDoLog: String;
+  Arquivo: TextFile;
 begin
   Qry_DesabilitaBotao(btnExcluir);
 
@@ -302,16 +364,76 @@ begin
     Abort;
   end;
 
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Excluido.txt';
+  AssignFile(Arquivo, NomeDoLog);
+
+  if (FileExists(NomeDoLog)) then
+  begin
+    Append(Arquivo);
+  end
+  else
+  begin
+    Rewrite(Arquivo);
+  end;
+
+  if (FileExists(NomeDoLog)) then
+  begin
+    Append(Arquivo);
+  end
+  else
+  begin
+    Rewrite(Arquivo);
+  end;
+
+  try
+    Excluir;
+    Writeln(Arquivo, 'Log de Exclusão de Registros');
+    Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
+    Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
+    Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
+    Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
+    Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+  finally
+    CloseFile(Arquivo);
+  end;
+
   DesabilitarCampos;
 end;
 
 procedure TPessoaF.btnAtualizarClick(Sender: TObject);
+var
+  NomeDoLog: String;
+  Arquivo: TextFile;
 begin
   DM.qryPessoa.Refresh;
   DM.qryEstados.Refresh;
   inherited;
   DesabilitarCampos;
   Qry_DesabilitaBotao(btnAtualizar);
+
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Alterado.txt';
+  AssignFile(Arquivo, NomeDoLog);
+
+  if (FileExists(NomeDoLog)) then
+  begin
+    Append(Arquivo);
+  end
+  else
+  begin
+    Rewrite(Arquivo);
+  end;
+
+  try
+    Alterar;
+    Writeln(Arquivo, 'Log de Alteração de Registros');
+    Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
+    Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
+    Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
+    Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
+    Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+  finally
+    CloseFile(Arquivo);
+  end;
 end;
 
 procedure TPessoaF.btnCancelarClick(Sender: TObject);

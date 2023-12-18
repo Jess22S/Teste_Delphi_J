@@ -171,10 +171,10 @@ begin
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
   DM.qryLoglog_tabela.Value          := 'Pessoa';
-  DM.qryLoglog_operacao.Value        := 'incluiu';
+  DM.qryLoglog_operacao.Value        := 'Incluiu';
   DM.qryLog.Post;
-  DM.qryUsuario.Append;
-  DM.qryUsuariocadastro.Value        := Date;
+  DM.qryPessoa.Append;
+  DM.qryPessoacadastro.Value        := Date;
 end;
 
 procedure TPessoaF.Alterar;
@@ -186,10 +186,10 @@ begin
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
   DM.qryLoglog_tabela.Value          := 'Pessoa';
-  DM.qryLoglog_operacao.Value        := 'alterou';
+  DM.qryLoglog_operacao.Value        := 'Alterou';
   DM.qryLog.Post;
-  DM.qryUsuario.Append;
-  DM.qryUsuariocadastro.Value        := Date;
+  DM.qryPessoa.Append;
+  DM.qryPessoacadastro.Value        := Date;
 end;
 
 procedure TPessoaF.Excluir;
@@ -201,10 +201,10 @@ begin
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
   DM.qryLoglog_tabela.AsString       := 'Pessoa';
-  DM.qryLoglog_operacao.AsString     := 'excluiu';
+  DM.qryLoglog_operacao.AsString     := 'Excluiu';
   DM.qryLog.Post;
-  DM.qryUsuario.Append;
-  DM.qryUsuariocadastro.Value        := Date;
+  DM.qryPessoa.Append;
+  DM.qryPessoacadastro.Value        := Date;
 end;
 
 procedure TPessoaF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
@@ -295,12 +295,14 @@ begin
 
   try
     Incluir;
+    Writeln(Arquivo, '----------------------------');
     Writeln(Arquivo, 'Log de Inclusão de Registros');
     Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
     Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
     Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
     Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
     Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+    Writeln(Arquivo, '----------------------------');
   finally
     CloseFile(Arquivo);
   end;
@@ -385,12 +387,14 @@ begin
 
   try
     Excluir;
+    Writeln(Arquivo, '----------------------------');
     Writeln(Arquivo, 'Log de Exclusão de Registros');
     Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
     Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
     Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
     Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
     Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+    Writeln(Arquivo, '----------------------------');
   finally
     CloseFile(Arquivo);
   end;
@@ -423,12 +427,14 @@ begin
 
   try
     Alterar;
+    Writeln(Arquivo, '----------------------------');
     Writeln(Arquivo, 'Log de Alteração de Registros');
     Writeln(Arquivo, 'Data: ' + DateToStr(DM.qryLoglog_data.Value));
     Writeln(Arquivo, 'Hora: ' + TimeToStr(DM.qryLoglog_hora.Value));
     Writeln(Arquivo, 'Usuário: ' + DM.qryLoglog_nome_usuario.AsString);
     Writeln(Arquivo, 'Tabela: ' + DM.qryLoglog_tabela.AsString) ;
     Writeln(Arquivo, 'Operação: ' + DM.qryLoglog_operacao.AsString);
+    Writeln(Arquivo, '----------------------------');
   finally
     CloseFile(Arquivo);
   end;
