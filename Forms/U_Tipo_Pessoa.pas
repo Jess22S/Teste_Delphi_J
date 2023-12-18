@@ -52,8 +52,7 @@ implementation
 
 procedure TTipo_PessoaF.DesabilitarCampos;
 begin
-  edtNome.Enabled     := False;
-  edtCadastro.Enabled := False;
+  edtNome.Enabled := False;
 end;
 
 procedure TTipo_PessoaF.HabilitarCampos;
@@ -87,7 +86,8 @@ begin
   DM.qryLoglog_operacao.Value        := 'Incluiu';
   DM.qryLog.Post;
   DM.qryTipoPessoa.Append;
-  DM.qryTipoPessoacadastro.Value        := Date;
+  DM.qryTipoPessoacadastro.Value     := Date;
+  edtNome.Clear;
 end;
 
 procedure TTipo_PessoaF.Alterar;
@@ -102,7 +102,8 @@ begin
   DM.qryLoglog_operacao.Value        := 'Alterou';
   DM.qryLog.Post;
   DM.qryTipoPessoa.Append;
-  DM.qryTipoPessoacadastro.Value             := Date;
+  DM.qryTipoPessoacadastro.Value     := Date;
+  edtNome.Clear;
 end;
 
 procedure TTipo_PessoaF.Excluir;
@@ -117,7 +118,8 @@ begin
   DM.qryLoglog_operacao.AsString     := 'Excluiu';
   DM.qryLog.Post;
   DM.qryTipoPessoa.Append;
-  DM.qryTipoPessoacadastro.Value        := Date;
+  DM.qryTipoPessoacadastro.Value     := Date;
+  edtNome.Clear;
 end;
 
 procedure TTipo_PessoaF.btnNovoClick(Sender: TObject);
@@ -277,5 +279,6 @@ procedure TTipo_PessoaF.btnCancelarClick(Sender: TObject);
 begin
   inherited;
   DesabilitarCampos;
+   edtNome.Clear;
 end;
 end.

@@ -48,32 +48,36 @@ implementation
 
 {$R *.dfm}
 
-uses U_Usuario, U_Tipo_Pessoa;
+uses U_Usuario, U_Tipo_Pessoa, U_DM;
 
 procedure TPrincipalF.btnUsuarioClick(Sender: TObject);
 begin
-  UsuarioF := TUsuarioF.Create(Self);
-  UsuarioF.ShowModal;
-
-  try
-    //
-  finally
-    UsuarioF.Free;
-    UsuarioF := Nil;
+  if (not (Assigned(UsuarioF))) then
+  begin
+    UsuarioF := TUsuarioF.Create(Self);
   end;
+
+  UsuarioF.Show;
+end;
+
+procedure TPrincipalF.btnPessoaClick(Sender: TObject);
+begin
+  if (not (Assigned(UsuarioF))) then
+  begin
+    PessoaF := TPessoaF.Create(Self);
+  end;
+
+  PessoaF.Show;
 end;
 
 procedure TPrincipalF.btnTipoPessoaClick(Sender: TObject);
 begin
-  Tipo_PessoaF := TTipo_PessoaF.Create(Self);
-  Tipo_PessoaF.ShowModal;
-
-  try
-    //
-  finally
-    Tipo_PessoaF.Free;
-    Tipo_PessoaF := Nil;
+  if (not (Assigned(UsuarioF))) then
+  begin
+    Tipo_PessoaF := TTipo_PessoaF.Create(Self);
   end;
+
+  Tipo_PessoaF.Show;
 end;
 
 procedure TPrincipalF.btnFecharClick(Sender: TObject);
@@ -85,19 +89,6 @@ begin
   else
   begin
     Abort;
-  end;
-end;
-
-procedure TPrincipalF.btnPessoaClick(Sender: TObject);
-begin
-  PessoaF := TPessoaF.Create(Self);
-  PessoaF.ShowModal;
-
-  try
-    //
-  finally
-    PessoaF.Free;
-    PessoaF := Nil;
   end;
 end;
 
@@ -130,7 +121,8 @@ begin
   // INSERE DADOS NO STATUSBAR
   StatusBar1.Panels[0].Text := DateToStr(now);
   StatusBar1.Panels[1].Text := TimeToStr(now);
-  StatusBar1.Panels[2].Text := 'SEJA BEM-VINDO AO SISTEMA';
+  StatusBar1.Panels[2].Text := 'SEJA BEM-VINDO AO SISTEMA Sr(a): ' + DM.Usuario;
+  StatusBar1.Panels[3].Text := 'TIPO DE USUÁRIO: ' + DM.TipoUsuario;
 end;
 
 procedure TPrincipalF.mmUsuarioClick(Sender: TObject);

@@ -576,6 +576,9 @@ object DM: TDM
     end
   end
   object qryLogin: TFDQuery
+    MasterSource = UsuarioF.dsPadrao
+    MasterFields = 'id_usuario'
+    DetailFields = 'id_usuario'
     Connection = Conexao
     SQL.Strings = (
       'SELECT '
@@ -607,11 +610,6 @@ object DM: TDM
       Origin = 'tipo'
       Size = 30
     end
-  end
-  object dsLogin: TDataSource
-    DataSet = qryLogin
-    Left = 258
-    Top = 368
   end
   object qryLog: TFDQuery
     Connection = Conexao
@@ -663,8 +661,12 @@ object DM: TDM
     end
   end
   object dsLog: TDataSource
-    DataSet = qryLog
     Left = 258
     Top = 432
+  end
+  object dsLogin: TDataSource
+    DataSet = qryLogin
+    Left = 258
+    Top = 368
   end
 end

@@ -10,6 +10,7 @@ object PrincipalF: TPrincipalF
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  FormStyle = fsMDIForm
   Icon.Data = {
     0000010001004040000001002000284200001600000028000000400000008000
     0000010020000000000000420000000000000000000000000000000000000000
@@ -558,6 +559,7 @@ object PrincipalF: TPrincipalF
     ParentShowHint = False
     ShowHint = False
     TabOrder = 0
+    ExplicitWidth = 1329
     DesignSize = (
       1333
       100)
@@ -2190,8 +2192,13 @@ object PrincipalF: TPrincipalF
         Width = 150
       end
       item
-        Width = 50
+        Width = 400
+      end
+      item
+        Width = 250
       end>
+    ExplicitTop = 506
+    ExplicitWidth = 1329
   end
   object Panel2: TPanel
     Left = 0
@@ -2209,6 +2216,8 @@ object PrincipalF: TPrincipalF
     ParentBackground = False
     ParentFont = False
     TabOrder = 2
+    ExplicitWidth = 1329
+    ExplicitHeight = 406
   end
   object Timer1: TTimer
     OnTimer = Timer1Timer

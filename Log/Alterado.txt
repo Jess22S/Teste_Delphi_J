@@ -6,3 +6,11 @@ Usuário:
 Tabela: Tipo Pessoa
 Operação: alterou
 ----------------------------
+----------------------------
+Log de Alteração de Registros
+Data: 18/12/2023
+Hora: 05:58:21
+Usuário: 
+Tabela: Usuário
+Operação: Alterou
+----------------------------

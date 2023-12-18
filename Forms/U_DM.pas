@@ -105,23 +105,24 @@ type
     qryEnderecocidade: TStringField;
     cdsEnderecocidade: TStringField;
     qryLogin: TFDQuery;
-    dsLogin: TDataSource;
     qryLoginid_usuario: TIntegerField;
     qryLoginnome: TWideStringField;
     qryLoginsenha: TWideStringField;
     qryLogintipo: TWideStringField;
     qryLog: TFDQuery;
-    dsLog: TDataSource;
     qryLogid_log: TFDAutoIncField;
     qryLoglog_data: TDateField;
     qryLoglog_hora: TTimeField;
     qryLoglog_nome_usuario: TWideStringField;
     qryLoglog_operacao: TWideStringField;
     qryLoglog_tabela: TWideStringField;
+    dsLog: TDataSource;
+    dsLogin: TDataSource;
   private
     { Private declarations }
   public
     { Public declarations }
+    var Usuario, TipoUsuario: String;
   end;
 
 var
@@ -131,7 +132,7 @@ implementation
 
 {%CLASSGROUP 'Vcl.Controls.TControl'}
 
-uses U_Pessoa;
+uses U_Usuario;
 
 {$R *.dfm}
 

@@ -1,16 +1,19 @@
 inherited PessoaF: TPessoaF
+  BorderStyle = bsSizeToolWin
   Caption = 'CADASTRO DE PESSOA'
-  ClientHeight = 556
-  ClientWidth = 976
+  ClientHeight = 567
+  ClientWidth = 980
+  FormStyle = fsMDIChild
+  Visible = True
   OnShow = FormShow
   ExplicitWidth = 988
   ExplicitHeight = 594
   TextHeight = 15
   inherited Panel1: TPanel
-    Width = 976
+    Width = 980
     ExplicitWidth = 972
     inherited Panel3: TPanel
-      Left = 826
+      Left = 830
       ExplicitLeft = 822
       inherited btnSair: TBitBtn
         Left = 755
@@ -128,8 +131,8 @@ inherited PessoaF: TPessoaF
     end
   end
   inherited Panel2: TPanel
-    Top = 486
-    Width = 976
+    Top = 497
+    Width = 980
     Font.Charset = ANSI_CHARSET
     Font.Height = -19
     Font.Name = 'Monotype Corsiva'
@@ -148,8 +151,8 @@ inherited PessoaF: TPessoaF
   object PageControl1: TPageControl [2]
     Left = 0
     Top = 57
-    Width = 976
-    Height = 429
+    Width = 980
+    Height = 440
     ActivePage = tsEndereco
     Align = alClient
     TabOrder = 2
@@ -386,8 +389,8 @@ inherited PessoaF: TPessoaF
       end
       object s: TDBGrid
         Left = 0
-        Top = 176
-        Width = 968
+        Top = 187
+        Width = 972
         Height = 223
         Align = alBottom
         DataSource = dsPadrao
@@ -725,8 +728,8 @@ inherited PessoaF: TPessoaF
       end
       object grdCadEndereco: TDBGrid
         Left = 0
-        Top = 125
-        Width = 968
+        Top = 136
+        Width = 972
         Height = 274
         Align = alBottom
         DataSource = dsEndereco

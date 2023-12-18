@@ -1,7 +1,9 @@
 inherited Tipo_PessoaF: TTipo_PessoaF
-  Caption = 'CADASTRO DE CLIENTE'
-  ClientHeight = 435
-  ClientWidth = 1002
+  BorderStyle = bsSizeToolWin
+  Caption = 'CADASTRO DE TIPO PESSOA'
+  ClientHeight = 446
+  DoubleBuffered = True
+  Visible = True
   OnShow = FormShow
   ExplicitWidth = 1014
   ExplicitHeight = 473
@@ -46,19 +48,16 @@ inherited Tipo_PessoaF: TTipo_PessoaF
     ParentFont = False
   end
   inherited Panel1: TPanel
-    Width = 1002
     ExplicitWidth = 998
     inherited btnExcluir: TBitBtn
       OnClick = btnExcluirClick
     end
     inherited Panel3: TPanel
-      Left = 852
       ExplicitLeft = 848
     end
   end
   inherited Panel2: TPanel
-    Top = 365
-    Width = 1002
+    Top = 376
     TabOrder = 4
     ExplicitTop = 364
     ExplicitWidth = 998
@@ -103,8 +102,8 @@ inherited Tipo_PessoaF: TTipo_PessoaF
   end
   object DBGrid1: TDBGrid [8]
     Left = 0
-    Top = 142
-    Width = 1002
+    Top = 153
+    Width = 1006
     Height = 223
     Align = alBottom
     DataSource = dsPadrao

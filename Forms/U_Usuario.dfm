@@ -1,7 +1,9 @@
 inherited UsuarioF: TUsuarioF
+  BorderStyle = bsSizeToolWin
   Caption = 'CADASTRO DE USU'#193'RIOS'
-  ClientHeight = 322
-  ClientWidth = 987
+  ClientHeight = 333
+  ClientWidth = 991
+  Visible = True
   OnShow = FormShow
   ExplicitWidth = 999
   ExplicitHeight = 360
@@ -76,7 +78,7 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   inherited Panel1: TPanel
-    Width = 987
+    Width = 991
     TabOrder = 5
     ExplicitWidth = 983
     inherited btnNovo: TBitBtn
@@ -124,13 +126,13 @@ inherited UsuarioF: TUsuarioF
       ExplicitWidth = 103
     end
     inherited Panel3: TPanel
-      Left = 837
+      Left = 841
       ExplicitLeft = 833
     end
   end
   inherited Panel2: TPanel
-    Top = 252
-    Width = 987
+    Top = 263
+    Width = 991
     TabOrder = 6
     ExplicitTop = 251
     ExplicitWidth = 983
