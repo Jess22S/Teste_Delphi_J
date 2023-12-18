@@ -69,7 +69,7 @@ begin
    DM.qryLogin.SQL.Clear;
    DM.qryLogin.Params.Clear;
    DM.qryLogin.SQL.Add('SELECT * FROM USUARIO');
-   DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME AND SENHA = :PSENHA AND TIPO = :PTIPO');
+   DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME AND SENHA = :PSENHA AND TIPO = :pTipo');
    DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
    DM.qryLogin.ParamByName('PSENHA').AsString := edtSenha.Text;
    DM.qryLogin.ParamByName('PTIPO').AsString  := cmbTipo.Text;

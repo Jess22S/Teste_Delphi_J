@@ -1,8 +1,9 @@
 inherited Tipo_PessoaF: TTipo_PessoaF
   Caption = 'CADASTRO DE CLIENTE'
-  ClientHeight = 435
+  ClientHeight = 436
   OnShow = FormShow
-  ExplicitHeight = 474
+  ExplicitWidth = 1022
+  ExplicitHeight = 475
   TextHeight = 15
   object lblID: TLabel [0]
     Left = 119
@@ -44,14 +45,19 @@ inherited Tipo_PessoaF: TTipo_PessoaF
     ParentFont = False
   end
   inherited Panel1: TPanel
+    ExplicitWidth = 1006
     inherited btnExcluir: TBitBtn
       OnClick = btnExcluirClick
     end
+    inherited Panel3: TPanel
+      ExplicitLeft = 856
+    end
   end
   inherited Panel2: TPanel
-    Top = 365
+    Top = 366
     TabOrder = 4
-    ExplicitTop = 365
+    ExplicitTop = 366
+    ExplicitWidth = 1006
     inherited BindNavigator1: TBindNavigator
       Left = 230
       Width = 532
@@ -93,8 +99,8 @@ inherited Tipo_PessoaF: TTipo_PessoaF
   end
   object DBGrid1: TDBGrid [8]
     Left = 0
-    Top = 142
-    Width = 1002
+    Top = 143
+    Width = 1006
     Height = 223
     Align = alBottom
     DataSource = dsPadrao

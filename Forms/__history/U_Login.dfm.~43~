@@ -907,7 +907,7 @@ object LoginF: TLoginF
       Caption = 'Usu'#225'rio:'
       Color = clWhite
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
+      Font.Color = clWindowText
       Font.Height = -19
       Font.Name = 'Monotype Corsiva'
       Font.Style = [fsBold, fsItalic]
@@ -922,7 +922,7 @@ object LoginF: TLoginF
       Caption = 'Senha:'
       Color = clWhite
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
+      Font.Color = clWindowText
       Font.Height = -19
       Font.Name = 'Monotype Corsiva'
       Font.Style = [fsBold, fsItalic]
@@ -937,7 +937,7 @@ object LoginF: TLoginF
       Caption = 'Tipo:'
       Color = clWhite
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
+      Font.Color = clWindowText
       Font.Height = -19
       Font.Name = 'Monotype Corsiva'
       Font.Style = [fsBold, fsItalic]

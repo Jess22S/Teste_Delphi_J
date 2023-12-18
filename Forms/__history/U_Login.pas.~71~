@@ -15,10 +15,10 @@ type
     lblSenha: TLabel;
     btnEntrar: TBitBtn;
     lblTipo: TLabel;
+    cmbTipo: TDBComboBox;
     btnCancelar: TBitBtn;
     edtNome: TDBEdit;
     edtSenha: TDBEdit;
-    cmbTipo: TDBComboBox;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnCancelarClick(Sender: TObject);
@@ -41,7 +41,7 @@ uses U_DM, U_Principal;
 
 procedure TLoginF.LimparCampos;
 begin
-  edtNome.Clear;
+  edtUsuario.Clear;
   edtSenha.Clear;
   cmbTipo.ItemIndex := 0;
 end;
@@ -69,16 +69,16 @@ begin
    DM.qryLogin.SQL.Clear;
    DM.qryLogin.Params.Clear;
    DM.qryLogin.SQL.Add('SELECT * FROM USUARIO');
-   DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME AND SENHA = :PSENHA AND TIPO = :PTIPO');
-   DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
+   DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME AND SENHA = :PSENHA AND TIPO = :pTipo');
+   DM.qryLogin.ParamByName('PNOME').AsString  := edtUsuario.Text;
    DM.qryLogin.ParamByName('PSENHA').AsString := edtSenha.Text;
    DM.qryLogin.ParamByName('PTIPO').AsString  := cmbTipo.Text;
    DM.qryLogin.Open;
 
-   if (edtNome.Text = EmptyStr) then
+   if (edtUsuario.Text = EmptyStr) then
    begin
       ShowMessage('Favor Preencha o Usuário!');
-      edtNome.SetFocus;
+      edtUsuario.SetFocus;
       Exit;
    end;
 
@@ -99,7 +99,7 @@ begin
    if DM.qryLogin.RecordCount = 0 then
    Begin
       MessageDlg('Senha ou Usuário incorretos!', mtInformation, [mbOk], 0);
-      edtNome.SetFocus;
+      edtUsuario.SetFocus;
    end
    else
    begin
@@ -112,7 +112,7 @@ begin
        PrincipalF.btnUsuario.Visible := False;
      end;
 
-     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+     MessageDlg('Seja bem vindo ' + edtUsuario.Text + '', mtInformation, [mbOk], 0);
      PrincipalF:= TPrincipalF.create(Self);
      PrincipalF.ShowModal;
      LoginF.Hide;

@@ -119,7 +119,6 @@ inherited UsuarioF: TUsuarioF
     inherited btnPesquisar: TBitBtn
       Left = 648
       Width = 103
-      Visible = False
       ExplicitLeft = 648
       ExplicitWidth = 103
     end

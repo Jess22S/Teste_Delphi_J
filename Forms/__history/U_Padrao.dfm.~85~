@@ -3,8 +3,8 @@ object PadraoF: TPadraoF
   Top = 0
   BorderStyle = bsDialog
   Caption = 'Formul'#225'rio Padr'#227'o'
-  ClientHeight = 477
-  ClientWidth = 1002
+  ClientHeight = 478
+  ClientWidth = 1006
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -153,12 +153,13 @@ object PadraoF: TPadraoF
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1002
+    Width = 1006
     Height = 57
     Align = alTop
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 1002
     object btnNovo: TBitBtn
       Left = 13
       Top = 5
@@ -1043,13 +1044,15 @@ object PadraoF: TPadraoF
   end
   object Panel2: TPanel
     Left = 0
-    Top = 407
-    Width = 1002
+    Top = 408
+    Width = 1006
     Height = 70
     Align = alBottom
     Color = clSkyBlue
     ParentBackground = False
     TabOrder = 1
+    ExplicitTop = 407
+    ExplicitWidth = 1002
     object BindNavigator1: TBindNavigator
       Left = 331
       Top = 10

@@ -199,10 +199,7 @@ begin
 
     HabilitarCampos;
     DM.qryPessoa.Append;
-    DM.qryTipoPessoa.Append;
     DM.qryEndereco.Append;
-    DM.qryEstados.Append;
-    DM.qryCidades.Append;
     DM.qryPessoa.Active;
     DM.qryEndereco.Active;
     DM.qryTipoPessoa.Active;
@@ -235,6 +232,10 @@ procedure TPessoaF.btnNovoEnderecoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
+    DM.qryEndereco.Active;
+    DM.qryEstados.Active;
+    DM.qryCidades.Active;
+
     DM.qryEndereco.Last;
     Prox := DM.qryEnderecoid_endereco.AsInteger + 1;
     DM.qryEndereco.Append;

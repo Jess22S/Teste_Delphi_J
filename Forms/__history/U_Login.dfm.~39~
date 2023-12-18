@@ -907,7 +907,7 @@ object LoginF: TLoginF
       Caption = 'Usu'#225'rio:'
       Color = clWhite
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
+      Font.Color = clWindowText
       Font.Height = -19
       Font.Name = 'Monotype Corsiva'
       Font.Style = [fsBold, fsItalic]
@@ -922,7 +922,7 @@ object LoginF: TLoginF
       Caption = 'Senha:'
       Color = clWhite
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
+      Font.Color = clWindowText
       Font.Height = -19
       Font.Name = 'Monotype Corsiva'
       Font.Style = [fsBold, fsItalic]
@@ -937,7 +937,7 @@ object LoginF: TLoginF
       Caption = 'Tipo:'
       Color = clWhite
       Font.Charset = ANSI_CHARSET
-      Font.Color = clWhite
+      Font.Color = clWindowText
       Font.Height = -19
       Font.Name = 'Monotype Corsiva'
       Font.Style = [fsBold, fsItalic]
@@ -1055,7 +1055,7 @@ object LoginF: TLoginF
         B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8
         B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6}
       ParentFont = False
-      TabOrder = 3
+      TabOrder = 0
       OnClick = btnEntrarClick
     end
     object btnCancelar: TBitBtn
@@ -1169,7 +1169,7 @@ object LoginF: TLoginF
         B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8
         B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6}
       ParentFont = False
-      TabOrder = 4
+      TabOrder = 1
       OnClick = btnCancelarClick
     end
     object edtNome: TDBEdit
@@ -1180,7 +1180,7 @@ object LoginF: TLoginF
       CharCase = ecUpperCase
       DataField = 'nome'
       DataSource = DM.dsLogin
-      TabOrder = 0
+      TabOrder = 2
     end
     object edtSenha: TDBEdit
       Left = 40
@@ -1188,9 +1188,8 @@ object LoginF: TLoginF
       Width = 201
       Height = 23
       DataField = 'senha'
-      DataSource = DM.dsLogin
       PasswordChar = '*'
-      TabOrder = 1
+      TabOrder = 3
     end
     object cmbTipo: TDBComboBox
       Left = 40
@@ -1198,11 +1197,10 @@ object LoginF: TLoginF
       Width = 201
       Height = 23
       DataField = 'tipo'
-      DataSource = DM.dsLogin
       Items.Strings = (
         'ADMINISTRADOR'
         'APOIO')
-      TabOrder = 2
+      TabOrder = 4
     end
   end
 end

@@ -15,7 +15,7 @@ uses
 begin
   Application.Initialize;
   Application.MainFormOnTaskbar := True;
+  Application.CreateForm(TLoginF, LoginF);
   Application.CreateForm(TDM, DM);
-  Application.CreateForm(TPrincipalF, PrincipalF);
   Application.Run;
 end.

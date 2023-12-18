@@ -1,13 +1,13 @@
 inherited PessoaF: TPessoaF
   Caption = 'CADASTRO DE PESSOA'
-  ClientHeight = 556
-  ClientWidth = 976
+  ClientHeight = 555
+  ClientWidth = 972
   OnShow = FormShow
   ExplicitWidth = 988
   ExplicitHeight = 594
   TextHeight = 15
   inherited Panel1: TPanel
-    Width = 976
+    Width = 972
     ExplicitWidth = 972
     inherited Panel3: TPanel
       Left = 826
@@ -128,8 +128,8 @@ inherited PessoaF: TPessoaF
     end
   end
   inherited Panel2: TPanel
-    Top = 486
-    Width = 976
+    Top = 485
+    Width = 972
     Font.Charset = ANSI_CHARSET
     Font.Height = -19
     Font.Name = 'Monotype Corsiva'
@@ -148,13 +148,11 @@ inherited PessoaF: TPessoaF
   object PageControl1: TPageControl [2]
     Left = 0
     Top = 57
-    Width = 976
-    Height = 429
-    ActivePage = tsEndereco
+    Width = 972
+    Height = 428
+    ActivePage = tsDadosPessoais
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 972
-    ExplicitHeight = 428
     object tsDadosPessoais: TTabSheet
       Caption = 'Dados Pessoais'
       object lblID: TLabel
@@ -830,7 +828,6 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
-            Width = 300
             Visible = True
           end
           item
@@ -849,7 +846,6 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
-            Width = 100
             Visible = True
           end
           item
@@ -868,7 +864,6 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
-            Width = 150
             Visible = True
           end
           item
@@ -887,7 +882,6 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
-            Width = 150
             Visible = True
           end
           item
@@ -906,7 +900,6 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
-            Width = 300
             Visible = True
           end
           item
@@ -925,7 +918,6 @@ inherited PessoaF: TPessoaF
             Title.Font.Height = -12
             Title.Font.Name = 'Verdana'
             Title.Font.Style = [fsBold, fsItalic]
-            Width = 150
             Visible = True
           end>
       end

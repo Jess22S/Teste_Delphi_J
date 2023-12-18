@@ -1204,5 +1204,23 @@ object LoginF: TLoginF
         'APOIO')
       TabOrder = 2
     end
+    object DBEdit1: TDBEdit
+      Left = 128
+      Top = 18
+      Width = 100
+      Height = 23
+      DataField = 'nome'
+      DataSource = DM.dsLogin
+      TabOrder = 5
+    end
+    object DBEdit2: TDBEdit
+      Left = 128
+      Top = 76
+      Width = 100
+      Height = 23
+      DataField = 'senha'
+      DataSource = DM.dsLogin
+      TabOrder = 6
+    end
   end
 end

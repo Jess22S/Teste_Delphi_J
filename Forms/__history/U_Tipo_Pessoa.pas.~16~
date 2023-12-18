@@ -112,7 +112,7 @@ begin
 
   if (MessageDlg('Deseja excluir este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
   begin
-    DM.qryTipoPessoa.Delete;
+    DM.qryUsuario.Delete;
     MessageDlg('Registro excluído com sucesso!', mtInformation, [mbOk], 0);
   end
   else
