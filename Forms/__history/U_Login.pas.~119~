@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, Vcl.StdCtrls,
-  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons;
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons, Vcl.ComCtrls;
 
 type
   TLoginF = class(TForm)
@@ -19,7 +19,7 @@ type
     edtSenha: TEdit;
     cmbTipo: TComboBox;
     imgLogin: TImage;
-    Timer1: TTimer;
+    StatusBar1: TStatusBar;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnCancelarClick(Sender: TObject);
@@ -34,6 +34,7 @@ type
 
 var
   LoginF: TLoginF;
+  StatusBar1: TPanel;
 
 implementation
 
@@ -62,11 +63,12 @@ end;
 
 procedure TLoginF.btnEntrarClick(Sender: TObject);
 begin
+   Inc(Contagem);
    DM.qryLogin.Close;
    DM.qryLogin.SQL.Add('');
    DM.qryLogin.SQL.Clear;
    DM.qryLogin.Params.Clear;
-   DM.qryLogin.SQL.Add('SELECT * FROM USUARIO');
+   DM.qryLogin.SQL.Add('SELECT ID_USUARIO, NOME, SENHA, TIPO FROM USUARIO');
    DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME AND SENHA = :PSENHA AND TIPO = :PTIPO');
    DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
    DM.qryLogin.ParamByName('PSENHA').AsString := edtSenha.Text;
@@ -94,19 +96,22 @@ begin
       Exit;
    end;
 
-   MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-   DM.Usuario := edtNome.Text;
-   DM.TipoUsuario := cmbTipo.Text;
-   PrincipalF:= TPrincipalF.create(Self);
-
-   if (cmbTipo.Text = 'Apoio') then
+   if ((DM.qryLogin.ParamByName('PNOME').AsString  <> edtNome.Text) or
+       (DM.qryLogin.ParamByName('PSENHA').AsString <> edtSenha.Text) or
+       (DM.qryLogin.ParamByName('PTIPO').AsString  <> cmbTipo.Text)) then
    begin
-     PrincipalF.btnUsuario.Visible := False;
-     PrincipalF.mmUsuario.Visible  := False;
+     Contagem := Contagem + 1;
+     ShowMessage('Nome, Senha e/ou Tipo incorreto(s)!');
+   end
+   else
+   begin
+     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+     DM.Usuario     := edtNome.Text;
+     DM.TipoUsuario := cmbTipo.Text;
+     PrincipalF     := TPrincipalF.create(Self);
+     PrincipalF.ShowModal;
+     Contagem       := 0;
    end;
-
-   PrincipalF.ShowModal;
-   LoginF.Hide;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);

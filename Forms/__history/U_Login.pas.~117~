@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, Vcl.StdCtrls,
-  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons;
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons, Vcl.ComCtrls;
 
 type
   TLoginF = class(TForm)
@@ -19,7 +19,7 @@ type
     edtSenha: TEdit;
     cmbTipo: TComboBox;
     imgLogin: TImage;
-    Timer1: TTimer;
+    StatusBar1: TStatusBar;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnCancelarClick(Sender: TObject);
@@ -34,6 +34,7 @@ type
 
 var
   LoginF: TLoginF;
+  StatusBar1: TPanel;
 
 implementation
 
@@ -62,6 +63,7 @@ end;
 
 procedure TLoginF.btnEntrarClick(Sender: TObject);
 begin
+   Inc(Contagem);
    DM.qryLogin.Close;
    DM.qryLogin.SQL.Add('');
    DM.qryLogin.SQL.Clear;
@@ -94,19 +96,13 @@ begin
       Exit;
    end;
 
+
    MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-   DM.Usuario := edtNome.Text;
+   DM.Usuario     := edtNome.Text;
    DM.TipoUsuario := cmbTipo.Text;
-   PrincipalF:= TPrincipalF.create(Self);
-
-   if (cmbTipo.Text = 'Apoio') then
-   begin
-     PrincipalF.btnUsuario.Visible := False;
-     PrincipalF.mmUsuario.Visible  := False;
-   end;
-
+   PrincipalF     := TPrincipalF.create(Self);
    PrincipalF.ShowModal;
-   LoginF.Hide;
+   Contagem       := 0;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);

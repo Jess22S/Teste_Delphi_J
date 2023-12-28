@@ -68,11 +68,11 @@ begin
    DM.qryLogin.SQL.Add('');
    DM.qryLogin.SQL.Clear;
    DM.qryLogin.Params.Clear;
-   DM.qryLogin.SQL.Add('SELECT * FROM USUARIO');
+   DM.qryLogin.SQL.Add('SELECT ID_USUARIO, NOME, SENHA, TIPO FROM USUARIO');
    DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME AND SENHA = :PSENHA AND TIPO = :PTIPO');
-   DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
-   DM.qryLogin.ParamByName('PSENHA').AsString := edtSenha.Text;
-   DM.qryLogin.ParamByName('PTIPO').AsString  := cmbTipo.Text;
+   DM.qryLogin.ParamByName('PNOME').AsString  := 'NOME';
+   DM.qryLogin.ParamByName('PSENHA').AsString := 'SENHA';
+   DM.qryLogin.ParamByName('PTIPO').AsString  := 'TIPO';
    DM.qryLogin.Open;
 
    if (edtNome.Text = EmptyStr) then
@@ -96,13 +96,22 @@ begin
       Exit;
    end;
 
-
-   MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-   DM.Usuario := edtNome.Text;
-   DM.TipoUsuario := cmbTipo.Text;
-   PrincipalF:= TPrincipalF.create(Self);
-   PrincipalF.ShowModal;
-   Contagem := 0;
+   if ((DM.qryLogin.ParamByName('PNOME').AsString  <> edtNome.Text) or
+       (DM.qryLogin.ParamByName('PSENHA').AsString <> edtSenha.Text) or
+       (DM.qryLogin.ParamByName('PTIPO').AsString  <> cmbTipo.Text)) then
+   begin
+     ShowMessage('Nome, Senha e/ou Tipo incorreto(s)!');
+     StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+   end
+   else
+   begin
+     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+     DM.Usuario     := edtNome.Text;
+     DM.TipoUsuario := cmbTipo.Text;
+     PrincipalF     := TPrincipalF.create(Self);
+     PrincipalF.ShowModal;
+     Contagem       := 0;
+   end;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);

@@ -5,7 +5,7 @@ interface
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Data.DB, Vcl.StdCtrls,
-  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons;
+  Vcl.Mask, Vcl.DBCtrls, Vcl.Buttons, Vcl.ComCtrls;
 
 type
   TLoginF = class(TForm)
@@ -19,6 +19,7 @@ type
     edtSenha: TEdit;
     cmbTipo: TComboBox;
     imgLogin: TImage;
+    StatusBar1: TStatusBar;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnCancelarClick(Sender: TObject);
@@ -52,7 +53,7 @@ procedure TLoginF.FormShow(Sender: TObject);
 begin
   LimparCampos;
   edtNome.SetFocus;
-  //StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+  StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
 end;
 
 procedure TLoginF.btnCancelarClick(Sender: TObject);
@@ -62,15 +63,16 @@ end;
 
 procedure TLoginF.btnEntrarClick(Sender: TObject);
 begin
+   Inc(Contagem);
    DM.qryLogin.Close;
    DM.qryLogin.SQL.Add('');
    DM.qryLogin.SQL.Clear;
    DM.qryLogin.Params.Clear;
-   DM.qryLogin.SQL.Add('SELECT * FROM USUARIO');
+   DM.qryLogin.SQL.Add('SELECT ID_USUARIO, NOME, SENHA, TIPO FROM USUARIO');
    DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME AND SENHA = :PSENHA AND TIPO = :PTIPO');
-   DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
-   DM.qryLogin.ParamByName('PSENHA').AsString := edtSenha.Text;
-   DM.qryLogin.ParamByName('PTIPO').AsString  := cmbTipo.Text;
+   DM.qryLogin.ParamByName('PNOME').AsString  := 'NOME';
+   DM.qryLogin.ParamByName('PSENHA').AsString := 'SENHA';
+   DM.qryLogin.ParamByName('PTIPO').AsString  := 'TIPO';
    DM.qryLogin.Open;
 
    if (edtNome.Text = EmptyStr) then
@@ -94,15 +96,22 @@ begin
       Exit;
    end;
 
-
-   if (DM.qryLogin.RecordCount > 0) then
+   if ((DM.qryLogin.ParamByName('PNOME').AsString  <> edtNome.Text) or
+       (DM.qryLogin.ParamByName('PSENHA').AsString <> edtSenha.Text) or
+       (DM.qryLogin.ParamByName('PTIPO').AsString  <> cmbTipo.Text)) then
+   begin
+     Contagem := Contagem + 1;
+     ShowMessage('Nome, Senha e/ou Tipo incorreto(s)!');
+     StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+   end
+   else
    begin
      MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-     DM.Usuario := edtNome.Text;
+     DM.Usuario     := edtNome.Text;
      DM.TipoUsuario := cmbTipo.Text;
-     PrincipalF:= TPrincipalF.create(Self);
+     PrincipalF     := TPrincipalF.create(Self);
      PrincipalF.ShowModal;
-     LoginF.Hide;
+     Contagem       := 0;
    end;
 end;
 

@@ -24,7 +24,7 @@ object LoginF: TLoginF
     ParentBackground = False
     TabOrder = 0
     ExplicitWidth = 405
-    ExplicitHeight = 264
+    ExplicitHeight = 277
     object lblUsuario: TLabel
       Left = 40
       Top = 16
@@ -1884,7 +1884,8 @@ object LoginF: TLoginF
         item
           Width = 50
         end>
-      ExplicitTop = 258
+      ExplicitTop = 256
+      ExplicitWidth = 403
     end
   end
 end
