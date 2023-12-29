@@ -379,7 +379,7 @@ begin
   DM.qryEndereco.Close;
   DM.qryTipoPessoa.Close;
   DM.qryEstados.Close;
-  DM.qryCidades.Close;
+  DM.qryCidades.Open;
 end;
 
 procedure TPessoaF.btnEditarClick(Sender: TObject);

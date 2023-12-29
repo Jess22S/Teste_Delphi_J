@@ -375,7 +375,6 @@ object PadraoF: TPadraoF
         DADFDFDADDDDD9DCD9D6D5D4CFCECCC8C3C2BDB6B6B1B5B7B3B8B9B6B8B9B6B8
         B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6B8B9B6}
       TabOrder = 1
-      OnClick = btnExcluirClick
     end
     object btnEditar: TBitBtn
       Left = 225

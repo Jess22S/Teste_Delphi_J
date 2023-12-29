@@ -106,7 +106,6 @@ inherited Tipo_PessoaF: TTipo_PessoaF
     Height = 223
     Align = alBottom
     DataSource = dsPadrao
-    ReadOnly = True
     TabOrder = 5
     TitleFont.Charset = DEFAULT_CHARSET
     TitleFont.Color = clWindowText

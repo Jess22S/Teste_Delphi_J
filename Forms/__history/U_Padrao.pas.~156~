@@ -36,7 +36,6 @@ type
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
-    procedure btnExcluirClick(Sender: TObject);
   private
     { Private declarations }
     procedure HabilitarBotoes;
@@ -107,12 +106,6 @@ begin
   DesabilitarBotoes;
   btnGravar.Enabled := False;
   btnAtualizar.Enabled := True; 
-end;
-
-procedure TPadraoF.btnExcluirClick(Sender: TObject);
-begin
-  MessageDlg('Registro excluído com sucesso!', mtInformation, [mbOk], 0);
-  HabilitarBotoes;
 end;
 
 procedure TPadraoF.btnGravarClick(Sender: TObject);

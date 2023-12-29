@@ -79,8 +79,6 @@ begin
   begin
     btnUsuario.Enabled := False;
     mmUsuario.Enabled  := False;
-    btnUsuario.Visible := False;
-    mmUsuario.Visible  := False;
   end;
 
   Timer1Timer(Self);

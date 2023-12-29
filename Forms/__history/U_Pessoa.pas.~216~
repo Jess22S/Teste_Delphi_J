@@ -73,7 +73,6 @@ type
     procedure btnCancelarClick(Sender: TObject);
     procedure btnNovoEnderecoClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
-    procedure btnSairClick(Sender: TObject);
   private
     { Private declarations }
     procedure HabilitarCampos;
@@ -370,16 +369,6 @@ begin
 
   DM.qryCidades.Open;
   DM.qryCidades.FetchAll;
-end;
-
-procedure TPessoaF.btnSairClick(Sender: TObject);
-begin
-  inherited;
-  DM.qryPessoa.Close;
-  DM.qryEndereco.Close;
-  DM.qryTipoPessoa.Close;
-  DM.qryEstados.Close;
-  DM.qryCidades.Close;
 end;
 
 procedure TPessoaF.btnEditarClick(Sender: TObject);

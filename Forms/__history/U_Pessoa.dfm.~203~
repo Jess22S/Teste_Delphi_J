@@ -1,14 +1,14 @@
 inherited PessoaF: TPessoaF
   BorderStyle = bsSizeToolWin
   Caption = 'CADASTRO DE PESSOA'
-  ClientHeight = 555
-  ClientWidth = 972
+  ClientHeight = 543
+  ClientWidth = 964
   OnShow = FormShow
   ExplicitWidth = 980
   ExplicitHeight = 582
   TextHeight = 15
   inherited Panel1: TPanel
-    Width = 972
+    Width = 964
     ExplicitWidth = 964
     inherited Panel3: TPanel
       Left = 822
@@ -129,8 +129,8 @@ inherited PessoaF: TPessoaF
     end
   end
   inherited Panel2: TPanel
-    Top = 485
-    Width = 972
+    Top = 473
+    Width = 964
     Font.Charset = ANSI_CHARSET
     Font.Height = -19
     Font.Name = 'Monotype Corsiva'
@@ -149,13 +149,11 @@ inherited PessoaF: TPessoaF
   object PageControl1: TPageControl [2]
     Left = 0
     Top = 57
-    Width = 972
-    Height = 428
+    Width = 964
+    Height = 416
     ActivePage = tsEndereco
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 964
-    ExplicitHeight = 416
     object tsDadosPessoais: TTabSheet
       Caption = 'Dados Pessoais'
       object lblID: TLabel
@@ -387,8 +385,8 @@ inherited PessoaF: TPessoaF
       end
       object s: TDBGrid
         Left = 0
-        Top = 175
-        Width = 964
+        Top = 163
+        Width = 956
         Height = 223
         Align = alBottom
         DataSource = dsPadrao
@@ -527,9 +525,9 @@ inherited PessoaF: TPessoaF
       object lblEndereco: TLabel
         Left = 65
         Top = 1
-        Width = 81
+        Width = 97
         Height = 25
-        Caption = 'Endereco:'
+        Caption = 'Endereco 1:'
         FocusControl = edtEndereco
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText

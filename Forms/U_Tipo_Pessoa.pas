@@ -29,6 +29,7 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
   private
     { Private declarations }
     procedure HabilitarCampos;
@@ -81,7 +82,7 @@ begin
   DM.qryLog.Insert;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.Usuario;
   DM.qryLoglog_tabela.Value          := 'Tipo Pessoa';
   DM.qryLoglog_operacao.Value        := 'Incluiu';
   DM.qryLog.Post;
@@ -97,7 +98,7 @@ begin
   DM.qryLog.Edit;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.Usuario;
   DM.qryLoglog_tabela.Value          := 'Tipo Pessoa';
   DM.qryLoglog_operacao.Value        := 'Alterou';
   DM.qryLog.Post;
@@ -113,7 +114,7 @@ begin
   DM.qryLog.Edit;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.Usuario;
   DM.qryLoglog_tabela.AsString       := 'Tipo Pessoa';
   DM.qryLoglog_operacao.AsString     := 'Excluiu';
   DM.qryLog.Post;
@@ -143,6 +144,12 @@ begin
   edtCadastro.Enabled:= False;
 end;
 
+procedure TTipo_PessoaF.btnPesquisarClick(Sender: TObject);
+begin
+  DM.qryTipoPessoa.Open;
+  inherited;
+end;
+
 procedure TTipo_PessoaF.btnGravarClick(Sender: TObject);
 var
   NomeDoLog: String;
@@ -151,7 +158,7 @@ begin
   inherited;
   DesabilitarCampos;
 
-  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Gravado.txt';
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Programa - Teste Delphi\Teste_Delphi_J\Log\Gravado.txt';
   AssignFile(Arquivo, NomeDoLog);
 
   if (FileExists(NomeDoLog)) then
@@ -191,6 +198,7 @@ var
   Arquivo: TextFile;
 begin
    Qry_DesabilitaBotao(btnExcluir);
+   inherited;
 
   if (MessageDlg('Deseja excluir este registro?', mtConfirmation, [mbOk, mbNo], 0) = mrOk) then
   begin
@@ -202,7 +210,7 @@ begin
     Abort;
   end;
 
-  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Excluido.txt';
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Programa - Teste Delphi\Teste_Delphi_J\Log\Excluido.txt';
   AssignFile(Arquivo, NomeDoLog);
 
   if (FileExists(NomeDoLog)) then
@@ -248,7 +256,7 @@ begin
   inherited;
   DesabilitarCampos;
 
-  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Alterado.txt';
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Programa - Teste Delphi\Teste_Delphi_J\Log\Alterado.txt';
   AssignFile(Arquivo, NomeDoLog);
 
   if (FileExists(NomeDoLog)) then
@@ -279,6 +287,8 @@ procedure TTipo_PessoaF.btnCancelarClick(Sender: TObject);
 begin
   inherited;
   DesabilitarCampos;
-   edtNome.Clear;
+  edtID.Clear;
+  edtNome.Clear;
+  edtCadastro.Clear;
 end;
 end.

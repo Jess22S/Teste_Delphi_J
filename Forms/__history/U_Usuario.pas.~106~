@@ -52,17 +52,17 @@ implementation
 
 procedure TUsuarioF.DesabilitarCampos;
 begin
-  edtNome.Enabled  := False;
-  edtSenha.Enabled := False;
-  cmbTipo.Enabled  := False;
+  edtNome.Enabled   := False;
+  edtSenha.Enabled  := False;
+  cmbTipo.Enabled   := False;
 end;
 
 procedure TUsuarioF.HabilitarCampos;
 begin
-  edtNome.Enabled   := True;
-  edtSenha.Enabled  := True;
-  cmbTipo.Enabled   := True;
+  edtNome.Enabled  := True;
+  edtSenha.Enabled := True;
   cmbTipo.ItemIndex := 0;
+  cmbTipo.Enabled  := True;
 end;
 
 procedure TUsuarioF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);

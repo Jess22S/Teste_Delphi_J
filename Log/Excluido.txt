@@ -62,3 +62,115 @@ Usuário: ADMIN
 Tabela: Usuário
 Operação: Excluiu
 ----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:16:49
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:17:08
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:18:17
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:19:29
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:19:34
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:19:46
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:19:57
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:20:08
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:20:25
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:20:37
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:20:47
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:20:59
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:21:09
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 29/12/2023
+Hora: 15:21:18
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------

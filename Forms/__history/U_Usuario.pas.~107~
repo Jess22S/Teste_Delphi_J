@@ -61,8 +61,8 @@ procedure TUsuarioF.HabilitarCampos;
 begin
   edtNome.Enabled   := True;
   edtSenha.Enabled  := True;
-  cmbTipo.Enabled   := True;
   cmbTipo.ItemIndex := 0;
+  cmbTipo.Enabled   := True;
 end;
 
 procedure TUsuarioF.Qry_DesabilitaBotao(btnPadrao: TBitBtn);
