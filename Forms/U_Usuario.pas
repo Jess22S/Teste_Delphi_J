@@ -52,15 +52,16 @@ implementation
 
 procedure TUsuarioF.DesabilitarCampos;
 begin
-  edtNome.Enabled  := False;
-  edtSenha.Enabled := False;
-  cmbTipo.Enabled  := False;
+  edtNome.Enabled   := False;
+  edtSenha.Enabled  := False;
+  cmbTipo.Enabled   := False;
 end;
 
 procedure TUsuarioF.HabilitarCampos;
 begin
   edtNome.Enabled  := True;
   edtSenha.Enabled := True;
+  cmbTipo.ItemIndex := 0;
   cmbTipo.Enabled  := True;
 end;
 
@@ -82,7 +83,6 @@ procedure TUsuarioF.LimparCampos;
 begin
   edtNome.Clear;
   edtSenha.Clear;
-  cmbTipo.Clear;
 end;
 
 procedure TUsuarioF.Incluir;
@@ -92,7 +92,7 @@ begin
   DM.qryLog.Insert;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.Usuario;
   DM.qryLoglog_tabela.Value          := 'Usuário';
   DM.qryLoglog_operacao.Value        := 'Incluiu';
   DM.qryLog.Post;
@@ -108,7 +108,7 @@ begin
   DM.qryLog.Edit;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.Usuario;
   DM.qryLoglog_tabela.Value          := 'Usuário';
   DM.qryLoglog_operacao.Value        := 'Alterou';
   DM.qryLog.Post;
@@ -124,7 +124,7 @@ begin
   DM.qryLog.Edit;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.Usuario;
   DM.qryLoglog_tabela.AsString       := 'Usuário';
   DM.qryLoglog_operacao.AsString     := 'Excluiu';
   DM.qryLog.Post;
@@ -162,7 +162,7 @@ begin
   inherited;
   DesabilitarCampos;
 
-  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Gravado.txt';
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Programa - Teste Delphi\Teste_Delphi_J\Log\Gravado.txt';
   AssignFile(Arquivo, NomeDoLog);
 
   if (FileExists(NomeDoLog)) then
@@ -224,7 +224,7 @@ begin
     Abort;
   end;
 
-  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Excluido.txt';
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Programa - Teste Delphi\Teste_Delphi_J\Log\Excluido.txt';
   AssignFile(Arquivo, NomeDoLog);
 
   if (FileExists(NomeDoLog)) then
@@ -272,7 +272,7 @@ begin
   DesabilitarCampos;
   Qry_DesabilitaBotao(btnAtualizar);
 
-  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Teste Delphi\Log\Alterado.txt';
+  NomeDoLog := 'C:\Users\Jéssica\Documents\Jéssica\Programa - Teste Delphi\Teste_Delphi_J\Log\Alterado.txt';
   AssignFile(Arquivo, NomeDoLog);
 
   if (FileExists(NomeDoLog)) then

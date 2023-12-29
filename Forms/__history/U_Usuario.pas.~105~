@@ -30,11 +30,11 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
-    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     procedure HabilitarCampos;
     procedure DesabilitarCampos;
+    procedure LimparCampos;
     procedure Qry_DesabilitaBotao(btnPadrao: TBitBtn);
     procedure Incluir;
     procedure Alterar;
@@ -52,15 +52,16 @@ implementation
 
 procedure TUsuarioF.DesabilitarCampos;
 begin
-  edtNome.Enabled  := False;
-  edtSenha.Enabled := False;
-  cmbTipo.Enabled  := False;
+  edtNome.Enabled   := False;
+  edtSenha.Enabled  := False;
+  cmbTipo.Enabled   := False;
 end;
 
 procedure TUsuarioF.HabilitarCampos;
 begin
   edtNome.Enabled  := True;
   edtSenha.Enabled := True;
+  cmbTipo.ItemIndex := 0;
   cmbTipo.Enabled  := True;
 end;
 
@@ -78,6 +79,12 @@ begin
   DesabilitarCampos;
 end;
 
+procedure TUsuarioF.LimparCampos;
+begin
+  edtNome.Clear;
+  edtSenha.Clear;
+end;
+
 procedure TUsuarioF.Incluir;
 begin
   DM.qryLog.Open;
@@ -91,6 +98,7 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TUsuarioF.Alterar;
@@ -106,6 +114,7 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TUsuarioF.Excluir;
@@ -121,6 +130,7 @@ begin
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TUsuarioF.btnNovoClick(Sender: TObject);
@@ -129,6 +139,7 @@ var
 begin
   DM.qryUsuario.Open;
   inherited;
+  LimparCampos;
   HabilitarCampos;
   DM.qryUsuario.Append;
   DM.qryUsuario.Active;
@@ -291,8 +302,11 @@ end;
 procedure TUsuarioF.btnCancelarClick(Sender: TObject);
 begin
   DM.qryUsuario.Cancel;
+
   inherited;
   DesabilitarCampos;
+  LimparCampos;
+
   Qry_DesabilitaBotao(btnCancelar);
   Qry_DesabilitaBotao(btnExcluir);
   Qry_DesabilitaBotao(btnEditar);

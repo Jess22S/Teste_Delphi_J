@@ -34,6 +34,7 @@ type
     { Private declarations }
     procedure HabilitarCampos;
     procedure DesabilitarCampos;
+    procedure LimparCampos;
     procedure Qry_DesabilitaBotao(btnPadrao: TBitBtn);
     procedure Incluir;
     procedure Alterar;
@@ -77,6 +78,13 @@ begin
   DesabilitarCampos;
 end;
 
+procedure TUsuarioF.LimparCampos;
+begin
+  edtNome.Clear;
+  edtSenha.Clear;
+  cmbTipo.Clear;
+end;
+
 procedure TUsuarioF.Incluir;
 begin
   DM.qryLog.Open;
@@ -86,10 +94,11 @@ begin
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
   DM.qryLoglog_tabela.Value          := 'Usuário';
-  DM.qryLoglog_operacao.Value        := 'incluiu';
+  DM.qryLoglog_operacao.Value        := 'Incluiu';
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TUsuarioF.Alterar;
@@ -101,10 +110,11 @@ begin
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
   DM.qryLoglog_tabela.Value          := 'Usuário';
-  DM.qryLoglog_operacao.Value        := 'alterou';
+  DM.qryLoglog_operacao.Value        := 'Alterou';
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TUsuarioF.Excluir;
@@ -116,10 +126,11 @@ begin
   DM.qryLoglog_hora.Value            := Time;
   DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
   DM.qryLoglog_tabela.AsString       := 'Usuário';
-  DM.qryLoglog_operacao.AsString     := 'excluiu';
+  DM.qryLoglog_operacao.AsString     := 'Excluiu';
   DM.qryLog.Post;
   DM.qryUsuario.Append;
   DM.qryUsuariocadastro.Value        := Date;
+  LimparCampos;
 end;
 
 procedure TUsuarioF.btnNovoClick(Sender: TObject);
@@ -128,6 +139,7 @@ var
 begin
   DM.qryUsuario.Open;
   inherited;
+  LimparCampos;
   HabilitarCampos;
   DM.qryUsuario.Append;
   DM.qryUsuario.Active;
@@ -290,8 +302,11 @@ end;
 procedure TUsuarioF.btnCancelarClick(Sender: TObject);
 begin
   DM.qryUsuario.Cancel;
+
   inherited;
   DesabilitarCampos;
+  LimparCampos;
+
   Qry_DesabilitaBotao(btnCancelar);
   Qry_DesabilitaBotao(btnExcluir);
   Qry_DesabilitaBotao(btnEditar);

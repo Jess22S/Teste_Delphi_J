@@ -2,8 +2,8 @@ object PrincipalF: TPrincipalF
   Left = 0
   Top = 0
   Caption = 'SISTEMA DE CADASTRO'
-  ClientHeight = 525
-  ClientWidth = 1329
+  ClientHeight = 524
+  ClientWidth = 1325
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -551,7 +551,7 @@ object PrincipalF: TPrincipalF
   object Panel1: TPanel
     Left = 0
     Top = 0
-    Width = 1329
+    Width = 1325
     Height = 100
     Align = alTop
     Color = clSkyBlue
@@ -562,7 +562,7 @@ object PrincipalF: TPrincipalF
     ShowHint = False
     TabOrder = 0
     DesignSize = (
-      1329
+      1325
       100)
     object btnPessoa: TSpeedButton
       Left = 30
@@ -1774,7 +1774,7 @@ object PrincipalF: TPrincipalF
       OnClick = btnTrocarUsuarioClick
     end
     object btnFechar: TSpeedButton
-      Left = 1183
+      Left = 1179
       Top = 0
       Width = 100
       Height = 100
@@ -2584,8 +2584,8 @@ object PrincipalF: TPrincipalF
   end
   object StatusBar1: TStatusBar
     Left = 0
-    Top = 506
-    Width = 1329
+    Top = 505
+    Width = 1325
     Height = 19
     Panels = <
       item
@@ -2604,8 +2604,8 @@ object PrincipalF: TPrincipalF
   object Panel2: TPanel
     Left = 0
     Top = 100
-    Width = 1329
-    Height = 406
+    Width = 1325
+    Height = 405
     Align = alClient
     Caption = 'SISTEMA DE CADASTRO'
     Color = clBlack

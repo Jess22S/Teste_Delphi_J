@@ -1,36 +1,16 @@
+----------------------------
 Log de Inclusão de Registros
-Data: 18/12/2023
-Hora: 03:06:29
-Usuário: 
+Data: 29/12/2023
+Hora: 14:54:18
+Usuário: ADMIN
 Tabela: Usuário
-Operação: incluiu
-Log de Inclusão de Registros
-Data: 18/12/2023
-Hora: 03:28:10
-Usuário: 
-Tabela: Tipo Pessoa
-Operação: incluiu
-----------------------------
-Log de Inclusão de Registros
-Data: 18/12/2023
-Hora: 03:31:21
-Usuário: 
-Tabela: Tipo Pessoa
-Operação: incluiu
+Operação: Incluiu
 ----------------------------
 ----------------------------
 Log de Inclusão de Registros
-Data: 18/12/2023
-Hora: 03:32:07
-Usuário: 
-Tabela: Tipo Pessoa
-Operação: incluiu
-----------------------------
-----------------------------
-Log de Inclusão de Registros
-Data: 18/12/2023
-Hora: 05:59:22
-Usuário: 
+Data: 29/12/2023
+Hora: 15:00:20
+Usuário: ADMIN
 Tabela: Usuário
 Operação: Incluiu
 ----------------------------

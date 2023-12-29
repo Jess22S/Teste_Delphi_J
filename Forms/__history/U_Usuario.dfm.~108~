@@ -1,8 +1,8 @@
 inherited UsuarioF: TUsuarioF
+  BorderStyle = bsSizeToolWin
   Caption = 'CADASTRO DE USU'#193'RIOS'
-  ClientHeight = 322
-  ClientWidth = 987
-  Visible = True
+  ClientHeight = 333
+  ClientWidth = 991
   OnShow = FormShow
   ExplicitWidth = 999
   ExplicitHeight = 360
@@ -50,7 +50,7 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   object lblTipo: TLabel [3]
-    Left = 376
+    Left = 365
     Top = 184
     Width = 41
     Height = 22
@@ -63,7 +63,7 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   object lblCadastro: TLabel [4]
-    Left = 580
+    Left = 543
     Top = 184
     Width = 74
     Height = 22
@@ -77,7 +77,7 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   inherited Panel1: TPanel
-    Width = 987
+    Width = 991
     TabOrder = 5
     ExplicitWidth = 983
     inherited btnNovo: TBitBtn
@@ -125,13 +125,13 @@ inherited UsuarioF: TUsuarioF
       ExplicitWidth = 103
     end
     inherited Panel3: TPanel
-      Left = 837
+      Left = 841
       ExplicitLeft = 833
     end
   end
   inherited Panel2: TPanel
-    Top = 252
-    Width = 987
+    Top = 263
+    Width = 991
     TabOrder = 6
     ExplicitTop = 251
     ExplicitWidth = 983
@@ -156,7 +156,7 @@ inherited UsuarioF: TUsuarioF
   object edtNome: TDBEdit [8]
     Left = 202
     Top = 149
-    Width = 395
+    Width = 436
     Height = 23
     CharCase = ecUpperCase
     DataField = 'nome'
@@ -174,7 +174,7 @@ inherited UsuarioF: TUsuarioF
     TabOrder = 2
   end
   object edtCadastro: TDBEdit [10]
-    Left = 580
+    Left = 543
     Top = 208
     Width = 95
     Height = 23
@@ -184,12 +184,13 @@ inherited UsuarioF: TUsuarioF
     TabOrder = 4
   end
   object cmbTipo: TDBComboBox [11]
-    Left = 376
+    Left = 364
     Top = 208
-    Width = 196
+    Width = 175
     Height = 23
     DataField = 'tipo'
     DataSource = dsPadrao
+    Enabled = False
     Items.Strings = (
       'ADMINISTRADOR'
       'APOIO')

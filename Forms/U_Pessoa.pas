@@ -192,7 +192,7 @@ begin
   DM.qryLog.Insert;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.Value;
   DM.qryLoglog_tabela.Value          := 'Pessoa';
   DM.qryLoglog_operacao.Value        := 'Incluiu';
   DM.qryLog.Post;
@@ -208,7 +208,7 @@ begin
   DM.qryLog.Edit;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.Value;
   DM.qryLoglog_tabela.Value          := 'Pessoa';
   DM.qryLoglog_operacao.Value        := 'Alterou';
   DM.qryLog.Post;
@@ -224,7 +224,7 @@ begin
   DM.qryLog.Edit;
   DM.qryLoglog_data.Value            := Date;
   DM.qryLoglog_hora.Value            := Time;
-  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.AsString;
+  DM.qryLoglog_nome_usuario.AsString := DM.qryLoginnome.Value;
   DM.qryLoglog_tabela.AsString       := 'Pessoa';
   DM.qryLoglog_operacao.AsString     := 'Excluiu';
   DM.qryLog.Post;
