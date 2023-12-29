@@ -197,7 +197,7 @@ begin
   DM.qryLoglog_operacao.Value        := 'Incluiu';
   DM.qryLog.Post;
   DM.qryPessoa.Append;
-  DM.qryPessoacadastro.Value        := Date;
+  DM.qryPessoacadastro.Value         := Date;
   LimparCampos;
 end;
 
@@ -213,7 +213,7 @@ begin
   DM.qryLoglog_operacao.Value        := 'Alterou';
   DM.qryLog.Post;
   DM.qryPessoa.Append;
-  DM.qryPessoacadastro.Value        := Date;
+  DM.qryPessoacadastro.Value         := Date;
   LimparCampos;
 end;
 
