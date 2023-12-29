@@ -558,6 +558,8 @@ object DM: TDM
     end
   end
   object qryLogin: TFDQuery
+    Active = True
+    IndexFieldNames = 'tipo'
     MasterSource = UsuarioF.dsPadrao
     MasterFields = 'id_usuario'
     DetailFields = 'id_usuario'

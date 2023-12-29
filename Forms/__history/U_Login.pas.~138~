@@ -68,27 +68,68 @@ begin
    DM.qryLogin.SQL.Add('');
    DM.qryLogin.SQL.Clear;
    DM.qryLogin.Params.Clear;
-   DM.qryLogin.SQL.Text := 'SELECT ID_USUARIO, NOME, SENHA, TIPO FROM USUARIO ' +
-                           ' WHERE NOME = '' ' + edtNome.Text +
-                           ' AND SENHA = '' ' + edtSenha.Text +
-                           ' AND TIPO = '' ' + cmbTipo.Text;
+   DM.qryLogin.SQL.Add('SELECT ID_USUARIO, NOME, SENHA, TIPO FROM USUARIO');
+   DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME');
+   DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
    DM.qryLogin.Open;
 
-   if (DM.qryLogin.RecordCount > 0) then
+   if ((edtNome.Text = EmptyStr) or (edtNome.Text <> DM.qryLoginnome.AsString)) then
    begin
-     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-     DM.Usuario     := edtNome.Text;
-     DM.TipoUsuario := cmbTipo.Text;
-     PrincipalF     := TPrincipalF.create(Self);
-     PrincipalF.ShowModal;
-     Contagem       := 0;
-   end
-   else
-   begin
-     ShowMessage('Nome, Senha e/ou Tipo incorreto(s)!');
-     StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
-     edtNome.SetFocus;
+      MessageDlg('Usuário Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
+      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+
+     if (Contagem > 3) then
+     begin
+       Application.Terminate;
+     end
+     else
+     begin
+       edtNome.SetFocus;
+     end;
+
+     Exit;
    end;
+
+   if ((edtSenha.Text = EmptyStr) or (edtSenha.Text <> DM.qryLoginsenha.AsString)) then
+   begin
+      MessageDlg('Senha Incorreta! Favor de preencher corretamente.', mtError, [mbOK], 0);
+      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+
+     if (Contagem > 3) then
+     begin
+       Application.Terminate;
+     end
+     else
+     begin
+       edtSenha.SetFocus;
+     end;
+
+      Exit;
+   end;
+
+   if (cmbTipo.Text = EmptyStr) then
+   begin
+      MessageDlg('Tipo Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
+      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+
+     if (Contagem > 3) then
+     begin
+       Application.Terminate;
+     end
+     else
+     begin
+       cmbTipo.SetFocus;
+     end;
+
+      Exit;
+   end;
+
+   MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+   DM.Usuario := edtNome.Text;
+   DM.TipoUsuario := cmbTipo.Text;
+   PrincipalF:= TPrincipalF.create(Self);
+   PrincipalF.ShowModal;
+   Contagem := 0;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);

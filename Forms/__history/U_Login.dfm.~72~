@@ -2,7 +2,7 @@ object LoginF: TLoginF
   Left = 0
   Top = 0
   Caption = 'LOGIN'
-  ClientHeight = 265
+  ClientHeight = 278
   ClientWidth = 409
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
@@ -18,13 +18,13 @@ object LoginF: TLoginF
     Left = 0
     Top = 0
     Width = 409
-    Height = 265
+    Height = 278
     Align = alClient
     Color = clBlack
     ParentBackground = False
     TabOrder = 0
     ExplicitWidth = 405
-    ExplicitHeight = 264
+    ExplicitHeight = 277
     object lblUsuario: TLabel
       Left = 40
       Top = 16
@@ -1859,6 +1859,7 @@ object LoginF: TLoginF
       Width = 145
       Height = 23
       CharCase = ecUpperCase
+      PasswordChar = '*'
       TabOrder = 3
       Text = 'EDIT1'
     end
@@ -1867,9 +1868,24 @@ object LoginF: TLoginF
       Top = 150
       Width = 145
       Height = 23
+      Style = csDropDownList
       CharCase = ecUpperCase
       TabOrder = 4
-      Text = 'CMBTIPO'
+      Items.Strings = (
+        'ADMINSTRADOR'
+        'APOIO')
+    end
+    object StatusBar1: TStatusBar
+      Left = 1
+      Top = 257
+      Width = 407
+      Height = 20
+      Panels = <
+        item
+          Width = 50
+        end>
+      ExplicitTop = 256
+      ExplicitWidth = 403
     end
   end
 end

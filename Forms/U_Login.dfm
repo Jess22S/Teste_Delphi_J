@@ -1863,18 +1863,6 @@ object LoginF: TLoginF
       TabOrder = 3
       Text = 'EDIT1'
     end
-    object cmbTipo: TComboBox
-      Left = 40
-      Top = 150
-      Width = 145
-      Height = 23
-      CharCase = ecUpperCase
-      TabOrder = 4
-      Text = 'CMBTIPO'
-      Items.Strings = (
-        'ADMINSTRADOR'
-        'APOIO')
-    end
     object StatusBar1: TStatusBar
       Left = 1
       Top = 257
@@ -1886,6 +1874,16 @@ object LoginF: TLoginF
         end>
       ExplicitTop = 256
       ExplicitWidth = 403
+    end
+    object cmbTipo: TDBLookupComboBox
+      Left = 40
+      Top = 150
+      Width = 145
+      Height = 23
+      KeyField = 'id_usuario'
+      ListField = 'tipo'
+      ListSource = DM.dsLogin
+      TabOrder = 5
     end
   end
 end

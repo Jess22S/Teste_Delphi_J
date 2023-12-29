@@ -62,62 +62,71 @@ begin
 end;
 
 procedure TLoginF.btnEntrarClick(Sender: TObject);
-var
-  pNome, pSenha, pTipo: String;
 begin
    Inc(Contagem);
    DM.qryLogin.Close;
    DM.qryLogin.SQL.Add('');
    DM.qryLogin.SQL.Clear;
    DM.qryLogin.Params.Clear;
-   DM.qryLogin.SQL.Add('SELECT COUNT(*) AS NUMBER FROM USUARIO');
-   DM.qryLogin.SQL.Add(' WHERE NOME =  ' +  QuotedStr(pNome) + ' ');
-   DM.qryLogin.SQL.Add('AND SENHA = ' + QuotedStr(pSenha) + ' ');
-   DM.qryLogin.SQL.Add('AND TIPO = ' + QuotedStr(pTipo));
-//   DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
-//   DM.qryLogin.ParamByName('PSENHA').AsString := edtSenha.Text;
-//   DM.qryLogin.ParamByName('PTIPO').AsString  := cmbTipo.Text;
+   DM.qryLogin.SQL.Add('SELECT ID_USUARIO, NOME, SENHA, TIPO FROM USUARIO');
+   DM.qryLogin.SQL.Add(' WHERE NOME = :PNOME');
+   DM.qryLogin.ParamByName('PNOME').AsString  := edtNome.Text;
    DM.qryLogin.Open;
 
-//   edtNome.Text  := DM.qryLogin.ParamByName('PNOME').AsString;
-//   edtSenha.Text := DM.qryLogin.ParamByName('PSENHA').AsString;
-//   cmbTipo.Text  := DM.qryLogin.ParamByName('PTIPO').AsString;
-
-   if (edtNome.Text = EmptyStr) then
+   if ((edtNome.Text = EmptyStr) or (edtNome.Text <> DM.qryLoginnome.AsString)) then
    begin
-      ShowMessage('Favor Preencha o Usuário!');
-      edtNome.SetFocus;
-      Exit;
+      MessageDlg('Usuário Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
+      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+     if (Contagem > 3) then
+     begin
+       Application.Terminate;
+     end
+     else
+     begin
+       edtNome.SetFocus;
+     end;
+
+     Exit;
    end;
 
-   if (edtSenha.Text = EmptyStr) then
+   if ((edtSenha.Text = EmptyStr) or (edtSenha.Text <> DM.qryLoginsenha.AsString)) then
    begin
-      ShowMessage('Favor Preencha a Senha!');
-      edtSenha.SetFocus;
+      MessageDlg('Senha Incorreta! Favor de preencher corretamente.', mtError, [mbOK], 0);
+      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+     if (Contagem > 3) then
+     begin
+       Application.Terminate;
+     end
+     else
+     begin
+       edtSenha.SetFocus;
+     end;
+
       Exit;
    end;
 
    if (cmbTipo.Text = EmptyStr) then
    begin
-      ShowMessage('Favor Preencha o Tipo!');
-      edtSenha.SetFocus;
+      MessageDlg('Tipo Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
+      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+     if (Contagem > 3) then
+     begin
+       Application.Terminate;
+     end
+     else
+     begin
+       cmbTipo.SetFocus;
+     end;
+
       Exit;
    end;
 
-   if (DM.qryLogin.FieldByName('NUMBER').AsInteger = 0) then
-   begin
-     ShowMessage('Nome, Senha e/ou Tipo incorreto(s)!');
-     StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
-   end
-   else
-   begin
-     MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
-     DM.Usuario     := edtNome.Text;
-     DM.TipoUsuario := cmbTipo.Text;
-     PrincipalF     := TPrincipalF.create(Self);
-     PrincipalF.ShowModal;
-     Contagem       := 0;
-   end;
+   MessageDlg('Seja bem vindo ' + edtNome.Text + '', mtInformation, [mbOk], 0);
+   DM.Usuario := edtNome.Text;
+   DM.TipoUsuario := cmbTipo.Text;
+   PrincipalF:= TPrincipalF.create(Self);
+   PrincipalF.ShowModal;
+   Contagem := 0;
 end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);
