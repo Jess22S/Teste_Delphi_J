@@ -128,6 +128,7 @@ begin
   end;
 
   UsuarioF.Show;
+  btnUsuario.Enabled := False;
 end;
 
 procedure TPrincipalF.btnPessoaClick(Sender: TObject);
@@ -138,6 +139,7 @@ begin
   end;
 
   PessoaF.Show;
+  btnPessoa.Enabled := False;
 end;
 
 procedure TPrincipalF.btnTipoPessoaClick(Sender: TObject);
@@ -148,6 +150,7 @@ begin
   end;
 
   Tipo_PessoaF.Show;
+  btnTipoPessoa.Enabled := False;
 end;
 
 procedure TPrincipalF.btnFecharClick(Sender: TObject);

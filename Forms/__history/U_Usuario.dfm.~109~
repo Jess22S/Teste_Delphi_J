@@ -50,7 +50,7 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   object lblTipo: TLabel [3]
-    Left = 376
+    Left = 365
     Top = 184
     Width = 41
     Height = 22
@@ -63,7 +63,7 @@ inherited UsuarioF: TUsuarioF
     ParentFont = False
   end
   object lblCadastro: TLabel [4]
-    Left = 580
+    Left = 543
     Top = 184
     Width = 74
     Height = 22
@@ -156,7 +156,7 @@ inherited UsuarioF: TUsuarioF
   object edtNome: TDBEdit [8]
     Left = 202
     Top = 149
-    Width = 395
+    Width = 436
     Height = 23
     CharCase = ecUpperCase
     DataField = 'nome'
@@ -174,7 +174,7 @@ inherited UsuarioF: TUsuarioF
     TabOrder = 2
   end
   object edtCadastro: TDBEdit [10]
-    Left = 580
+    Left = 543
     Top = 208
     Width = 95
     Height = 23
@@ -184,12 +184,13 @@ inherited UsuarioF: TUsuarioF
     TabOrder = 4
   end
   object cmbTipo: TDBComboBox [11]
-    Left = 376
+    Left = 364
     Top = 208
-    Width = 196
+    Width = 175
     Height = 23
     DataField = 'tipo'
     DataSource = dsPadrao
+    Enabled = False
     Items.Strings = (
       'ADMINISTRADOR'
       'APOIO')

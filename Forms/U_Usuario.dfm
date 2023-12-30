@@ -3,6 +3,7 @@ inherited UsuarioF: TUsuarioF
   Caption = 'CADASTRO DE USU'#193'RIOS'
   ClientHeight = 333
   ClientWidth = 991
+  OnClose = FormClose
   OnShow = FormShow
   ExplicitWidth = 999
   ExplicitHeight = 360
@@ -89,7 +90,6 @@ inherited UsuarioF: TUsuarioF
     inherited btnExcluir: TBitBtn
       Left = 137
       Width = 95
-      OnClick = btnExcluirClick
       ExplicitLeft = 137
       ExplicitWidth = 95
     end

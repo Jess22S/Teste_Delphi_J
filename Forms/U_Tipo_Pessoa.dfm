@@ -3,6 +3,7 @@ inherited Tipo_PessoaF: TTipo_PessoaF
   Caption = 'CADASTRO DE TIPO PESSOA'
   ClientHeight = 446
   DoubleBuffered = True
+  OnClose = FormClose
   OnShow = FormShow
   ExplicitWidth = 1010
   ExplicitHeight = 473
@@ -48,11 +49,8 @@ inherited Tipo_PessoaF: TTipo_PessoaF
   end
   inherited Panel1: TPanel
     ExplicitWidth = 994
-    inherited btnExcluir: TBitBtn
-      OnClick = btnExcluirClick
-    end
-    inherited btnPesquisar: TBitBtn
-      OnClick = btnPesquisarClick
+    inherited Panel3: TPanel
+      ExplicitLeft = 844
     end
   end
   inherited Panel2: TPanel

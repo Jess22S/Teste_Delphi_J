@@ -26,6 +26,7 @@ type
     mmFechar: TMenuItem;
     Panel2: TPanel;
     btnUsuario: TSpeedButton;
+    Timer2: TTimer;
     procedure Timer1Timer(Sender: TObject);
     procedure btnFecharClick(Sender: TObject);
     procedure mmSairClick(Sender: TObject);
@@ -38,6 +39,8 @@ type
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure FormCreate(Sender: TObject);
     procedure btnUsuarioClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+    procedure Timer2Timer(Sender: TObject);
   private
     { Private declarations }
     procedure AppIdle(Sender: TObject; var Done: Boolean);
@@ -70,24 +73,42 @@ begin
   end;
 end;
 
+procedure TPrincipalF.FormShow(Sender: TObject);
+begin
+  if (DM.TipoUsuario = 'APOIO') then
+  begin
+    btnUsuario.Enabled := False;
+    mmUsuario.Enabled  := False;
+    btnUsuario.Visible := False;
+    mmUsuario.Visible  := False;
+  end;
+
+  Timer1Timer(Self);
+end;
+
 procedure TPrincipalF.Timer1Timer(Sender: TObject);
 begin
-  // INSERE DADOS NO STATUSBAR
+   // INSERE DADOS NO STATUSBAR
   StatusBar1.Panels[0].Text := DateToStr(now);
   StatusBar1.Panels[1].Text := TimeToStr(now);
   StatusBar1.Panels[2].Text := 'SEJA BEM-VINDO AO SISTEMA Sr(a): ' + DM.Usuario;
   StatusBar1.Panels[3].Text := 'TIPO DE USUÁRIO: ' + DM.TipoUsuario;
 end;
 
+procedure TPrincipalF.Timer2Timer(Sender: TObject);
+begin
+  Application.Terminate;
+end;
+
 procedure TPrincipalF.AppIdle(Sender: TObject; var Done: Boolean);
 begin
-  Timer1.Enabled := True;
+  Timer2.Enabled := True;
 end;
 
 procedure TPrincipalF.AppMessage(var Msg: TMsg; var Handled: Boolean);
 begin
   Case Msg.message of
-      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer1.Enabled := False;
+      WM_LBUTTONDOWN,WM_RBUTTONDOWN,WM_KEYDOWN: Timer2.Enabled := False;
   end;
 end;
 
@@ -97,13 +118,6 @@ begin
   LoginF.edtNome.Clear;
   LoginF.edtSenha.Clear;
   LoginF.edtNome.SetFocus;
-
-  if (not (Assigned(UsuarioF))) then
-  begin
-    UsuarioF := TUsuarioF.Create(Self);
-  end;
-
-  UsuarioF.Show;
 end;
 
 procedure TPrincipalF.btnUsuarioClick(Sender: TObject);
@@ -114,6 +128,7 @@ begin
   end;
 
   UsuarioF.Show;
+  btnUsuario.Enabled := False;
 end;
 
 procedure TPrincipalF.btnPessoaClick(Sender: TObject);
@@ -124,6 +139,7 @@ begin
   end;
 
   PessoaF.Show;
+  btnPessoa.Enabled := False;
 end;
 
 procedure TPrincipalF.btnTipoPessoaClick(Sender: TObject);
@@ -134,6 +150,7 @@ begin
   end;
 
   Tipo_PessoaF.Show;
+  btnTipoPessoa.Enabled := False;
 end;
 
 procedure TPrincipalF.btnFecharClick(Sender: TObject);

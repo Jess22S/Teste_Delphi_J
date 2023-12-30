@@ -30,6 +30,7 @@ type
     procedure btnExcluirClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnAtualizarClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     procedure HabilitarCampos;
@@ -49,6 +50,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses U_Principal;
 
 procedure TUsuarioF.DesabilitarCampos;
 begin
@@ -71,6 +74,11 @@ begin
   begin
     btnPadrao.Enabled := False;
   end;
+end;
+
+procedure TUsuarioF.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  PrincipalF.btnUsuario.Enabled := True;
 end;
 
 procedure TUsuarioF.FormShow(Sender: TObject);

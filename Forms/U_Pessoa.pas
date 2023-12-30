@@ -74,6 +74,7 @@ type
     procedure btnNovoEnderecoClick(Sender: TObject);
     procedure btnPesquisarClick(Sender: TObject);
     procedure btnSairClick(Sender: TObject);
+    procedure FormClose(Sender: TObject; var Action: TCloseAction);
   private
     { Private declarations }
     procedure HabilitarCampos;
@@ -94,6 +95,8 @@ var
 implementation
 
 {$R *.dfm}
+
+uses U_Principal;
 
 { TPessoaF }
 
@@ -241,6 +244,11 @@ begin
   begin
     btnPadrao.Enabled := False;
   end;
+end;
+
+procedure TPessoaF.FormClose(Sender: TObject; var Action: TCloseAction);
+begin
+  PrincipalF.btnPessoa.Enabled := True;
 end;
 
 procedure TPessoaF.FormShow(Sender: TObject);

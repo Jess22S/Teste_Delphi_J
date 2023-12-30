@@ -72,6 +72,8 @@ type
     procedure btnAtualizarClick(Sender: TObject);
     procedure btnCancelarClick(Sender: TObject);
     procedure btnNovoEnderecoClick(Sender: TObject);
+    procedure btnPesquisarClick(Sender: TObject);
+    procedure btnSairClick(Sender: TObject);
   private
     { Private declarations }
     procedure HabilitarCampos;
@@ -245,18 +247,6 @@ procedure TPessoaF.FormShow(Sender: TObject);
 begin
   PageControl1.ActivePageIndex := 0;
   DesabilitarCampos;
-
-  DM.qryPessoa.Open;
-  DM.qryEndereco.Open;
-
-  DM.qryTipoPessoa.Open;
-  DM.qryTipoPessoa.FetchAll;
-
-  DM.qryEstados.Open;
-  DM.qryEstados.FetchAll;
-
-  DM.qryCidades.Open;
-  DM.qryCidades.FetchAll;
 end;
 
 procedure TPessoaF.btnNovoClick(Sender: TObject);
@@ -274,15 +264,8 @@ begin
     HabilitarCampos;
     DM.qryPessoa.Append;
     DM.qryTipoPessoa.Append;
-    DM.qryEndereco.Append;
-    DM.qryEstados.Append;
-    DM.qryCidades.Append;
     DM.qryPessoa.Active;
-    DM.qryEndereco.Active;
     DM.qryTipoPessoa.Active;
-    DM.qryEstados.Active;
-    DM.qryCidades.Active;
-
     DM.qryPessoa.Last;
     Prox := DM.qryPessoaid_pessoa.AsInteger + 1;
     DM.qryPessoa.Append;
@@ -338,14 +321,19 @@ procedure TPessoaF.btnNovoEnderecoClick(Sender: TObject);
 var
   Prox: Integer;
 begin
+    if (not (DM.qryEndereco.Active)) then
+    begin
+      DM.qryEndereco.Active;
+    end;
+
+    DM.qryEstados.Active;
+    DM.qryCidades.Active;
     DM.qryEndereco.SQL.Add('INSERT INTO ENDERECO (:ID_PESSOA)');
     DM.qryEndereco.ParamByName('ID_PESSOA').AsInteger := StrToInt(edtID.Text);
 
     try
       DM.qryEndereco.ExecSQL;
       DM.qryEndereco.Refresh;
-      DM.cdsEndereco.Refresh;
-
     except on E:exception do
       begin
         MessageDlg('Entre em contato com o suporte.', mtError, [mbOK], 0);
@@ -365,6 +353,33 @@ begin
 
     edtCadastro.Enabled      := False;
     LimparCamposEndereco;
+end;
+
+procedure TPessoaF.btnPesquisarClick(Sender: TObject);
+begin
+  inherited;
+  DM.qryPessoa.Open;
+  DM.qryEndereco.Open;
+  DM.qryEndereco.FetchAll;
+
+  DM.qryTipoPessoa.Open;
+  DM.qryTipoPessoa.FetchAll;
+
+  DM.qryEstados.Open;
+  DM.qryEstados.FetchAll;
+
+  DM.qryCidades.Open;
+  DM.qryCidades.FetchAll;
+end;
+
+procedure TPessoaF.btnSairClick(Sender: TObject);
+begin
+  inherited;
+  DM.qryPessoa.Close;
+  DM.qryEndereco.Close;
+  DM.qryTipoPessoa.Close;
+  DM.qryEstados.Close;
+  DM.qryCidades.Close;
 end;
 
 procedure TPessoaF.btnEditarClick(Sender: TObject);
