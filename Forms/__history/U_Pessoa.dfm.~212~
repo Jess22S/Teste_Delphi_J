@@ -1,19 +1,20 @@
 inherited PessoaF: TPessoaF
   BorderStyle = bsSizeToolWin
   Caption = 'CADASTRO DE PESSOA'
-  ClientHeight = 567
-  ClientWidth = 980
-  Visible = True
+  ClientHeight = 555
+  ClientWidth = 972
+  Position = poDefaultPosOnly
+  OnClose = FormClose
   OnShow = FormShow
-  ExplicitWidth = 988
-  ExplicitHeight = 594
+  ExplicitWidth = 980
+  ExplicitHeight = 582
   TextHeight = 15
   inherited Panel1: TPanel
-    Width = 980
-    ExplicitWidth = 972
+    Width = 972
+    ExplicitWidth = 964
     inherited Panel3: TPanel
-      Left = 830
-      ExplicitLeft = 822
+      Left = 822
+      ExplicitLeft = 814
       inherited btnSair: TBitBtn
         Left = 755
         ExplicitLeft = 755
@@ -130,15 +131,15 @@ inherited PessoaF: TPessoaF
     end
   end
   inherited Panel2: TPanel
-    Top = 497
-    Width = 980
+    Top = 485
+    Width = 972
     Font.Charset = ANSI_CHARSET
     Font.Height = -19
     Font.Name = 'Monotype Corsiva'
     Font.Style = [fsBold, fsItalic]
     ParentFont = False
-    ExplicitTop = 485
-    ExplicitWidth = 972
+    ExplicitTop = 473
+    ExplicitWidth = 964
     inherited BindNavigator1: TBindNavigator
       Left = 225
       Width = 428
@@ -150,13 +151,13 @@ inherited PessoaF: TPessoaF
   object PageControl1: TPageControl [2]
     Left = 0
     Top = 57
-    Width = 980
-    Height = 440
+    Width = 972
+    Height = 428
     ActivePage = tsEndereco
     Align = alClient
     TabOrder = 2
-    ExplicitWidth = 972
-    ExplicitHeight = 428
+    ExplicitWidth = 964
+    ExplicitHeight = 416
     object tsDadosPessoais: TTabSheet
       Caption = 'Dados Pessoais'
       object lblID: TLabel
@@ -388,8 +389,8 @@ inherited PessoaF: TPessoaF
       end
       object s: TDBGrid
         Left = 0
-        Top = 187
-        Width = 972
+        Top = 175
+        Width = 964
         Height = 223
         Align = alBottom
         DataSource = dsPadrao
@@ -528,9 +529,9 @@ inherited PessoaF: TPessoaF
       object lblEndereco: TLabel
         Left = 65
         Top = 1
-        Width = 97
+        Width = 81
         Height = 25
-        Caption = 'Endereco 1:'
+        Caption = 'Endereco:'
         FocusControl = edtEndereco
         Font.Charset = ANSI_CHARSET
         Font.Color = clWindowText
@@ -727,8 +728,8 @@ inherited PessoaF: TPessoaF
       end
       object grdCadEndereco: TDBGrid
         Left = 0
-        Top = 136
-        Width = 972
+        Top = 124
+        Width = 964
         Height = 274
         Align = alBottom
         DataSource = dsEndereco

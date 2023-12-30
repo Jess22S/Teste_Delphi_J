@@ -174,3 +174,11 @@ Usuário: ADMIN
 Tabela: Tipo Pessoa
 Operação: Excluiu
 ----------------------------
+----------------------------
+Log de Exclusão de Registros
+Data: 30/12/2023
+Hora: 14:17:00
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Excluiu
+----------------------------

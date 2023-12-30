@@ -3,6 +3,7 @@ inherited UsuarioF: TUsuarioF
   Caption = 'CADASTRO DE USU'#193'RIOS'
   ClientHeight = 333
   ClientWidth = 991
+  DefaultMonitor = dmMainForm
   OnClose = FormClose
   OnShow = FormShow
   ExplicitWidth = 999

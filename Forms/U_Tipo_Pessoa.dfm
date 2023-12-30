@@ -2,6 +2,7 @@ inherited Tipo_PessoaF: TTipo_PessoaF
   BorderStyle = bsSizeToolWin
   Caption = 'CADASTRO DE TIPO PESSOA'
   ClientHeight = 446
+  DefaultMonitor = dmMainForm
   DoubleBuffered = True
   OnClose = FormClose
   OnShow = FormShow

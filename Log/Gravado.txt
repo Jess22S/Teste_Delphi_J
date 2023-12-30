@@ -14,3 +14,11 @@ Usuário: ADMIN
 Tabela: Usuário
 Operação: Incluiu
 ----------------------------
+----------------------------
+Log de Inclusão de Registros
+Data: 30/12/2023
+Hora: 14:16:46
+Usuário: ADMIN
+Tabela: Tipo Pessoa
+Operação: Incluiu
+----------------------------

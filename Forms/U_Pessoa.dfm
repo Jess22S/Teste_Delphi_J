@@ -3,6 +3,7 @@ inherited PessoaF: TPessoaF
   Caption = 'CADASTRO DE PESSOA'
   ClientHeight = 555
   ClientWidth = 972
+  DefaultMonitor = dmMainForm
   OnClose = FormClose
   OnShow = FormShow
   ExplicitWidth = 980
