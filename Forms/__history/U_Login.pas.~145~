@@ -17,9 +17,9 @@ type
     btnCancelar: TBitBtn;
     edtNome: TEdit;
     edtSenha: TEdit;
-    cmbTipo: TComboBox;
     imgLogin: TImage;
     StatusBar1: TStatusBar;
+    cmbTipo: TDBLookupComboBox;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnCancelarClick(Sender: TObject);
@@ -46,7 +46,7 @@ procedure TLoginF.LimparCampos;
 begin
   edtNome.Clear;
   edtSenha.Clear;
-  cmbTipo.ItemIndex := 0;
+  cmbTipo.ListFieldIndex := 0;
 end;
 
 procedure TLoginF.FormShow(Sender: TObject);
@@ -75,8 +75,8 @@ begin
 
    if ((edtNome.Text = EmptyStr) or (edtNome.Text <> DM.qryLoginnome.AsString)) then
    begin
-      MessageDlg('Usuário Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
-      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+     MessageDlg('Usuário Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
+     StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
 
      if (Contagem > 3) then
      begin
@@ -92,8 +92,8 @@ begin
 
    if ((edtSenha.Text = EmptyStr) or (edtSenha.Text <> DM.qryLoginsenha.AsString)) then
    begin
-      MessageDlg('Senha Incorreta! Favor de preencher corretamente.', mtError, [mbOK], 0);
-      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+     MessageDlg('Senha Incorreta! Favor de preencher corretamente.', mtError, [mbOK], 0);
+     StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
 
      if (Contagem > 3) then
      begin
@@ -109,8 +109,8 @@ begin
 
    if ((cmbTipo.Text = EmptyStr) or (cmbTipo.Text <> DM.qryLogintipo.AsString)) then
    begin
-      MessageDlg('Tipo Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
-      StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
+     MessageDlg('Tipo Incorreto! Favor de preencher corretamente.', mtError, [mbOK], 0);
+     StatusBar1.Panels[0].Text := 'Tentativas....: ' + IntToStr(Contagem) + '/3';
 
      if (Contagem > 3) then
      begin

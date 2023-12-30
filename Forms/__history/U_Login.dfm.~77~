@@ -24,7 +24,7 @@ object LoginF: TLoginF
     ParentBackground = False
     TabOrder = 0
     ExplicitWidth = 405
-    ExplicitHeight = 264
+    ExplicitHeight = 277
     object lblUsuario: TLabel
       Left = 40
       Top = 16
@@ -1863,25 +1863,27 @@ object LoginF: TLoginF
       TabOrder = 3
       Text = 'EDIT1'
     end
-    object cmbTipo: TComboBox
-      Left = 40
-      Top = 150
-      Width = 145
-      Height = 23
-      CharCase = ecUpperCase
-      TabOrder = 4
-      Text = 'CMBTIPO'
-      Items.Strings = (
-        'ADMINSTRADOR'
-        'APOIO')
-    end
     object StatusBar1: TStatusBar
       Left = 1
       Top = 257
       Width = 407
       Height = 20
-      Panels = <>
-      ExplicitTop = 258
+      Panels = <
+        item
+          Width = 50
+        end>
+      ExplicitTop = 256
+      ExplicitWidth = 403
+    end
+    object ComboBox1: TComboBox
+      Left = 40
+      Top = 150
+      Width = 145
+      Height = 23
+      TabOrder = 5
+      Items.Strings = (
+        'ADMINISTRADOR'
+        'APOIO')
     end
   end
 end

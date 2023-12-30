@@ -1875,15 +1875,15 @@ object LoginF: TLoginF
       ExplicitTop = 256
       ExplicitWidth = 403
     end
-    object cmbTipo: TDBLookupComboBox
+    object cmbTipo: TComboBox
       Left = 40
       Top = 150
       Width = 145
       Height = 23
-      KeyField = 'id_usuario'
-      ListField = 'tipo'
-      ListSource = DM.dsLogin
       TabOrder = 5
+      Items.Strings = (
+        'ADMINISTRADOR'
+        'APOIO')
     end
   end
 end

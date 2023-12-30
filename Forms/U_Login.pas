@@ -19,7 +19,7 @@ type
     edtSenha: TEdit;
     imgLogin: TImage;
     StatusBar1: TStatusBar;
-    cmbTipo: TDBLookupComboBox;
+    cmbTipo: TComboBox;
     procedure btnEntrarClick(Sender: TObject);
     procedure FormKeyPress(Sender: TObject; var Key: Char);
     procedure btnCancelarClick(Sender: TObject);
@@ -46,7 +46,7 @@ procedure TLoginF.LimparCampos;
 begin
   edtNome.Clear;
   edtSenha.Clear;
-  cmbTipo.ListFieldIndex := 0;
+  cmbTipo.ItemIndex    := 0;
 end;
 
 procedure TLoginF.FormShow(Sender: TObject);
@@ -134,13 +134,6 @@ end;
 
 procedure TLoginF.FormKeyPress(Sender: TObject; var Key: Char);
 begin
-   // FAZ A TECLA ENTER TER A MESMA FUNÇÃO DA TECLA TAB
-  if (Key = #13) then
-  begin
-    Key := #0;
-    Perform(wm_nextDlgCtl, 0, 0);
-  end;
-
   // A TECLA ESC SAI DA TELA
   if (Key = #27) then
   begin
